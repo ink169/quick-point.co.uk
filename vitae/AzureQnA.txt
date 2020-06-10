@@ -1,0 +1,26 @@
+Create Azure 
+https://www.qnamaker.ai/Create
+
+KB Files
+https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/concepts/knowledge-base
+
+Azure Bot Service
+-----------------
+https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0
+
+choice prompts, text prompts, Confirm prompts, number prompts, attachment prompts
+
+Dialogs Library
+---------------
+
+How Bots Work
+-------------
+https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0&tabs=csharp
+
+conversation flow
+-----------------
+https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-dialog-manage-conversation-flow?view=azure-bot-service-4.0&tabs=csharp
+
+multi-turn prompts 
+------------------
+https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/05.multi-turn-prompt
