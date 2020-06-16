@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quick-Point.co.uk", "Quick-Point.co.uk.csproj", "{335830DB-B0D1-44F5-9C81-8861F6693ECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QPCoreBot", "..\QPCoreBot\QPCoreBot.csproj", "{D2B13A6B-32D6-45E3-8B85-70739F00E5CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QPEchoEchoBot", "..\QPEchoEchoBot\QPEchoEchoBot.csproj", "{1999CE65-950A-48C8-A54D-87D96319BC14}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{335830DB-B0D1-44F5-9C81-8861F6693ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{335830DB-B0D1-44F5-9C81-8861F6693ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{335830DB-B0D1-44F5-9C81-8861F6693ECB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2B13A6B-32D6-45E3-8B85-70739F00E5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2B13A6B-32D6-45E3-8B85-70739F00E5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2B13A6B-32D6-45E3-8B85-70739F00E5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2B13A6B-32D6-45E3-8B85-70739F00E5CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1999CE65-950A-48C8-A54D-87D96319BC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1999CE65-950A-48C8-A54D-87D96319BC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1999CE65-950A-48C8-A54D-87D96319BC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1999CE65-950A-48C8-A54D-87D96319BC14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

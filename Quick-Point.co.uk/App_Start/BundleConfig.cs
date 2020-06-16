@@ -20,10 +20,17 @@ namespace Quick_Point.co.uk
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+					  "~/Scripts/bootstrap.bundle.min.js",
+					  "~/jquery.easing/jquery.easing.min.js",
+					  //"~/assets/vendor/aos/aos.js",
+					  "~/owl.carousel/owl.carousel.min.js",
+					  "~/Scripts/jquery-sticky/jquery.sticky.js",
+					  "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+					  "~/Content/bootstrap.min.css",
+					  //"~/assets/vendor/aos/aos.css",
+					  "~/owl.carousel/assets/owl.carousel.min.css",
                       "~/Content/site.css"));
         }
     }
