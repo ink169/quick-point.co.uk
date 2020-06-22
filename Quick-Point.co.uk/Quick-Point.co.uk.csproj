@@ -154,10 +154,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-<<<<<<< Updated upstream
-=======
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
->>>>>>> Stashed changes
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
