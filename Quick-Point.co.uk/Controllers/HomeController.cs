@@ -13,12 +13,6 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
 
         public ActionResult Contact()
         {
@@ -26,7 +20,7 @@ namespace Quick_Point.co.uk.Controllers
 
             return View();
         }
-        public ActionResult MeetTheTeam()
+        public ActionResult About()
         {
             ViewBag.Message = "Meet the team";
 
