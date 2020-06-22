@@ -26,7 +26,6 @@ namespace Quick_Point.co.uk.Controllers
 
             return View();
         }
-
         public ActionResult MeetTheTeam()
         {
             ViewBag.Message = "Meet the team";
