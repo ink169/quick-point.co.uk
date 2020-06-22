@@ -30,7 +30,7 @@
 				<div class="row align-items-center">
 
 					<div class="col-6 col-lg-2">
-						<h1 class="mb-0 site-logo"><a href="index.html" class="mb-0">Quickpoint</a></h1>
+						<h1 class="mb-0 site-logo"><a href="/Home/Index" class="mb-0">Quickpoint</a></h1>
 					</div>
 
 					<div class="col-12 col-md-10 d-none d-lg-block">
@@ -38,7 +38,8 @@
 
 							<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
 								@*<li class="active"><a href="index.html" class="nav-link">Home</a></li>*@
-								<li>@Html.ActionLink("Home", "Index", "Home")</li>
+								@*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+								<li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>
 								<li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
 								<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 							</ul>

@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "FFA";
+}
+
+<section class="hero-section" id="hero">
+    <div class="wave">
+        <svg width="100%" height="355px" viewBox="0 0 1920 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+                    <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,757 L1017.15166,757 L0,757 L0,439.134243 Z" id="Path"></path>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 text-center text-lg-left">
+                <div class="row">
+                    <h1 data-aos="fade-right">Recieve Free Financial Analysis</h1>
+                    <h5 style="color:white;">You can book in for a free financial analysis on this page</h5>
+                </div>
+                <div class="row text-center" style="margin-top:10%; color:white;">
+                    <h2 style="color:white; font-weight:bold;">@ViewBag.Message</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+    <!-- ======= Describe Section ======= -->
+    <section class="section section-describe">
+        <div class="container">
+            <div class="row justify-content-center text-left mb-5">
+                <div class="col-md-6" data-aos="fade-up" style="color:black;" >
+
+                    <h2>Upload financial status files</h2>
+                    @using (Html.BeginForm("FFA", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                <div>
+                    Name:<br />
+                    <input type="text" name="name" />
+                    <br />
+                    <br />
+                    Email: <br />
+                    <input type="email" name="email" />
+                    <br />
+                    <br />
+                    Phone: <br />
+                    <input type="number" name="phone" />
+                    <br />
+                    <br />
+                    Date & Time Of Upload: <br />
+                    <input type="datetime-local" name="date" />
+                    <br />
+                    <br />
+                    Financial Status Document: <br />
+                    <input type="file" name="file" />
+                    <br />
+                    <br />
+                    <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc"/><h6 style="font-weight:700; text-decoration:underline;" id="writing"> To upload, please tick to agree with our <a href="~/assets/">T&C's</a></h6>
+                    <br />
+                    <input type="submit" value="Submit" id="submit" style="display:none"/>
+
+                    <script>
+                        function myFunction() {
+                         // Get the checkbox
+                         var checkBox = document.getElementById("tAc");
+                         // Get the output text
+                            var text = document.getElementById("submit");
+
+                             var writing = document.getElementById("writing");
+
+                         // If the checkbox is checked, display the output text
+                            if (checkBox.checked == true) {
+                                text.style.display = "block";
+                                writing.style.fontWeight = "normal";
+                                writing.style.textDecoration = "none";
+                                writing.textContent = "You have agreed to our T&Cs"
+                            }
+                            else if (checkBox.checked !== true) {
+                                text.style.display = "none";
+                                writing.style.fontWeight = "bold";
+                                writing.style.textDecoration = "underline";
+                                writing.textContent = "To upload, please tick to agree with our T&C's"
+                            }
+                            else {
+                                text.style.display = "none";
+                            }
+                            }
+                    </script>
+
+                </div>
+                    }
+                    </div>
+                <div class="col-md-6">
+                    
+                    <div style="margin:10px 10px 10px 10px; border: 1px solid grey; padding: 10px 10px 10px 10px; color:black; ">
+                        Explain here the terms and conditions of the financial analysis and the other stuff
+                        <br />
+                        <br />
+                        make it look nice
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main><!-- End #main -->
