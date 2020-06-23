@@ -29,8 +29,8 @@ namespace Quick_Point.co.uk.Controllers
             var client = new MongoClient("mongodb+srv://fred:ASdfJI43619%21@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
             var db = client.GetDatabase("QuickPoint");
             var collec = db.GetCollection<BsonDocument>("FFA Uploaders");
-            
 
+           
 
             try
             { 
@@ -42,7 +42,8 @@ namespace Quick_Point.co.uk.Controllers
                 fileName = username + date + fileName;
                 string uploadDetails = username + ',' + email + ',' + phone + ',' + date + ',' + fileName;
                 var path = Path.Combine(Server.MapPath("~/Files/"), fileName);
-                file.SaveAs(path);
+                
+
 
                 var document = new BsonDocument
                 {
