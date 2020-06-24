@@ -1,4 +1,4 @@
-﻿
+﻿@model Quick_Point.co.uk.ViewModels.ResourceViewModel
 @{
     ViewBag.Title = "FAQ";
 }
@@ -36,7 +36,7 @@
             <th style="width:70%"; class="text-center">Legal Articles</th>
         </tr>
         <tr class="cells">
-            <td><a href="https://www.google.com" target="_blank">COVID-19 and claiming benefits</a></td>
+            <td><a href='@String.Format("{0}TaxAccArticle1", Model.BaseUrl)' target="_blank">COVID-19 and claiming benefits</a></td>
 
             <td>If the employee is employed by one employer on 19 March but is transferred to another employer under the TUPE scheme later, they can be furloughed by the new employer.</td>
         </tr>

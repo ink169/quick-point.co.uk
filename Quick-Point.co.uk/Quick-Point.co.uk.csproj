@@ -162,7 +162,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Article.cs" />
+    <Compile Include="ViewModels\ResourceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\images\Heads\dana.jpg" />
@@ -251,11 +254,10 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Resources.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
-    <Content Include="Views\Home\IndexOffline.cshtml" />
-    <Content Include="Views\Home\IndexBackup.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle1.cshtml" />
     <Content Include="Views\Home\Article.cshtml" />
     <Content Include="Views\Shared\_BeanlandLayout.cshtml" />
+    <Content Include="Views\Home\RequestArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

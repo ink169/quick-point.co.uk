@@ -10,11 +10,41 @@ using MongoDB.Driver;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Client;
 using System.Security;
+using Quick_Point.co.uk.ViewModels;
 
 namespace Quick_Point.co.uk.Controllers
 {
+
+    
     public class HomeController : Controller
     {
+
+       
+        private string getHomeAddress()
+        {
+            return string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Index");
+        }
+
+        public ActionResult Resources()
+        {
+
+            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/RequestArticle?id=");
+
+            return View(new ResourceViewModel() { BaseUrl = baseAddress });
+        }
+
+        public ActionResult RequestArticle(string id)
+        {
+            if (id != null)
+            {
+                Session["ArticleID"] = id;
+            }
+            else
+                Response.Redirect(getHomeAddress());
+                return View();
+        }
+
+
         public ActionResult Index()
         {
             return View();
@@ -22,12 +52,7 @@ namespace Quick_Point.co.uk.Controllers
         public ActionResult FFA()
         {
             return View();
-        }
-
-        public ActionResult Resources()
-        {
-            return View();
-        }
+        }       
 
         public ActionResult Article()
         {
