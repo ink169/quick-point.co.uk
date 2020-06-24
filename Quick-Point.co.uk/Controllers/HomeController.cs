@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using MongoDB;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Client;
+using System.Security;
 
 namespace Quick_Point.co.uk.Controllers
 {
@@ -21,8 +24,13 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
+        public ActionResult FAQ()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult FFA(HttpPostedFileBase file, FormCollection form)
+        public ActionResult FFA(HttpPostedFileBase file, System.Web.Mvc.FormCollection form)
         {
 
 
@@ -32,31 +40,83 @@ namespace Quick_Point.co.uk.Controllers
 
            
 
-            try
-            { 
-                var fileName = Path.GetFileName(file.FileName);
-                var username = (form["name"].ToString());
-                var email = (form["email"].ToString());
-                var phone = (form["phone"].ToString());
-                var date = (form["date"].ToString());
-                fileName = username + date + fileName;
-                string uploadDetails = username + ',' + email + ',' + phone + ',' + date + ',' + fileName;
-                var path = Path.Combine(Server.MapPath("~/Files/"), fileName);
+          try
+           {
                 
+                    var fileName = Path.GetFileName(file.FileName);
+                    var username = (form["name"].ToString());
+                    var email = (form["email"].ToString());
+                    var phone = (form["phone"].ToString());
+                    var date = (form["date"].ToString());
+                    fileName = username + date + fileName;
+                    string uploadDetails = username + ',' + email + ',' + phone + ',' + date + ',' + fileName;
+                    var path = Path.Combine(Server.MapPath("~/Files/"), fileName);
 
-
-                var document = new BsonDocument
+                    var document = new BsonDocument
                 {
                 {"Name", username},
                 {"Email", email },
                 {"Phone", phone },
                 {"Date", date },
                 {"File Name", fileName }
-
                 };
 
-                collec.InsertOneAsync(document);
+                    collec.InsertOneAsync(document);
 
+                MemoryStream target = new MemoryStream();
+                file.InputStream.CopyTo(target);
+                byte[] data = target.ToArray();
+
+
+                string relativeUrl = "Shared Documents/FFA";
+                var website = "https://netorgft6692843.sharepoint.com/sites/QuickPointDocuments";
+
+                using (var clientContext = new ClientContext(website))
+                {
+                   
+                        clientContext.Credentials = new SharePointOnlineCredentials("qpadmin@quick-point.co.uk", GetSecurePassword());
+                        Web web = clientContext.Web;
+                        Folder folder = web.GetFolderByServerRelativeUrl(relativeUrl);
+                        clientContext.Load(folder);
+                        clientContext.ExecuteQuery();
+
+                        folder.Files.Add(new FileCreationInformation
+                        {
+                            Overwrite = true,
+                            Content = data,
+                            Url = folder.ServerRelativeUrl + "/" + fileName
+                        }); ;
+                        clientContext.ExecuteQuery();
+                   
+               }
+
+
+
+                /*
+
+                MemoryStream target = new MemoryStream();
+                file.InputStream.CopyTo(target);
+                byte[] data = target.ToArray();
+
+                
+                string LibraryName = "FFA";
+                string siteURL = "https://netorgft6692843.sharepoint.com/sites/QuickPointDocuments";
+
+                using (ClientContext ctx = new ClientContext(siteURL))
+                {
+                    FileCreationInformation fcInfo = new FileCreationInformation();
+                    fcInfo.Url = fileName;
+                    fcInfo.Overwrite = true;
+                    fcInfo.Content = data;
+
+                    Web myWeb = ctx.Web;
+                    List myLibrary = myWeb.Lists.GetByTitle(LibraryName);
+                    myLibrary.RootFolder.Files.Add(fcInfo);
+                    ctx.ExecuteQuery();
+
+                }
+
+    */
 
 
 
@@ -71,6 +131,25 @@ namespace Quick_Point.co.uk.Controllers
 
             
 
+        }
+
+        public static SecureString GetSecurePassword()
+        {
+            var s = new SecureString();
+            s.AppendChar('Q'); //Qu1ckP0int777
+            s.AppendChar('u');
+            s.AppendChar('1');
+            s.AppendChar('c');
+            s.AppendChar('k');
+            s.AppendChar('P');
+            s.AppendChar('0');
+            s.AppendChar('i');
+            s.AppendChar('n');
+            s.AppendChar('t');
+            s.AppendChar('7');
+            s.AppendChar('7');
+            s.AppendChar('7');
+            return s;
         }
 
         public class Uploader

@@ -35,6 +35,38 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     }
 }
 
+.drinktable {
+    width: 100%;
+    font-family: 'Lato Bold', 'Lato Light','Gill Sans Nova', Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: #590007;
+}
+
+    .drinktable tbody {
+        width: 100%;
+    }
+
+    .drinktable th:nth-child(1) {
+        width: 30%;
+    }
+
+    .drinktable th:nth-child(2) {
+        width: 70%;
+    }
+
+.titlecells {
+    max-width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cells {
+    max-width: 100%;
+    font-size: 20px;
+    font-weight: 200;
+    text-align: left;
+}
+
 .text-black {
   color: #000 !important;
 }
