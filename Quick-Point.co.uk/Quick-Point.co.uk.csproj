@@ -242,6 +242,8 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Resources.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\IndexOffline.cshtml" />
+    <Content Include="Views\Home\IndexBackup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

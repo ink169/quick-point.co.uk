@@ -36,21 +36,18 @@
 					</div>*@
 
 					<div class="col-12 col-md-10 d-none d-lg-block">
-						<nav class="site-navigation position-relative text-right" role="navigation">
+                        @*<nav class="site-navigation position-relative text-right" role="navigation">*@
+                            <nav class="site-navigation position-relative text-right" role="navigation">
+                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                    <li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>
+                                    <li>@Html.ActionLink("Useful Articles", "Resources", "Home")</li>
+                                    <li>@Html.ActionLink("Q&A", "FAQ", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Newsletter", "Subscribe", "Home")</li>
 
-                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-
-                                @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-
-                                <li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
-                                <li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>
-                                <li>@Html.ActionLink("Useful Articles", "Resources", "Home")</li>
-                                <li>@Html.ActionLink("Q & A", "FAQ", "Home")</li>
-                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                                <li>@Html.ActionLink("Subscribe to our Newsletter", "Subscribe", "Home")</li>
-
-                            </ul>
-						</nav>
+                                </ul>
+                            </nav>
 					</div>
 
 					<div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">

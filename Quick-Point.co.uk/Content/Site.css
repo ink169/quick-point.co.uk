@@ -35,6 +35,18 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     }
 }
 
+/*
+td {
+    word-break: break-word;
+}*/
+
+
+table, th, td {
+    border: 1px solid lightgray;
+    word-break: break-word;
+    font-size: 11pt;
+}
+
 .drinktable {
     width: 100%;
     font-family: 'Lato Bold', 'Lato Light','Gill Sans Nova', Arial, Helvetica, sans-serif;
@@ -59,13 +71,13 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     font-size: 20px;
     font-weight: 400;
 }
-
+/*
 .cells {
     max-width: 100%;
     font-size: 20px;
     font-weight: 200;
     text-align: left;
-}
+}*/
 
 .text-black {
   color: #000 !important;

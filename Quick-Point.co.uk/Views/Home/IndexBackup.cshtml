@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 hero-text-image">
+                    <div class="row">
+                        <div class="col-lg-5 iphone-wrap">
+                            <img src="~/assets/images/Logo2x.png" alt="" class="hero-section-img" />
+                        </div>
+                        <div class="col-lg-7 text-center text-lg-left">
+                            <h1 data-aos="fade-right">Corona Virus Support</h1>
+                            <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
+                                Welcome to our support portal. Here you can find information relating to government support in a range of fields such as legal, accounting &amp; HR during the Covid-19 outbreak.
+                            </p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+        <!-- ======= Chat Section ======= -->
+        <section class="section-chat">
+            <div class="container">
+					<div class="row" style="margin-bottom:3px;">
+						<div class="rounded-pill text-center" style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;"> Welcome to the Quick-Point Chat Service! please type a question to get started..</div>
+					</div>
+
+                    <div class="row">
+                        <div id="webchat" role="main" style="width:100%; height:100%; border: 2px solid #2B598F;"></div>
+                        <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+                        <script>
+                            const styleOptions = {
+                                rootwidth: 'Auto',
+                                backgroundColor: 'AliceBlue',
+                                botAvatarImage: 'https://github.com/ink169.png?size=64',
+                                bubbleBackground: 'rgba(46, 115, 187, .2)',
+                                //botAvatarInitials: 'BF',
+                                userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
+                                bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
+                                bubbleMaxWidth: 600,
+                                // userAvatarInitials: 'WC'
+                            };
+
+                            window.WebChat.renderWebChat(
+                                {
+                                    directLine: window.WebChat.createDirectLine({
+                                        secret: 'CC3Z9XP6Sfw.YkzQY7MncXkiRGDVOWGfQEnYbw5LQI5nnHibkQTyCU0'
+                                    }),
+                                    styleOptions
+                                },
+                                document.getElementById('webchat')
+                            );
+                        </script>
+                    </div>
+                    <div class="row">
+                        <div style="width:100%;"><img class="float-right" src="~/Content/images/ChirpyTag.PNG" /></div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- ======= Live Chat Section ======= -->
+        <!-- Start of  Zendesk Widget script -->
+        <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=07a6407a-f361-483a-b81b-13b60d3efdaf"></script>
+        
+	<!-- ======= Links Section ======= -->
+	<section class="section-links">
+		<div class="container container-flex">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+					<div class="card">
+						<a href="">
+							<img src="~/assets/images/link-1.jpg" class="card-img-top" alt="...">
+							<div class="card-icon">
+								<i class="bx bx-book-reader"></i>
+							</div>
+							<div class="card-body">
+								<p class="card-text">
+									Can I be made redundant when I'm furloughed?
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+					<div class="card">
+						<a href="">
+							<img src="~/assets/images/link-2.jpg" class="card-img-top" alt="...">
+							<div class="card-icon">
+								<i class="bx bx-book-reader"></i>
+							</div>
+							<div class="card-body">
+								<p class="card-text">
+									Can I be made redundant when I'm furloughed?
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+					<div class="card">
+						<a href="">
+							<img src="~/assets/images/link-3.jpg" class="card-img-top" alt="...">
+							<div class="card-icon">
+								<i class="bx bx-book-reader"></i>
+							</div>
+							<div class="card-body">
+								<p class="card-text">
+									Can I be made redundant when I'm furloughed?
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-3 d-flex align-items-stretch">
+					<div class="card">
+						<a href="">
+							<img src="~/assets/images/link-1.jpg" class="card-img-top" alt="...">
+							<div class="card-icon">
+								<i class="bx bx-book-reader"></i>
+							</div>
+							<div class="card-body">
+								<p class="card-text">
+									Can I be made redundant when I'm furloughed?
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main><!-- End #main -->
+
+
+
+
+	
