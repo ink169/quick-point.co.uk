@@ -24,6 +24,21 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
+        public ActionResult Resources()
+        {
+            return View();
+        }
+
+        public ActionResult Article()
+        {
+            return View();
+        }
+
+        public ActionResult Subscribe()
+        {
+            return View();
+        }
+
         public ActionResult FAQ()
         {
             return View();
@@ -91,35 +106,6 @@ namespace Quick_Point.co.uk.Controllers
                }
 
 
-
-                /*
-
-                MemoryStream target = new MemoryStream();
-                file.InputStream.CopyTo(target);
-                byte[] data = target.ToArray();
-
-                
-                string LibraryName = "FFA";
-                string siteURL = "https://netorgft6692843.sharepoint.com/sites/QuickPointDocuments";
-
-                using (ClientContext ctx = new ClientContext(siteURL))
-                {
-                    FileCreationInformation fcInfo = new FileCreationInformation();
-                    fcInfo.Url = fileName;
-                    fcInfo.Overwrite = true;
-                    fcInfo.Content = data;
-
-                    Web myWeb = ctx.Web;
-                    List myLibrary = myWeb.Lists.GetByTitle(LibraryName);
-                    myLibrary.RootFolder.Files.Add(fcInfo);
-                    ctx.ExecuteQuery();
-
-                }
-
-    */
-
-
-
                 ViewBag.Message = "Thank you, your file has been uploaded sucessfully. We will be in contact shortly.";
                 return View();
             }
@@ -128,15 +114,12 @@ namespace Quick_Point.co.uk.Controllers
                 ViewBag.Message = "File Uploaded Unsucessfully, please try again, filling in all fields. If the error persists, please contact us.";
                 return View();
             }
-
-            
-
         }
 
         public static SecureString GetSecurePassword()
         {
             var s = new SecureString();
-            s.AppendChar('Q'); //Qu1ckP0int777
+            s.AppendChar('Q'); 
             s.AppendChar('u');
             s.AppendChar('1');
             s.AppendChar('c');

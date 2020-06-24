@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick-Point.co.uk</title>
+	
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+	<!-- ======= Mobile Menu ======= -->
+	<div class="site-mobile-menu site-navbar-target">
+		<div class="site-mobile-menu-header">
+			<div class="site-mobile-menu-close mt-3">
+				<span class="icofont-close js-menu-toggle"></span>
+			</div>
+		</div>
+		<div class="site-mobile-menu-body"></div>
+	</div>
+
+
+	<div>
+		@RenderBody()
+
+		<!-- ======= Footer ======= -->
+		<footer class="footer" role="contentinfo">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 mb-6 mb-md-0">
+						<h3>About QuickPoint.co.uk</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam
+                            dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+						@*<p class="social">
+							<a href="#"><span class="icofont-twitter"></span></a>
+							<a href="#"><span class="icofont-facebook"></span></a>
+							<a href="#"><span class="icofont-dribbble"></span></a>
+							<a href="#"><span class="icofont-behance"></span></a>
+						</p>*@
+					</div>
+					<div class="col-md-6 ml-auto">
+						<div class="row site-section pt-0">
+							<div class="col-md-4 mb-4 mb-md-0">
+								<h3>Navigation</h3>
+								<ul class="list-unstyled">
+									<li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>
+									<li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
+									<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center text-center">
+					<div class="col-md-7">
+						<p class="copyright">&copy; Sterling-Beanland @DateTime.Now.Year. All Rights Reserved</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", required: false)
+
+</body>
+</html>

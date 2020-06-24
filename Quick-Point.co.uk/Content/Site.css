@@ -679,8 +679,6 @@ section {
   margin-top: -120px;
 }
 
-
-
 @media screen and (max-width: 992px) {
   .hero-section.inner-page .hero-text {
     margin-top: -80px;
@@ -870,4 +868,139 @@ textarea {
 
 .About-title{
 
+}
+
+
+/*-----------------------------------------------------------
+#  Slim Hero Section
+--------------------------------------------------------------*/
+.hero-section-slim {
+    background: linear-gradient(to right, rgba(39, 70, 133, 0.8) 0%, rgba(61, 179, 197, 0.8) 100%), url(../assets/images/hero-bg.jpg);
+    position: relative;
+}
+
+.hero-section-slim .wave {
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    bottom: -169px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .wave {
+        bottom: -180px;
+    }
+}
+
+.hero-section-slim .wave svg {
+    width: 100%;
+}
+
+.hero-section-slim > .container > .row {
+    padding: 4em 0 2em 0;
+    /*padding: 0 0 0 0;*/
+}
+
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim > .container > .row {
+        padding: 2em 0 0 0;
+    }
+}
+
+.hero-section-slim.inner-page {
+    height: 60vh;
+    min-height: 0;
+}
+
+.hero-section-slim.inner-page .hero-text {
+    transform: translateY(-150px);
+    margin-top: -120px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim.inner-page .hero-text {
+        margin-top: -80px;
+    }
+}
+
+.hero-section-slim-img {
+    max-width: 300px;
+    margin: 1em 0;
+}
+
+.hero-section-slim h1 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .hero-text-image {
+    }
+}
+
+.hero-section-slim p {
+    font-size: 18px;
+    color: #fff;
+}
+
+.hero-section-slim .iphone-wrap {
+    position: relative;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .iphone-wrap {
+        text-align: center;
+    }
+}
+
+.hero-section-slim .iphone-wrap .phone-2, .hero-section-slim .iphone-wrap .phone-1 {
+    position: absolute;
+    top: -50%;
+    overflow: hidden;
+    left: 0;
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .iphone-wrap .phone-2, .hero-section-slim .iphone-wrap .phone-1 {
+        position: relative;
+        top: 0;
+        max-width: 100%;
+    }
+}
+
+.hero-section-slim .iphone-wrap .phone-2, .hero-section-slim .iphone-wrap .phone-1 {
+    width: 250px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .iphone-wrap .phone-1 {
+        margin-left: -150px;
+    }
+}
+
+.hero-section-slim .iphone-wrap .phone-2 {
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 250px;
+}
+
+@media screen and (max-width: 992px) {
+    .hero-section-slim .iphone-wrap .phone-2 {
+        width: 250px;
+        position: absolute;
+        margin-top: 0px;
+        margin-left: 100px;
+    }
 }
