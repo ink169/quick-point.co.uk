@@ -27,10 +27,33 @@
         <section class="section-chat">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12" style="text-align:center">
-                        <h2 class="section-heading">Ask us a question...</h2>
-                        <iframe src='https://webchat.botframework.com/embed/qpqnamakerapp1406-bot?s=9g5-2IA5jSg.RPIr-1WyMSVvYZwWDcTHFYcriHxv5ji6w6Dj-Hvw-iI' style="min-width: 400px; width: 60%;min-height: 200px;"></iframe>
-                    </div>
+                    @*<div id="webchat" class="col-lg-12" style="text-align:center">
+                <iframe src='https://webchat.botframework.com/embed/qpqnamakerapp1406-bot?s=9g5-2IA5jSg.RPIr-1WyMSVvYZwWDcTHFYcriHxv5ji6w6Dj-Hvw-iI' style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
+            </div>*@
+
+
+                    <div id="webchat" role="main"></div>
+                    <script>
+                        const styleOptions = {
+                            botAvatarImage: 'https://github.com/ink169.png?size=64',
+                            bubbleBackground: 'rgba(0, 0, 255, .1)',
+                            //botAvatarInitials: 'BF',
+                            userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
+                            bubbleFromUserBackground: 'rgba(0, 255, 0, .1)'
+                            // userAvatarInitials: 'WC'
+                        };
+
+                        window.WebChat.renderWebChat(
+                            {
+                                directLine: window.WebChat.createDirectLine({
+                                    secret: '2V3D2DTr5jM.-x5XL5fV73beJ9RORz-Pz0vI0FC-D4T3qGZ7JRXRZ6s'
+                                }),
+                                styleOptions
+                            },
+                            document.getElementById('webchat')
+                        );
+                    </script>
+
                 </div>
             </div>
         </section>
