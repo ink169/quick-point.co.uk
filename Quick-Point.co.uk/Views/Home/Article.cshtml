@@ -1,4 +1,4 @@
-﻿
+﻿@model Quick_Point.co.uk.ViewModels.Article
 @{
     Layout = "~/Views/Shared/_BeanlandLayout.cshtml";
     ViewBag.Title = "Read Article";
@@ -14,9 +14,7 @@
                     </div>
                     <div class="col-lg-7 text-center text-lg-left">
                         <h1 data-aos="fade-right">Quickpoint Articles </h1>
-                        <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
-                            COVID-19 and claiming benefits
-                        </p>
+                        <h2 data-aos="fade-right"> Article: @Model.Description </h2>
                     </div>
                 </div>
             </div>
@@ -26,6 +24,7 @@
 </section><!-- End Hero -->
 
 <div class="container" style="padding-top:10px;">
-    @Html.Partial("~/Views/Articles/_TaxAccArticle1.cshtml")
+    @Html.Partial(String.Format("~/Views/Articles/_{0}.cshtml", Model.ID))
+    @*@Html.Partial($"~/Views/Articles/_TaxAccArticle1.cshtml")*@
 </div>
 

@@ -1,29 +1,30 @@
-﻿
+﻿@model Quick_Point.co.uk.ViewModels.Article
 @{
     Layout = "~/Views/Shared/_BeanlandLayout.cshtml";
     ViewBag.Title = "Read Article";
 }
-
-<section class="hero-section-slim" id="hero">
-    <div class="container" style="min-height:255px;">
-        <div class="row">
-            <div class="col-12 hero-text-image">
-                <div class="row">
-                    <div class="col-lg-5 iphone-wrap">
-                        <img src="~/assets/images/Logo2x.png" alt="" class="hero-section-img" />
-                    </div>
-                    <div class="col-lg-7 text-center text-lg-left">
-                        <h1 data-aos="fade-right">Quickpoint Articles </h1>
-                        <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
-                            COVID-19 and claiming benefits
-                        </p>
+@using (Html.BeginForm("RequestArticle", "Home", FormMethod.Post, new { id = "frmRequest" } ))
+{
+    @Html.Hidden("articleID", @Model.ID);
+    <section class="hero-section-slim" id="hero">
+        <div class="container" style="min-height:255px;">
+            <div class="row">
+                <div class="col-12 hero-text-image">
+                    <div class="row">
+                        <div class="col-lg-5 iphone-wrap">
+                            <img src="~/assets/images/Logo2x.png" alt="" class="hero-section-img" />
+                        </div>
+                        <div class="col-lg-7 text-center text-lg-left">
+                            <h1 data-aos="fade-right">Read Quick-Point Article </h1>
+                            <h2 data-aos="fade-right"> Article: @Model.Description </h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-</section><!-- End Hero -->
+        </div>
+    </section><!-- End Hero -->
+
 
     <div class="row" style="margin-bottom:3px;">
         <div class="rounded-pill text-center" style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;">Thanks for you interest! Please enter your name, email and confirm the privacy policy to proceed  </div>
@@ -32,24 +33,35 @@
     <div class="container" style="padding-top:10px;">
         <div class="row" style="background-color:lightblue; padding:5px; border:1px solid #0099cc;">
             <table border="1" width="100%" bordercolor="gray" cellspacing="5">
-              
+
                 <tr>
                     <td class="tbCell">@Html.Label("First Name", new { @style = "font-weight:500;" })</td>
                     <td class="tbCellDD"> @Html.TextBox("FirstName", null, new { @class = "form-control" })</td>
                     <td class="tbCell">@Html.Label("Last Name", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD"> @Html.TextBox("Last Name", null, new { @class = "form-control" })</td>
+                    <td class="tbCellDD"> @Html.TextBox("LastName", null, new { @class = "form-control" })</td>
                 </tr>
                 <tr>
+                    <td class="tbCell">@Html.Label("Email Address", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD"> @Html.TextBox("Email", null, new { @class = "form-control" })</td>
                     <td class="tbCell">@Html.Label("Company Name", new { @style = "font-weight:500;" })</td>
                     <td class="tbCellDD">@Html.TextBox("CompanyName", null, new { @class = "form-control" })</td>
-                    <td class="tbCell">@Html.Label("I have read the privacy policy below", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.CheckBox("CompanyName",  new { @class = "form-control" })</td>
                 </tr>
+                <tr>
+                    <td class="tbCell">@Html.Label("I have read the privacy policy below", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD">@Html.CheckBox("AgreePP", new { @class = "form-control" })</td>
+                    <td class="tbCell" style="font-weight: 500;">Proceed to Article</td>
+                    <td class="tbCellDD"><button type="button" class="btn btn-primary" style="width:220px;" onclick="fValidate();">Go!</button></td>
+                </tr>
+
             </table>
         </div>
 
 
-        <div class="row">
+        <div class="row" style="padding-top:30px; padding-bottom:50px; font-size: 13px; ">
+
+            <b>Privacy Policy </b>
+
+
             Sterling-Beanland Limited respects your privacy and is committed to protecting your personal data. This privacy notice will inform you of how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
 
             This will include any data you may provide through this website when you sign up for our newsletter, take part in an event, survey or competition.
@@ -61,4 +73,35 @@
         </div>
 
     </div>
+
+}
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            toastr.options = { "debug": false, "positionClass": "toast-bottom-full-width", "onclick": null, "fadeIn": 300, "fadeOut": 1000, "timeOut": 5000, "extendedTimeOut": 1000 };
+        });
+
+        function fValidate() {
+            if ($('#AgreePP').prop('checked') == false) {
+                toastr.error('Please tick to confirm you have read the Privacy Policy');
+                return;
+            }
+            if (($('#FirstName').val() == "") && ($('#LastName').val() == "")) {
+                toastr.error('Please enter your name');
+                return;
+            }
+
+            if ($('#Email').val() == "") {
+                toastr.error('Please enter your email address');
+                return;
+            }
+            $('#frmRequest').submit();
+        }
+
+
+    </script>
+
+
+}
 

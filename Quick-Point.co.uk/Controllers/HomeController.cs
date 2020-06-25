@@ -11,6 +11,9 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Client;
 using System.Security;
 using Quick_Point.co.uk.ViewModels;
+using Quick_Point.co.uk.Helpers;
+using System.Reflection;
+using Microsoft.SharePoint.ApplicationPages.Calendar.Exchange;
 
 namespace Quick_Point.co.uk.Controllers
 {
@@ -33,15 +36,42 @@ namespace Quick_Point.co.uk.Controllers
             return View(new Resource() { BaseUrl = baseAddress });
         }
 
+        [HttpPost]
+        public ActionResult RequestArticle(string firstName, string lastName, string company, string email, string articleID )
+        {
+            Session["articleID"] = articleID;
+            return RedirectToAction("Article");
+        }
+
+        public ActionResult Article()
+        {
+            String articleID = Convert.ToString(Session["ArticleID"]) ?? String.Empty;
+
+
+            if (!String.IsNullOrEmpty(articleID))
+            {
+                return View(new Article() { Description = ArticleHelpers.GetTitle(articleID), ID = articleID });
+            }
+            else
+            {
+                Response.Redirect(getHomeAddress());
+                return View();
+            }
+        }
+
         public ActionResult RequestArticle(string id)
         {
             if (id != null)
             {
-                Session["ArticleID"] = id;
+                //Session["ArticleID"] = id;
+                return View(new Article() { Description = ArticleHelpers.GetTitle(id), ID=id });
             }
             else
+            {
                 Response.Redirect(getHomeAddress());
                 return View();
+            }
+                
         }
 
 
@@ -60,10 +90,7 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }       
 
-        public ActionResult Article()
-        {
-            return View();
-        }
+        
 
         public ActionResult Subscribe()
         {

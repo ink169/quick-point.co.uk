@@ -200,12 +200,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\images\ChirpyTag.png" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\toastr.scss" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
@@ -235,6 +239,8 @@
     <Content Include="Scripts\owl.carousel\assets\owl.video.play.png" />
     <Content Include="Scripts\owl.carousel\owl.carousel.js" />
     <Content Include="Scripts\owl.carousel\owl.carousel.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

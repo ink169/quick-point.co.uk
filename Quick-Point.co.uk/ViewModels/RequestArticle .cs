@@ -8,7 +8,7 @@ namespace Quick_Point.co.uk.ViewModels
 {
     public class RequestArticle
     {
-
+        public string ArticleID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string CompanyName { get; set; }
