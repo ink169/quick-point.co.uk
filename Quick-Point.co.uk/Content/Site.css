@@ -47,37 +47,24 @@ table, th, td {
     font-size: 11pt;
 }
 
-.drinktable {
-    width: 100%;
-    font-family: 'Lato Bold', 'Lato Light','Gill Sans Nova', Arial, Helvetica, sans-serif;
-    text-align: left;
-    color: #590007;
-}
 
-    .drinktable tbody {
-        width: 100%;
-    }
-
-    .drinktable th:nth-child(1) {
-        width: 30%;
-    }
-
-    .drinktable th:nth-child(2) {
-        width: 70%;
-    }
-
-.titlecells {
-    max-width: 100%;
-    font-size: 20px;
-    font-weight: 400;
-}
-/*
-.cells {
-    max-width: 100%;
-    font-size: 20px;
+.tbCell {
+    text-align: center;
+    color: #2B5990; 
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #DDEBF7;
+    padding: 5px;
     font-weight: 200;
-    text-align: left;
-}*/
+}
+
+.tbCellDD {
+    background-color: whitesmoke;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 35px;
+}
+
 
 .text-black {
   color: #000 !important;

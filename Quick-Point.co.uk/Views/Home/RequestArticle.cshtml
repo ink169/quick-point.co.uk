@@ -25,55 +25,40 @@
     </div>
 </section><!-- End Hero -->
 
+    <div class="row" style="margin-bottom:3px;">
+        <div class="rounded-pill text-center" style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;">Thanks for you interest! Please enter your name, email and confirm the privacy policy to proceed  </div>
+    </div>
+
     <div class="container" style="padding-top:10px;">
         <div class="row" style="background-color:lightblue; padding:5px; border:1px solid #0099cc;">
             <table border="1" width="100%" bordercolor="gray" cellspacing="5">
+              
                 <tr>
-                    <td class="tbCell" colspan="4" style="background-color:#FFFDE7;">@Html.Label("Customer Information - Common Fields ", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCell">@Html.Label("First Name", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD"> @Html.TextBox("FirstName", null, new { @class = "form-control" })</td>
+                    <td class="tbCell">@Html.Label("Last Name", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD"> @Html.TextBox("Last Name", null, new { @class = "form-control" })</td>
                 </tr>
                 <tr>
-                    <td class="tbCell">@Html.Label("Customer Name", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD"> @Html.TextBox("OrganisationName", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("Customer Type", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/CustomerClassification.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">@Html.Label("Customer Address", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.TextBox("AddressLine1", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("Currency", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/SelectListCurrency.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">&nbsp;</td>
-                    <td class="tbCellDD">@Html.TextBox("AddressLine2", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("Subsidiary", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/BillToUKSubsidiary.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">&nbsp;</td>
-                    <td class="tbCellDD">@Html.TextBox("AddressLine3", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("Buying Group", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/BillToUKBuyingGroup.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">@Html.Label("City", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.TextBox("City", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("Comms Mode", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/BillToXxtmCfdCommMode.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">@Html.Label("Province / County", null, new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.TextBox("Province", null, new { @class = "form-control", @readonly = "readonly" })</td>
-                    <td class="tbCell">@Html.Label("City Resort Code", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/BillToUKCityResortCode.cshtml")</td>
-                </tr>
-                <tr>
-                    <td class="tbCell">@Html.Label("Country", new { @style = "font-weight:500;" })</td>
-                    <td class="tbCellDD">@Html.Partial("~/Views/Partials/SelectListCountries.cshtml")</td>
-                    <td class="tbCell">&nbsp;</td>
-                    <td class="tbCellDD">&nbsp;</td>
+                    <td class="tbCell">@Html.Label("Company Name", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD">@Html.TextBox("CompanyName", null, new { @class = "form-control" })</td>
+                    <td class="tbCell">@Html.Label("I have read the privacy policy below", new { @style = "font-weight:500;" })</td>
+                    <td class="tbCellDD">@Html.CheckBox("CompanyName",  new { @class = "form-control" })</td>
                 </tr>
             </table>
         </div>
+
+
+        <div class="row">
+            Sterling-Beanland Limited respects your privacy and is committed to protecting your personal data. This privacy notice will inform you of how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
+
+            This will include any data you may provide through this website when you sign up for our newsletter, take part in an event, survey or competition.
+
+            This notice, together with our website terms and conditions and our cookies policy tells you about how we collect, use and protect your personal information.
+
+            If you have any questions about this privacy notice, please contact the data privacy manager using this email address  details set out below.
+
+        </div>
+
     </div>
 

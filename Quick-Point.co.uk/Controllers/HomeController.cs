@@ -30,7 +30,7 @@ namespace Quick_Point.co.uk.Controllers
 
             var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/RequestArticle?id=");
 
-            return View(new ResourceViewModel() { BaseUrl = baseAddress });
+            return View(new Resource() { BaseUrl = baseAddress });
         }
 
         public ActionResult RequestArticle(string id)
@@ -49,6 +49,12 @@ namespace Quick_Point.co.uk.Controllers
         {
             return View();
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
+
         public ActionResult FFA()
         {
             return View();

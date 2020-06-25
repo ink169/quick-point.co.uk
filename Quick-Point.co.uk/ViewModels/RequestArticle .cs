@@ -6,12 +6,7 @@ using System.Web;
 
 namespace Quick_Point.co.uk.ViewModels
 {
-    public class ResourceViewModel
-    {
-        public string BaseUrl { get; set; }
-    }
-
-    public class RequestArticleViewModel
+    public class RequestArticle
     {
 
         public string FirstName { get; set; }
