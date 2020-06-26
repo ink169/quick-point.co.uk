@@ -49,28 +49,61 @@
                     <input type="number" name="phone" />
                     <br />
                     <br />
-                    Date & Time Of Upload: <br />
-                    <input type="datetime-local" name="date" />
+                    Are you a: <br />
+                    <select name="Business type">
+                        <option value="Sole Trader">Sole Trader</option>
+                        <option value="LTD">LTD</option>
+                    </select>
+                    <br />
+                    <br />
+                    Estimation of yearly turnover: <br />
+                    <input type="text" name="turnover" />
+                    <br />
+                    <br />
+                    Do you have staff members?
+                    <select name="staff">
+                        <option value="0t5">0-5</option>
+                        <option value="6t10">6-10</option>
+                        <option value="11t15">11-15</option>
+                        <option value="15+">15+</option>
+                    </select>
+                    <br />
+                    <br />
+                    Do you require the following services (please check all applicable):
+                    <ul>
+                        <li><input type="checkbox" name="Bookkeeping"> Bookkeeping</li>
+                        <li><input type="checkbox" name="Payroll"> Payroll</li>
+                        <li><input type="checkbox" name="Companieshousereturns"> Companies House Returns</li>
+                        <li><input type="checkbox" name="Self-Assessment"> Self Assessment</li>
+                        <li><input type="checkbox" name="VAT"> VAT Returns</li>
+                        <li><input type="checkbox" name="AccountsManagement"> Accounts Management</li>
+                        <li><input type="checkbox" name="BusinessConsultations"> Business Consultation</li>
+                        <li><input type="checkbox" name="TaxationAdvice">Taxation Advice</li>
+                    </ul>
                     <br />
                     <br />
                     Financial Status Document: <br />
                     <input type="file" name="file" />
                     <br />
                     <br />
-                    <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc"/><h6 style="font-weight:700; text-decoration:underline;" id="writing"> To upload, please tick to agree with our <a href="~/assets/">T&C's</a></h6>
+                    <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc" /><h6 style="font-weight:700; text-decoration:underline;" id="writing"> To upload, please tick to agree with our <a href="~/assets/">T&C's</a></h6>
                     <br />
-                    <input type="submit" value="Submit" id="submit" style="display:none"/>
+                    <input type="submit" value="Submit" id="submit" style="display:none" />
+                    <br />
+                    <br />
+                    @ViewBag.Message
+
 
                     <script>
                         function myFunction() {
-                         // Get the checkbox
-                         var checkBox = document.getElementById("tAc");
-                         // Get the output text
+                            // Get the checkbox
+                            var checkBox = document.getElementById("tAc");
+                            // Get the output text
                             var text = document.getElementById("submit");
 
-                             var writing = document.getElementById("writing");
+                            var writing = document.getElementById("writing");
 
-                         // If the checkbox is checked, display the output text
+                            // If the checkbox is checked, display the output text
                             if (checkBox.checked == true) {
                                 text.style.display = "block";
                                 writing.style.fontWeight = "normal";
@@ -86,7 +119,7 @@
                             else {
                                 text.style.display = "none";
                             }
-                            }
+                        }
                     </script>
 
                 </div>

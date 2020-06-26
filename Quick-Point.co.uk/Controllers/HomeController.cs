@@ -111,55 +111,46 @@ namespace Quick_Point.co.uk.Controllers
           try
            {
                 
-                    var fileName = Path.GetFileName(file.FileName);
+                    //var fileName = Path.GetFileName(file.FileName);
                     var username = (form["name"].ToString());
                     var email = (form["email"].ToString());
                     var phone = (form["phone"].ToString());
-                    var date = (form["date"].ToString());
-                    fileName = username + date + fileName;
-                    string uploadDetails = username + ',' + email + ',' + phone + ',' + date + ',' + fileName;
-                    var path = Path.Combine(Server.MapPath("~/Files/"), fileName);
+                    var business = (form["Business type"].ToString());
+                    var turnover = (form["turnover"].ToString());
+                    var staff = (form["staff"].ToString());
+                    var bookkeeping = (form["Bookkeeping"]);
+                var Payroll = (form["Payroll"]);
+                var Companieshousereturns = (form["Companieshousereturns"]);
+                var SelfAssessment = (form["Self-Assessment"]);
+                var VAT = (form["VAT"]);
+                var AccountsManagement = (form["AccountsManagement"]);
+                var BusinessConsultations = (form["BusinessConsultations"]);
+                var TaxationAdvice = (form["TaxationAdvice"]);
 
                     var document = new BsonDocument
                 {
                 {"Name", username},
                 {"Email", email },
                 {"Phone", phone },
-                {"Date", date },
-                {"File Name", fileName }
+                {"Business", business },
+                {"Turnover", turnover },
+                {"No. Staff", staff },
+                //NEEDS FIDDLING WITH BECAUSE THEY AREN'T UPLOADING
+               /* {"Request Bookkeeping?", bookkeeping },
+                {"Request Payroll?", Payroll },
+                {"Request Companies House Returns?", Companieshousereturns },
+                {"Request Self-Assessment?", SelfAssessment },
+                {"Request VAT?", VAT },
+                {"Request Accoutns management?", AccountsManagement },
+                {"Request Business Consultations?", BusinessConsultations },
+                {"Request Taxation Advice?", TaxationAdvice },*/
                 };
 
                     collec.InsertOneAsync(document);
 
-                MemoryStream target = new MemoryStream();
-                file.InputStream.CopyTo(target);
-                byte[] data = target.ToArray();
 
 
-                string relativeUrl = "Shared Documents/FFA";
-                var website = "https://netorgft6692843.sharepoint.com/sites/QuickPointDocuments";
-
-                using (var clientContext = new ClientContext(website))
-                {
-                   
-                        clientContext.Credentials = new SharePointOnlineCredentials("qpadmin@quick-point.co.uk", GetSecurePassword());
-                        Web web = clientContext.Web;
-                        Folder folder = web.GetFolderByServerRelativeUrl(relativeUrl);
-                        clientContext.Load(folder);
-                        clientContext.ExecuteQuery();
-
-                        folder.Files.Add(new FileCreationInformation
-                        {
-                            Overwrite = true,
-                            Content = data,
-                            Url = folder.ServerRelativeUrl + "/" + fileName
-                        }); ;
-                        clientContext.ExecuteQuery();
-                   
-               }
-
-
-                ViewBag.Message = "Thank you, your file has been uploaded sucessfully. We will be in contact shortly.";
+                ViewBag.Message = "Thank you kindly, and we will be in touch soon! ";
                 return View();
             }
             catch
