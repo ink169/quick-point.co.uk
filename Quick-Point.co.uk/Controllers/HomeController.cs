@@ -16,13 +16,10 @@ using System.Reflection;
 using Microsoft.SharePoint.ApplicationPages.Calendar.Exchange;
 
 namespace Quick_Point.co.uk.Controllers
-{
-
-    
+{    
     public class HomeController : Controller
     {
-
-       
+               
         private string getHomeAddress()
         {
             return string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Index");
@@ -31,7 +28,7 @@ namespace Quick_Point.co.uk.Controllers
         public ActionResult Resources()
         {
 
-            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/RequestArticle?id=");
+            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
 
             return View(new Resource() { BaseUrl = baseAddress });
         }
@@ -43,14 +40,12 @@ namespace Quick_Point.co.uk.Controllers
             return RedirectToAction("Article");
         }
 
-        public ActionResult Article()
+        public ActionResult Article(string id)
         {
-            String articleID = Convert.ToString(Session["ArticleID"]) ?? String.Empty;
-
-
-            if (!String.IsNullOrEmpty(articleID))
+           
+            if (!String.IsNullOrEmpty(id))
             {
-                return View(new Article() { Description = ArticleHelpers.GetTitle(articleID), ID = articleID });
+                return View(new Article() { Description = ArticleHelpers.GetTitle(id), ID = id });
             }
             else
             {
