@@ -199,8 +199,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\images\articles\companies-house-deadlines.jpg" />
+    <Content Include="Content\images\articles\d664ff71-e18c-4227-894d-222448a44e10.jpg" />
     <Content Include="Content\images\ChirpyTag.png" />
     <Content Include="Content\images\FA_sml.png" />
+    <Content Include="Content\images\SL.jpg" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
