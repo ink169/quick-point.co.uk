@@ -214,6 +214,7 @@
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\practisebotqp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\QnAMaker1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\qpqnamakerapp1406-bot - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -265,7 +266,29 @@
     <Content Include="Views\Home\Article.cshtml" />
     <Content Include="Views\Shared\_BeanlandLayout.cshtml" />
     <Content Include="Views\Home\RequestArticle.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle2.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle10.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle9.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle8.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle7.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle6.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle5.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle4.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle3.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle12.cshtml" />
+    <Content Include="Views\Articles\_TaxAccArticle11.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle1.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle10 .cshtml" />
+    <Content Include="Views\Articles\_LegalArticle11.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle12.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle2.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle3.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle4.cshtml" />
+    <Content Include="Views\Articles\_LegalArticleArticle5.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle6.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle7.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle8.cshtml" />
+    <Content Include="Views\Articles\_LegalArticle9.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
