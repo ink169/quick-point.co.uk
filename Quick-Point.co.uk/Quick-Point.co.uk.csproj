@@ -200,6 +200,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\images\ChirpyTag.png" />
+    <Content Include="Content\images\FA_sml.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Articles\_LegalArticle7.cshtml" />
     <Content Include="Views\Articles\_LegalArticle8.cshtml" />
     <Content Include="Views\Articles\_LegalArticle9.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoBling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
