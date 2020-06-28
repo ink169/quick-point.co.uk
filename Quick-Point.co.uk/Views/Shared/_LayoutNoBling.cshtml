@@ -9,9 +9,8 @@
 	
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
     @Styles.Render("~/Content/css")
-    @*@Scripts.Render("~/bundles/modernizr")*@
+
 </head>
 <body>
 	<!-- ======= Mobile Menu ======= -->
@@ -33,13 +32,10 @@
                     <div class="col-12 col-md-10 d-none d-lg-block">                        
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                @*<li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>*@
-                                <li>@Html.ActionLink("Useful Articles", "Resources", "Home")</li>
+                                <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
                                 <li>@Html.ActionLink("Q&A", "FAQ", "Home")</li>
                                 <li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                                @*<li>@Html.ActionLink("Newsletter", "Subscribe", "Home")</li>*@
-
                             </ul>
                         </nav>
                     </div>
@@ -63,7 +59,7 @@
 					<div class="col-md-6 mb-6 mb-md-0">
 						<h3>About QuickPoint.co.uk</h3>
                         <p>
-                            This chat is designed to give free advice regarding business support during the Corona Virus crisis. Answers have been provided and tested by experienced, qualified and fully regulated law and accounting specialists behind this project, discarding the need for face to face meetings. However, this chatbot is not a replacement for these services provided and should further information be required, please contact Sterling-Beanland and associates, Sterling-Law and Schoolgate Accounting, via the contact pages or use the ‘Help’ function. Quickpoint is not a replacement for a lawyer or accountant and can only provide relevant information provided by the UK Government during the Corona Virus crisis
+                            This chat is designed to give free advice regarding business support during the Corona Virus crisis. Answers have been provided and tested by experienced, qualified and fully regulated law and accounting specialists behind this project, discarding the need for face to face meetings. However, this chatbot is not a replacement for these services provided and should further information be required, please contact Sterling&amp;Beanland and associates, Sterling-Law, via the contact pages or use the ‘Help’ function. Quickpoint is not a replacement for a lawyer or accountant and can only provide relevant information provided by the UK Government during the Corona Virus crisis
                         </p>
 						@*<p class="social">
 							<a href="#"><span class="icofont-twitter"></span></a>
@@ -76,18 +72,19 @@
 						<div class="row site-section pt-0">
 							<div class="col-md-4 mb-4 mb-md-0">
 								<h3>Navigation</h3>
-								<ul class="list-unstyled">
-									<li>@Html.ActionLink("Free Financial Analysis", "FFA", "Home")</li>
-									<li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
-									<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-								</ul>
+                                <ul class="list-unstyled">
+                                    <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
+                                    <li>@Html.ActionLink("Q&A", "FAQ", "Home")</li>
+                                    <li>@Html.ActionLink("Meet The Team", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                </ul>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="row justify-content-center text-center">
 					<div class="col-md-7">
-						<p class="copyright">&copy; Sterling-Beanland @DateTime.Now.Year. All Rights Reserved</p>
+						<p class="copyright">&copy; Sterling&amp;Beanland @DateTime.Now.Year. All Rights Reserved</p>
 					</div>
 				</div>
 			</div>

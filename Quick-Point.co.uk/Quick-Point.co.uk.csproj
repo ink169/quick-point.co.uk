@@ -183,8 +183,9 @@
     <Content Include="assets\images\link-1.jpg" />
     <Content Include="assets\images\link-2.jpg" />
     <Content Include="assets\images\link-3.jpg" />
-    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\link-4.jpg" />
     <Content Include="assets\images\Logo2x.png" />
+    <Content Include="assets\images\SBlogo.png" />
     <Content Include="assets\images\sterlingLawLogo.jpg" />
     <Content Include="assets\vendor\aos\aos.css" />
     <Content Include="assets\vendor\aos\aos.js" />

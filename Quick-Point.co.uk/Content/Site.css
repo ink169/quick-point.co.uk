@@ -21,7 +21,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-    font-family: Verdana, Tahoma, sans-serif;
+    /*font-family: "Roboto", sans-serif;*/
     color: #2B588F;
 }
 
@@ -36,11 +36,6 @@ h1, h2, h3, h4, h5, h6, .font-heading {
         padding: 0 15px;
     }
 }
-
-/*
-td {
-    word-break: break-word;
-}*/
 
 
 table, th, td {
@@ -93,13 +88,15 @@ figure figcaption {
 .banner {
 	background: linear-gradient(to right, rgba(39, 70, 133, 0.8) 0%, rgba(61, 179, 197, 0.8) 100%), url(../assets/images/hero-bg.jpg);
 	width: 100%;
+
+
     overflow: hidden;
     z-index: 1;
 }
 
 section {
     overflow: hidden;
-    padding: 2rem 0;
+    padding: .5rem 0;
 }
 
 .section-heading {
@@ -108,7 +105,7 @@ section {
   background: linear-gradient(-45deg, #3db3c5, #274685);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding-bottom: 0.6em;
+/*  padding-bottom: 0.6em;*/
 }
 
 .section-chat {
