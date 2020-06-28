@@ -3,6 +3,53 @@
     ViewBag.Title = "MeetTheTeam";
 }
 
+    <style>
+        .icontainer {
+            position: relative;
+            height: 552px;
+            /*width: 50%;*/
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 9px;
+            right: 0;
+           /* height: 100%;
+            width: 100%;*/
+            height: 431px;
+            width: 342px;
+            opacity: 0;
+            transition: 1.0s ease;
+            background-color: #2E9BBB;
+        }
+
+        .icontainer:hover .overlay {
+            opacity: 0.8;
+        }
+
+        .text {
+            color: white;
+            font-size: 12pt;
+            position: absolute;
+            height: 431px;
+            width: 322px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+
 <section class="hero-section" id="hero">
         <div class="container">
             <div class="row">
@@ -16,7 +63,7 @@
                         <div class="col-lg-7 text-center text-lg-left">
                             <h1 data-aos="fade-right">Meet The Team</h1>
                             <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
-                                Find below information of our team of expert lawyers and accountants from Sterling&amp;Beanland Limited and our associates Sterling Law . All are experts in their field and happy to give help throughout this crisis and beyond. The Sterling&amp;Beanland Team are experienced in accountancy and taxation, while our lovely associates at Sterling-Law are experts in Legal and HR consultancy and Sterling&amp;Beanland Accounting Services are experts in financial advice and managemen.
+                                Find below information of our team of expert lawyers and accountants from Sterling&amp;Beanland Limited and our associates Sterling Law . All are experts in their field and happy to give help throughout this crisis and beyond. The Sterling&amp;Beanland Team are experienced in accountancy and taxation, while our lovely associates at Sterling-Law are experts in Legal and HR consultancy and Sterling&amp;Beanland Accounting Services are experts in financial advice and management.
                             </p>
                         </div>
                     </div>
@@ -36,54 +83,57 @@
             </div>
             <div class="row">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
-                            <img src="~/Content/images/heads/LudaC.png" style="width:100%; height:100%;" />
+                            <img src="~/Content/images/heads/LudaC.png" style="width:100%; height:100%;" class="image" />
                         </div>
                         <h4>Luda Beanland (Rudimova) ACMA, CGMA, DchA</h4>
-                            <h6>Managing Director and Founder</h6>
-                            <h6></h6>
-                            <p style="font-size:12px;">
+                        <h6>Managing Director and Founder</h6>
+               
+                        <div class="overlay">
+                            <div class="text">
+                                <br />
                                 Luda graduated in 1999 from Moscow Academy of Labour and Social Relations with a degree in Accountancy with Honours. She finished her CIMA qualification in 2008 and did further training which led to her obtaining a Masters Degree at the Cass Business School in 2011, during which one of her course projects was published on the Charity Finance Group website. Currently, she is completing another qualification as a Chartered Tax Advisor. Having worked in both the Commercial and Charity Sectors, she specialises in Taxation, Management Accounting and Cash Flow Management. In her free time, she likes sport and travelling.
-                            </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/RuslanC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Ruslan Kosarenko</h4>
-                        <h6>Partner</h6>
-                     
-                            <h6></h6>
-                            <p style="font-size:12px;">
+                        <h4>Legal Partner</h4>
+                        <div class="overlay">
+                            <div class="text">
                                 Successful UK Immigration and Human Rights Lawyer recognised by Legal 500 in the areas of business Immigration and Human Rights, working to protect the clients' interests to ensure the corporate and individual immigration needs and objectives are met.
                                 Ruslan is very well known for handling high profile asylum claims, complex immigration applications and appeals. In 2009 he founded Sterling & Law Associates, a successful law firm based in the City of London, which has been recognised in the recent edition of Legal 500.
                                 In addition, Ruslan has extensive experience in a wide range of corporate immigration matters. His key areas of expertise are Sponsor Licence to employ migrant workers, Tier 2, Tier 5 and Tier 1 applications in all sub-categories.
-                            </p>                        
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/YuriyC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Yuriy Lysenko</h4>
-                        <h6>Partner - Immigration</h6>
-                       
-                            <h6>Business Immigration, Sponsor License Applications, PBS Applications</h6>
-                            <p style="font-size:12px;">
+                        <h6>Partner - Immigration / Business Immigration</h6>
+                        <h6>Sponsor  - License &amp PBS Applications</h6>
+                        <div class="overlay">
+                            <div class="text">
                                 Yuriy deals with a wide range of private client immigration including most aspects of the UK points-based system and family immigration. He acts as a consultant in immigration law to the individual clients from Eastern Europe, CIS countries and other clients from all over the world.
                                 Yuriy’s extensive knowledge enables him to offer clear solutions to complex immigration problems. He has experience across all immigration routes with a breadth of knowledge enabling him and his team to offer clear solutions to complicated immigration issues.
-                            </p>
-                        
+                            </div>
                         </div>
                     </div>
-            </div>
-
+                </div>
+        </div>
             <div class="row justify-content-center text-center mb-5">
                 <div class="col-md-9" data-aos="fade-up">
                     <h2 class="section-heading">The Law Team</h2>
@@ -92,39 +142,39 @@
 
             <div class="row">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/innaC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Inna Semeniuk</h4>
-                        <h6>Legal Specialist, SRA registered</h6>
-                        <h6>Business Immigration, Employment Law, Family Law, Commercial Law, Legal Tech</h6>
-                        <p style="font-size:12px;">
-                            Inna provides legal support to London-based tech start-ups, large corporations and private individuals. Background in AI (artificial intelligence), machine learning and blockchain combined with skills in Python (programming language). Track record of adopting legal technologies to automate internal processes. Keen human rights advocate with a Law Society Immigration and Asylum Accreditation certificate, helping people pro bono.
-
-                            Inna has extensive legal experience, and can answer all your questions relating to business legislation.
-                        </p>
+                        <h6>Legal Specialist, SRA registered Business Immigration, Employment Law, Family Law, Commercial Law, Legal Tech</h6>
+                        <div class="overlay">
+                            <div class="text">
+                                Inna provides legal support to London-based tech start-ups, large corporations and private individuals. Background in AI (artificial intelligence), machine learning and blockchain combined with skills in Python (programming language). Track record of adopting legal technologies to automate internal processes. Keen human rights advocate with a Law Society Immigration and Asylum Accreditation certificate, helping people pro bono.
+                                Inna has extensive legal experience, and can answer all your questions relating to business legislation.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/nC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Nataliya Varahash</h4>
-                        <h6>Immigration Lawyer, OISC registered</h6>
-                        <h6>Business Immigration, Sponsor License Applications, PBS Applications</h6>
-                        <p style="font-size:12px;">
-                            Nataliya is an experienced corporate immigration lawyer, acknowledged in Legal 500. She is responsible for numerous successful Sponsor Licence applications for both small start-ups and multinational companies in all types of industries from Fashion to Construction to IT. Nataliya deals with most complex cases including refusals, and re-applications.
-
-                            Nataliya can answer all your questions relating to business immigration & visas, sponsor licence compliance, and Home Office requirements. Ask her a question directly through nataliya@sterling-law.co.uk
-                        </p>
+                        <h6>Immigration Lawyer, OISC registered Business Immigration, Sponsor License Applications, PBS Applications</h6>
+                        <div class="overlay">
+                            <div class="text">
+                                Nataliya is an experienced corporate immigration lawyer, acknowledged in Legal 500. She is responsible for numerous successful Sponsor Licence applications for both small start-ups and multinational companies in all types of industries from Fashion to Construction to IT. Nataliya deals with most complex cases including refusals, and re-applications.
+                                Nataliya can answer all your questions relating to business immigration & visas, sponsor licence compliance, and Home Office requirements. Ask her a question directly through nataliya@sterling-law.co.uk
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/alexC.png" style="width:100%; height:100%;" />
                         </div>
@@ -133,39 +183,42 @@
                         <h6>
                             Competition Law, Regulated Network Industries, Intellectual Property Law, International Business Law
                         </h6>
-                        <p style="font-size:12px;">
-                            Alexandra made a significant contribution to the project in terms of
-                            research structuring, and HR components. Alexandra is proactive and a real problem solver with a can-do approach.
-                            Alexandra holds a LLM degree from King’s College London and LLB from
-                            Maastricht University.
-                            Alexandra has also been working in the law industry for several years,
-                            and is now employed by a Legal 500 firm Sterling Law.
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                                Alexandra has made a significant contribution to the project in terms of
+                                research structuring, and HR components. Alexandra is proactive and a real problem solver with a can-do approach.
+                                Alexandra holds a LLM degree from King’s College London and LLB from
+                                Maastricht University.
+                                Alexandra has also been working in the law industry for several years,
+                                and is now employed by a Legal 500 firm Sterling Law.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/danaC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Dana Turmane</h4>
-                        <h6>Legal Consultant</h6>
-                        <h6>
-                        </h6>
-                        <p style="font-size:12px;">
-                            Dana has many years of legal experience, acquired a LLM degree and
-                            finished the GDL course. Her excellent people skills make Dana an
-                            invaluable team member. She is always happy to help, very customer
-                            focused and can find a solution to any problem.
+                        <h6>Legal Consultant</h6>                    
+                        <div class="overlay">
+                            <div class="text">
+                                Dana has many years of legal experience, acquired a LLM degree and
+                                finished the GDL course. Her excellent people skills make Dana an
+                                invaluable team member. She is always happy to help, very customer
+                                focused and can find a solution to any problem.
 
-                            Dana will assist you with your query in a rare case when you cannot
-                            find what you are looking for on our website, and will connect you to
-                            the relevant advisor if required.
-                        </p>
+                                Dana will assist you with your query in a rare case when you cannot
+                                find what you are looking for on our website, and will connect you to
+                                the relevant advisor if required.
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/xenaC.png" style="width:100%; height:100%;" />
                         </div>
@@ -173,13 +226,15 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                            Xena Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                                Xena bio
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/kuldeepC.png" style="width:100%; height:100%;" />
                         </div>
@@ -187,13 +242,15 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                            Kuldeep Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                                Kuldeep Bio.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/michaelC.png" style="width:100%; height:100%;" />
                         </div>
@@ -201,13 +258,15 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                            Muchael Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                               Michael Bio.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/nadiya2C.png" style="width:100%; height:100%;" />
                         </div>
@@ -215,13 +274,15 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                            Nadiya Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                               Nadiya Bio
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/navdeepC.png" style="width:100%; height:100%;" />
                         </div>
@@ -229,13 +290,15 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                            Navdeep Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                              Navdeep Bio
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/nozimaC.png" style="width:100%; height:100%;" />
                         </div>
@@ -243,9 +306,11 @@
                         <h6>Legal Consultant</h6>
                         <h6>
                         </h6>
-                        <p style="font-size:12px;">
-                           Nozima Bio
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                               Nozimo Bio
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,41 +327,51 @@
 
             <div class="row">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/lizC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Elizabeth Greenfield</h4>
                         <h6>Business Research Analyst</h6>
-                        <p style="font-size:12px;">
-                            Liza finished her studies from Dartford Grammar School for Girls in 2015 and went on to study Archaeology at the University of Winchester, where she graduated from in 2019. She has a wide range of experience in customer support and administration and provides help with Business Plans, Marketing and liaising with clients. She enjoys reading, painting and has a keen interest in history from her studies in Archaeology.
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                                Liza finished her studies from Dartford Grammar School for Girls in 2015 and went on to study Archaeology at the University of Winchester, where she graduated from in 2019. She has a wide range of experience in customer support and administration and provides help with Business Plans, Marketing and liaising with clients. She enjoys reading, painting and has a keen interest in history from her studies in Archaeology.
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
-                            <img src="~/Content/images/heads/LudaC.png" style="width:100%; height:100%;" />
+                            <img src="~/Content/images/heads/LudaC.png" style="width:100%; height:100%;" class="image" />
                         </div>
                         <h4>Luda Beanland (Rudimova) ACMA, CGMA, DchA</h4>
                         <h6>Managing Director and Founder</h6>
-                        <h6></h6>
-                        <p style="font-size:12px;">
-                            Luda graduated in 1999 from Moscow Academy of Labour and Social Relations with a degree in Accountancy with Honours. She finished her CIMA qualification in 2008 and did further training which led to her obtaining a Masters Degree at the Cass Business School in 2011, during which one of her course projects was published on the Charity Finance Group website. Currently, she is completing another qualification as a Chartered Tax Advisor. Having worked in both the Commercial and Charity Sectors, she specialises in Taxation, Management Accounting and Cash Flow Management. In her free time, she likes sport and travelling.
-                        </p>
+
+                        <div class="overlay">
+                            <div class="text">
+                                <br />
+                                Luda graduated in 1999 from Moscow Academy of Labour and Social Relations with a degree in Accountancy with Honours. She finished her CIMA qualification in 2008 and did further training which led to her obtaining a Masters Degree at the Cass Business School in 2011, during which one of her course projects was published on the Charity Finance Group website. Currently, she is completing another qualification as a Chartered Tax Advisor. Having worked in both the Commercial and Charity Sectors, she specialises in Taxation, Management Accounting and Cash Flow Management. In her free time, she likes sport and travelling.
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="feature-1">
+                    <div class="feature-1 icontainer">
                         <div>
                             <img src="~/Content/images/heads/sevaraC.png" style="width:100%; height:100%;" />
                         </div>
                         <h4>Sevara Greenfield</h4>
                         <h6>Accountancy Practice Manager and Management Accountant</h6>
                         <h6></h6>
-                        <p style="font-size:12px;">
-                            Sevara graduated from the Academic Lyceum at Uzbekistan State Mining Institute and acquired a qualification as a junior interpreter in English and German. She is fluent in Russian, Uzbek, English and German. In 2013 she was admitted to London School of Business and Finance to study an ACCA qualification. She is a part qualified ACCA Accountant and working towards her ACCA and CTA qualifications. In her free time she enjoys painting and reading.
-                        </p>
+                        <div class="overlay">
+                            <div class="text">
+                                <br />
+                                Sevara graduated from the Academic Lyceum at Uzbekistan State Mining Institute and acquired a qualification as a junior interpreter in English and German. She is fluent in Russian, Uzbek, English and German. In 2013 she was admitted to London School of Business and Finance to study an ACCA qualification. She is a part qualified ACCA Accountant and working towards her ACCA and CTA qualifications. In her free time she enjoys painting and reading.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

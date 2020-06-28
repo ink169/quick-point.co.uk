@@ -169,15 +169,6 @@
     <Compile Include="ViewModels\Resource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\Heads\dana.jpg" />
-    <Content Include="assets\images\Heads\ElizabethGreenfield.jpg" />
-    <Content Include="assets\images\Heads\Inna.jpg" />
-    <Content Include="assets\images\Heads\LudaBeanland.jpg" />
-    <Content Include="assets\images\Heads\Nataliya.jpg" />
-    <Content Include="assets\images\Heads\Ruslan.jpg" />
-    <Content Include="assets\images\Heads\SevaraGreenfield.jpg" />
-    <Content Include="assets\images\Heads\Sterlingportraits.jpg" />
-    <Content Include="assets\images\Heads\yuriy.jpg" />
     <Content Include="assets\images\hero-bg.jpg" />
     <Content Include="assets\images\InnovateUKLogo.png" />
     <Content Include="assets\images\link-1.jpg" />
