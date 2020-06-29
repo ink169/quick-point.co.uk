@@ -192,8 +192,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\images\articles\61e185ca-cdc0-48c1-957b-4d555727c283-1.jpg" />
+    <Content Include="Content\images\articles\article6.PNG" />
     <Content Include="Content\images\articles\companies-house-deadlines.jpg" />
     <Content Include="Content\images\articles\d664ff71-e18c-4227-894d-222448a44e10.jpg" />
+    <Content Include="Content\images\articles\numbers-money-calculating-calculation.jpg" />
     <Content Include="Content\images\ChirpyTag.png" />
     <Content Include="Content\images\FA_sml.png" />
     <Content Include="Content\images\heads\alexC.png" />
@@ -211,7 +214,9 @@
     <Content Include="Content\images\heads\sevaraC.png" />
     <Content Include="Content\images\heads\xenaC.png" />
     <Content Include="Content\images\heads\YuriyC.png" />
+    <Content Include="Content\images\icons-18-white.png" />
     <Content Include="Content\images\SL.jpg" />
+    <Content Include="Content\jquery.mobile-1.3.0-rc.1.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
