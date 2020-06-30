@@ -84,6 +84,16 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        public ActionResult Terms()
+        {
+            return View();
+        }
+
         public ActionResult FFA()
         {
             return View();

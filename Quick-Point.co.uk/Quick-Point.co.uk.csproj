@@ -227,6 +227,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\toastr.scss" />
+    <Content Include="Content\ChirpyToggle.less" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
@@ -307,6 +308,9 @@
     <Content Include="Views\Articles\_LegalArticle8.cshtml" />
     <Content Include="Views\Articles\_LegalArticle9.cshtml" />
     <Content Include="Views\Shared\_LayoutNoBling.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Shared\_LayoutFFA.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
