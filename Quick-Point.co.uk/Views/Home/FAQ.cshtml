@@ -1,6 +1,59 @@
 ﻿@{
     ViewBag.Title = "FAQ";
 }
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    p {
+        font-size: 1.1em;
+        margin: 1em 0;
+    }
+
+    .description {
+        margin: 1em auto 2.25em;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul .inner {
+        padding-left: 1em;
+        overflow: hidden;
+        display: none;
+    }
+
+        ul .inner.show {
+            /*display: block;*/;
+        }
+
+    ul li {
+        margin: .5em 0;
+    }
+
+    ul li a.toggle {
+        width: 100%;
+        display: block;
+        background: #245796;
+        color: #fefefe;
+        padding: .75em;
+        border-radius: 0.15em;
+        transition: background .3s ease;
+    }
+
+ul li a.toggle:hover {
+    background: rgba(36, 87, 150, 0.5);
+}
+
+
+
+
+
+</style>
 
 <section class="hero-section" id="hero">
     <div class="container" style="min-height:355px;">
@@ -29,7 +82,7 @@
     <div class="container" style="padding-top:10px; height:100%;">
 
         <ul class="accordion">
-           
+
             <li>
                 <a class="toggle">Legal FAQ</a>
                 <ul class="inner">
@@ -37,77 +90,341 @@
                         <a href="#" class="toggle">Furlough FAQ</a>
                         <ul class="inner">
                             <li><a href="#" class="toggle">Can transferred employees be furloughed by a new employer?</a><div class="inner"><p> If the employee is employed by one employer on 19 March but is transferred to another employer under the TUPE scheme later, they can be furloughed by the new employer. </p></div></li>
-                            <li><a href="#" class="toggle">To be eligible for the Coronavirus Job Retention Scheme, do I need to prove that I cannot otherwise pay employees ?"</a><div class="inner"><p>It is not a requirement that the employer cannot otherwise pay its employees or that they need to make employees redundant. An employer can furlough workers if ""the instruction is given by reason of circumstances arising as a result of coronavirus or coronavirus disease"".</li>
-                            <li><a href="#" class="toggle">What information do I need to submit in order to apply to the Coronavirus Job Retention Scheme?</a><div class="inner"><p>The Government has published a step-by-step guide. https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/884664/Coronavirus_Job_Retention_Scheme_step_by_step_guide_for_employers.pdf. The information required is: 1. The number of employees to be furloughed; 2. The dates from and to which employees have been furloughed; 3. Details of employees - the name and National Insurance Number of each furloughed employee; 4. Your employer PAYE scheme reference number; 5. Your Corporation Tax Unique Taxpayer Reference, Self-Assessment Unique Taxpayer Reference or Company Registration Number as appropriate for your entity; 6. Your UK bank account details; 7. Your organisation's registered name; 8. Your organisation's address</li>
-                            <li><a href="#" class="toggle">Can my employee claim commission or overtime when furloughed?</a><div class="inner"><p>An employee cannot be on unpaid leave and furloughed at the same time. If an employee went on unpaid leave before 1 March 2020, they cannot be furloughed until the agreed period of unpaid leave expires. This is unless an agreement was reached to vary the end date of the unpaid leave after the leave began, and before 20 March 2020.</li>
-                            <li><a href="#" class="toggle">Do I have to re-employ workers who stopped working before Coronavirus Job Retention Scheme came into force?</a><div class="inner"><p>	The employer is not obliged to re-employ employees in order to place them under the furlough scheme.</li>
-                            <li><a href="#" class="toggle">What is a flexible furlough?</a><div class="inner"><p>As of 1 July 2020,flexible furlough will enable employers to return their employees to work part-time whilst remaining on the furlough scheme. Employers can decide on shift patterns. However, they will be responsible for paying wages for the work done.</li>
-                            <li><a href="#" class="toggle">How will the available furlough grant change in the nearest future?</a><div class="inner"><p>In June and July 2020, the furlough grant will include coverage of 80% of wages up to a £2,500 cap, but employers will pay for any hours of work. In August 2020, the furlough grant will remain an 80% coverage up to a £2,500 cap, but employers will pay pension contributions, ER and NICs. In September 2020, the furlough grant will include a 70% coverage with a £2,187 cap and the employer will pay ER, NICs, pension and 10% towards 80% of the wages with a cap of £2,500. In October 2020, the grant will cover 60% of wages capped at £1,875, and the employer will pay pension contributions, ER and NICs and 20% towards 80% of the wages with a cap of £2,500.</li>
-                            <li><a href="#" class="toggle">Can furloughed employees undertake training?</a><div class="inner"><p>	Employees placed onfurlough leave under the Coronavirus Job Retention Scheme can undertake training or courses that are 'directly relevant' to their job.</li>
-                            <li><a href="#" class="toggle">Can foreign nationals be furloughed?</a><div class="inner"><p>Yes, foreign nationals on all types of visa allowing a right to work can be furloughed, provided that they satisfy the necessary requirements.</li>
-                            <li><a href="#" class="toggle">Can employees be furloughed from various jobs?</a><div class="inner"><p>Yes, employees with more than one employment can be furloughed by each of the employers. Note that the cap of the Coronavirus Job Retention Scheme applies separately to each job.</li>
-                            <li><a href="#" class="toggle">Can zero-hours workers be furloughed?</a><div class="inner"><p>	Zero-hours workers can be furloughed if they are on PAYE. Their median income will have to be calculated.	</li>
-                            <li><a href="#" class="toggle">What happens if the employee refuses to be placed on the Coronavirus Job Retention Scheme?</a><div class="inner"><p>If the employee refuses to be furloughed and you still decide to do it, you might face an unfair dismissal claim.</li>
-                            <li><a href="#" class="toggle">Does the employer have to top up the wages of furloughed employees?</a><div class="inner"><p>The guidance states that it is for the employers to decide whether to top-up the wages (extra 20% or anything bringing the wages above £2,500). However, under their contract employees are usually entitled to their full wages. It is advised to discuss the situation with employees.</li>
-                            <li><a href="#" class="toggle">Does being furloughed affect continuity of employment?</a><div class="inner"><p>As the employment contract continues to apply during furlough leave, it should not affect continuity of employment.</li>
-                            <li><a href="#" class="toggle">Can I lay off my employee if there is an existing contractual right to do so?</a><div class="inner"><p>You may rely on the contractual right. However, such provision is an implied term of trust and confidence, meaning that you should consult with your employee and give reasonable notice to avoid any breach of contract.</li>
-                            <li><a href="#" class="toggle">Can I reduce the hours and pay of my employees?</a><div class="inner"><p>Yes, but only with the employees' agreement. Alternatively, if there is a contractual right to impose short-working, it may be used instead.</li>
-                            <li><a href="#" class="toggle">Are there any alternative options to redundancy while on furlough?</a><div class="inner"><p>Yes, you may wish to discuss options such as unpaid statutory parental leave or granting unpaid sabbaticals which will enable employees to remain employed without pay until the situation improves.</li>
-                            <li><a href="#" class="toggle">How can employers calculate statutory redundancy payment for employees on furlough?</a><div class="inner"><p>The statutory redundancy payment is calculated based on the years of service, age and one week's pay (which is capped at £538). </li>
-                            <li><a href="#" class="toggle">Can HMRC impose penalties on businesses making claims under the Scheme?</a><div class="inner"><p>Yes. According to the upcoming Finance Bill 2020, the taxman would be able to penalise those businesses that deliberately claim for employees they haven't furloughed or for money they aren't entitled to receive. Directors should expect to be liable for tax charges if they have deliberately flouted the rules.</li>
-                            <li><a href="#" class="toggle">Will HMRC be given the power to recover payments?</a><div class="inner"><p>The government has started a short consultation on enforcement measures and states that HMRC would be given powers to recover payments ""where a Coronavirus Job Retention Scheme payment has not been used to pay employees, make pensions contributions, pay PAYE or National Insurance contributions."" HMRC could also take criminal action in cases of fraud.</li>
-                            <li><a href="#" class="toggle">Why should I encourage my employees to take annual leave during furlough?</a><div class="inner"><p>For a number of reasons, such as (1) to encourage employees to look out for their own wellbeing and health, (2) to reduce the amount of leave to be taken once work resumes and (3) to take advantage of the financial assistance available via the CJRS in funding annual leave payments.</li>
-                            <li><a href="#" class="toggle">What is the notice period for annual leave during furlough?</a><div class="inner"><p>The notice periods remain the same with employers being required to give double the length of the holiday that the employer wishes the employee to take.</li>
-
-
-
+                            <li><a href="#" class="toggle">To be eligible for the Coronavirus Job Retention Scheme, do I need to prove that I cannot otherwise pay employees ?"</a><div class="inner"><p>It is not a requirement that the employer cannot otherwise pay its employees or that they need to make employees redundant. An employer can furlough workers if ""the instruction is given by reason of circumstances arising as a result of coronavirus or coronavirus disease"".</p></div></li>
+                            <li><a href="#" class="toggle">What information do I need to submit in order to apply to the Coronavirus Job Retention Scheme?</a><div class="inner"><p>The Government has published a step-by-step guide. https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/884664/Coronavirus_Job_Retention_Scheme_step_by_step_guide_for_employers.pdf. The information required is: 1. The number of employees to be furloughed; 2. The dates from and to which employees have been furloughed; 3. Details of employees - the name and National Insurance Number of each furloughed employee; 4. Your employer PAYE scheme reference number; 5. Your Corporation Tax Unique Taxpayer Reference, Self-Assessment Unique Taxpayer Reference or Company Registration Number as appropriate for your entity; 6. Your UK bank account details; 7. Your organisation's registered name; 8. Your organisation's address</p></div></li>
+                            <li><a href="#" class="toggle">Can my employee claim commission or overtime when furloughed?</a><div class="inner"><p>An employee cannot be on unpaid leave and furloughed at the same time. If an employee went on unpaid leave before 1 March 2020, they cannot be furloughed until the agreed period of unpaid leave expires. This is unless an agreement was reached to vary the end date of the unpaid leave after the leave began, and before 20 March 2020.</p></div></li>
+                            <li><a href="#" class="toggle">Do I have to re-employ workers who stopped working before Coronavirus Job Retention Scheme came into force?</a><div class="inner"><p>	The employer is not obliged to re-employ employees in order to place them under the furlough scheme.</p></div></li>
+                            <li><a href="#" class="toggle">What is a flexible furlough?</a><div class="inner"><p>As of 1 July 2020,flexible furlough will enable employers to return their employees to work part-time whilst remaining on the furlough scheme. Employers can decide on shift patterns. However, they will be responsible for paying wages for the work done.</p></div></li>
+                            <li><a href="#" class="toggle">How will the available furlough grant change in the nearest future?</a><div class="inner"><p>In June and July 2020, the furlough grant will include coverage of 80% of wages up to a £2,500 cap, but employers will pay for any hours of work. In August 2020, the furlough grant will remain an 80% coverage up to a £2,500 cap, but employers will pay pension contributions, ER and NICs. In September 2020, the furlough grant will include a 70% coverage with a £2,187 cap and the employer will pay ER, NICs, pension and 10% towards 80% of the wages with a cap of £2,500. In October 2020, the grant will cover 60% of wages capped at £1,875, and the employer will pay pension contributions, ER and NICs and 20% towards 80% of the wages with a cap of £2,500.</p></div></li>
+                            <li><a href="#" class="toggle">Can furloughed employees undertake training?</a><div class="inner"><p>	Employees placed onfurlough leave under the Coronavirus Job Retention Scheme can undertake training or courses that are 'directly relevant' to their job.</p></div></li>
+                            <li><a href="#" class="toggle">Can foreign nationals be furloughed?</a><div class="inner"><p>Yes, foreign nationals on all types of visa allowing a right to work can be furloughed, provided that they satisfy the necessary requirements.</p></div></li>
+                            <li><a href="#" class="toggle">Can employees be furloughed from various jobs?</a><div class="inner"><p>Yes, employees with more than one employment can be furloughed by each of the employers. Note that the cap of the Coronavirus Job Retention Scheme applies separately to each job.</p></div></li>
+                            <li><a href="#" class="toggle">Can zero-hours workers be furloughed?</a><div class="inner"><p>	Zero-hours workers can be furloughed if they are on PAYE. Their median income will have to be calculated.	</p></div></li>
+                            <li><a href="#" class="toggle">What happens if the employee refuses to be placed on the Coronavirus Job Retention Scheme?</a><div class="inner"><p>If the employee refuses to be furloughed and you still decide to do it, you might face an unfair dismissal claim.</p></div></li>
+                            <li><a href="#" class="toggle">Does the employer have to top up the wages of furloughed employees?</a><div class="inner"><p>The guidance states that it is for the employers to decide whether to top-up the wages (extra 20% or anything bringing the wages above £2,500). However, under their contract employees are usually entitled to their full wages. It is advised to discuss the situation with employees.</p></div></li>
+                            <li><a href="#" class="toggle">Does being furloughed affect continuity of employment?</a><div class="inner"><p>As the employment contract continues to apply during furlough leave, it should not affect continuity of employment.</p></div></li>
+                            <li><a href="#" class="toggle">Can I lay off my employee if there is an existing contractual right to do so?</a><div class="inner"><p>You may rely on the contractual right. However, such provision is an implied term of trust and confidence, meaning that you should consult with your employee and give reasonable notice to avoid any breach of contract.</p></div></li>
+                            <li><a href="#" class="toggle">Can I reduce the hours and pay of my employees?</a><div class="inner"><p>Yes, but only with the employees' agreement. Alternatively, if there is a contractual right to impose short-working, it may be used instead.</p></div></li>
+                            <li><a href="#" class="toggle">Are there any alternative options to redundancy while on furlough?</a><div class="inner"><p>Yes, you may wish to discuss options such as unpaid statutory parental leave or granting unpaid sabbaticals which will enable employees to remain employed without pay until the situation improves.</p></div></li>
+                            <li><a href="#" class="toggle">How can employers calculate statutory redundancy payment for employees on furlough?</a><div class="inner"><p>The statutory redundancy payment is calculated based on the years of service, age and one week's pay (which is capped at £538). </p></div></li>
+                            <li><a href="#" class="toggle">Can HMRC impose penalties on businesses making claims under the Scheme?</a><div class="inner"><p>Yes. According to the upcoming Finance Bill 2020, the taxman would be able to penalise those businesses that deliberately claim for employees they haven't furloughed or for money they aren't entitled to receive. Directors should expect to be liable for tax charges if they have deliberately flouted the rules.</p></div></li>
+                            <li><a href="#" class="toggle">Will HMRC be given the power to recover payments?</a><div class="inner"><p>The government has started a short consultation on enforcement measures and states that HMRC would be given powers to recover payments ""where a Coronavirus Job Retention Scheme payment has not been used to pay employees, make pensions contributions, pay PAYE or National Insurance contributions."" HMRC could also take criminal action in cases of fraud.</p></div></li>
+                            <li><a href="#" class="toggle">Why should I encourage my employees to take annual leave during furlough?</a><div class="inner"><p>For a number of reasons, such as (1) to encourage employees to look out for their own wellbeing and health, (2) to reduce the amount of leave to be taken once work resumes and (3) to take advantage of the financial assistance available via the CJRS in funding annual leave payments.</p></div></li>
+                            <li><a href="#" class="toggle">What is the notice period for annual leave during furlough?</a><div class="inner"><p>The notice periods remain the same with employers being required to give double the length of the holiday that the employer wishes the employee to take.</p></div></li>
                         </ul>
                     </li>
 
-                    <li>Option 2</li>
-
-                    <li>Option 3</li>
-                </ul>
-            </li>
-
-            @*<li>
-                <a class="toggle" href="javascript:void(0);">Item 4</a>
-                <ul class="inner">
                     <li>
-                        <a href="#" class="toggle">Technically any number of nested elements</a>
+                        <a href="#" class="toggle">Work From Home FAQ</a>
                         <ul class="inner">
+                            <li><a href="#" class="toggle">Are employers obliged to equip their employees working from home?</a><div class="inner"><p>Yes, they are. Employers should take every possible step to facilitate employees' working from home, including the supply of suitable IT and equipment to enable remote working.</div></li>
+                            <li><a href="#" class="toggle">Can my employee request to work from home?</a><div class="inner"><p>Employees will have a statutory right to request to work from home if they have at least 6 months of service. You will have to deal with such requests in a reasonable manner by assessing advantages and disadvantages, holding a meeting to discuss the request and offering an appeal right if the request is refused.</div></li>
+                            <li><a href="#" class="toggle">Is it a requirement for the request to work from home to be in writing?</a><div class="inner"><p>Yes, it must be in writing and must include (1) application date, (2) details of change, (3) preferred enforcement date, (4) impact on employer and (5) statement confirming statutory request and any dates of previous requests made.</div></li>
+                            <li><a href="#" class="toggle">In what circumstances can I reject a request to work from home?</a><div class="inner"><p>Possible reasons may include burden of additional costs, inability to recognise work,inability to recruit extra staff, detrimental impact on quality and performance or meeting customer needs. Other reasons may include insufficient work or planned structural change to your business.</div></li>
+                            <li><a href="#" class="toggle">My employee has worked less than 6 months. Can they request to work from home?</a><div class="inner"><p>If they have not worked long enough to make a statutory request, they can still make a non-statutory request for a flexible working arrangement, although the process will not be the same in considering the application.</div></li>
+                            <li><a href="#" class="toggle">How can employers ensure data security while employees are working from home?</a><div class="inner"><p>	Employers can adapt to the new ways of working and minimise risks of data breaches by taking the following steps: 1). Ask employees to use a separate work space for sensitive calls; 2). Use privacy screens; 3). Ask employees not to share technology such as computers with others; 4). Shred confidential information; 5). Provide security training for employees.</div></li>
                             <li>
-                                <a href="#" class="toggle">Another nested element</a>
-                                <div class="inner">
+                                <a href="#" class="toggle">
+                                    Are an employer’s policies and its monitoring of its employees legal?
+                                </a><div class="inner">
                                     <p>
-                                        As long as the inner element has inner as one of its classes then it will be toggled.
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus placerat fringilla. Duis a elit et dolor laoreet volutpat. Aliquam ultrices mauris id mattis imperdiet. Aenean cursus ultrices justo et varius. Suspendisse aliquam orci id dui dapibus
-                                        blandit. In hac habitasse platea dictumst. Sed risus velit, pellentesque eu enim ac, ultricies pretium felis.
-                                    </p>
+                                        The following should be considered in determining the legality of monitoring:
+                                        <ol>
+                                            <li> 1) Inform employees of the intention to monitor;</li>
+                                            <li> 2) Be mindful of the risks around discrimination;</li>
+                                            <li> 3) Ensure sufficient safeguards are put in place to prevent abuse;</li>
+                                            <li>4) Act in a proportionate and justified manner e.g. in respect of the method used.</li>
+                                        </ol>
                                 </div>
                             </li>
                         </ul>
                     </li>
 
-                    <li>Option 2</li>
+                    <li>
+                        <a href="#" class="toggle">Safety FAQ</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">What are my duties as an employer at the workplace?</a><div class="inner"><p>There is a statutory duty to ensure health, safety and welfare of every employee and members of the public 'so far as is reasonably practical'. The employer has to assess risks, and set up and implement a safe system of work.</div></li>
+                            <li><a href="#" class="toggle">What are the rules on having visitors at the workplace?</a><div class="inner"><p>Government guidelines suggest minimising the number of unnecessary visits. When visits/contacts are necessary and cannot be undertaken by remote connection, guidance on social distancing and hygiene should be explained prior to arrival and on arrival (for example, by signage). The number of visitors must be limited and a visiting record must be kept. Contact with visitors must be minimal. People acting as hosts must receive the necessary COVID-19 training.</div></li>
+                            <li><a href="#" class="toggle">Can I ask my employees to use public transport to travel to work?</a><div class="inner"><p>It is best to avoid unnecessary work-related travel. When it is unavoidable, minimise the number of people travelling by one vehicle, ensure that the vehicle has good ventilation, and that the employees do not sit face-to-face. Should employees need to stay away from their home (for work reasons), ensure that any overnight accommodation meets social distancing guidelines. Employees delivering goods should adhere to the hygiene and distancing guidelines.</div></li>
+                            <li><a href="#" class="toggle">Can my employees travel for work-related reasons?</a><div class="inner"><p>It is best to avoid unnecessary work-related travel. When it is unavoidable, minimise the number of people travelling by one vehicle, ensure that the vehicle has good ventilation, and that the employees do not sit face-to-face. Should employees need to stay away from their home (for work reasons), ensure that any overnight accommodation meets social distancing guidelines. Employees delivering goods should adhere to the hygiene and distancing guidelines.</div></li>
+                            <li><a href="#" class="toggle">Is it safe for my employees to return to work?</a><div class="inner"><p>As of 18 May 2020, employees should be actively encouraged to return to work if they cannot work from home. However, they should avoid using public transport if possible.</div></li>
+                            <li><a href="#" class="toggle">Do employees have any health and safety responsibilities?</a><div class="inner"><p>Yes, employees have health and safety responsibilities at work. These include taking reasonable care for their health and safety and that of anyone who may be affected by their acts or omissions at work; and to co-operate with their employer so far as is necessary to enable compliance with any statutory duty or requirement relating to health and safety.</div></li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    Is it mandatory for the employees to use PPE (Personal Protective Equipment) at the workplace?
+                                </a><div class="inner">
+                                    <p>
+                                        While the UK Government's Guidelines advise that employers already utilising PPE at their workplace should continue doing so, it is also suggested that additional PPE (beyond that already employed) is not beneficial. This is because the virus-related risks are to be managed via social distancing and hygiene, not PPE. The guidelines clearly stipulate that
+                                        <ol>
+                                            <li> workplaces should not encourage the precautionary use of extra PPE to protect against COVID-19 outside clinical settings or when responding to a suspected or confirmed case of COVID-19;</li>
+                                            <li> unless a workplace is in a situation where the risk of COVID-19 transmission is very high, a risk assessment should reflect the fact that the role of PPE in providing additional protection is extremely limited;</li>
+                                            <li> if a risk assessment shows that PPE is required it must be provided free of charge to workers who need it. Any PPE provided must fit properly.</li>
+                                        </ol>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    Do employees need to wear face masks at work?
+                                </a><div class="inner">
+                                    <p>
+                                        Wearing a face mask in the workplace is optional and is not required by law, as of 06.06.2020. Having said that, should employees decide to wear face coverings, employers must ensure they do so safely. Employers should tell their employees the following.
+                                        <ol>
+                                            <li>wash hands thoroughly with the use of soap and water for 20 seconds (and above) or, alternatively, use hand sanitiser before putting a face covering on and taking it off. </li>
+                                            <li>avoid touching the face or face mask while it is on.</li>
+                                            <li>change the face covering if it becomes damp or after touching it.</li>
+                                            <li>continue washing hands on a regular basis.</li>
+                                            <li>change and wash a face covering on a daily basis or dispose of it should it not be washable.</li>
+                                        </ol>
+                                </div>
+                            </li>
+                            <li><a href="#" class="toggle">Are there any categories of employees which I should give special consideration to?</a><div class="inner"><p>Yes. You should give special consideration to those falling into the extremely vulnerable and high-risk categories such as pregnant employees, employees over 70, employees with childcare responsibilities and those with underlying health conditions or to anyone who is living with an individual in the extremely vulnerable category.</div></li>
+                            <li><a href="#" class="toggle">What should I do if my employee refuses to return to work?</a><div class="inner"><p>If all reasonable steps have been taken in respect of health and safety but an employee refuses to return to work, there are other options which you could consider such as encouraging taking holiday entitlement or unpaid leave.</div></li>
+                            <li><a href="#" class="toggle">What measures should I take upon return to work?</a><div class="inner"><p>Depending on your organisation, you should evaluate and decide on what activities may be continued and/or adapted, depending on specificity and available resources, and implement necessary measures for resuming and/or maintaining the activity, with the observance of relevant prevention measures, including work from home or telework.</div></li>
+                            <li><a href="#" class="toggle">What exactly do I need to tell my employees when returning to work?</a><div class="inner"><p>You should tell your employees when exactly you are planning to return to work and update them on health and safety measures that you are implementing. You should also conduct a consultation about different adjustments to work, for example new shift patterns.</div></li>
+                            <li><a href="#" class="toggle">Shall I continue employing homeworking policy after lockdown?</a><div class="inner"><p>The UK Government has provided a cogent message for the employers to continue emplying homeworking (if possible). Note, however, the employers would have to check whether their existing homeworking policy meets the new circumstances and amend it in accordance with the UK Government's guidance.</div></li>
+                            <li><a href="#" class="toggle">How can I monitor my employee's heath after return to work?</a><div class="inner"><p>You should ensure that constant communication with the doctor/medical service provider responsible for occupational medicine, in order to monitor the employees’ health. You may also initiate and conduct consultations with employees’ representative(s) holding specific health & safety responsibilities and/or members of the Health & Safety Committee at the company level.</div></li>
+                            <li><a href="#" class="toggle">What are the consequences of not ensuring safety at the workplace?</a><div class="inner"><p>	Breach of a duty to ensure safety 'so far as reasonably practical' is a criminal offence. The employer will have to pay a fine if found to breach the duty</div></li>
+                            <li><a href="#" class="toggle">What is contact tracing?</a><div class="inner"><p>	Contact tracing system is triggered when an individual who has been tested positive with Covid-19 or has any symptoms.  Individuals are then contacted and asked about who else they may have been in close contact with.</div></li>
 
-                    <li>Option 3</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Data Protection FAQ</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">How can I test my employees lawfully under data protection rules?</a><div class="inner"><p>If you want to test your employees lawfully under data protection rules, the legal basis can be legitimate interest. However, each organisation should make a separate assessment.</div></li>
+                            <li><a href="#" class="toggle">How can I ensure compliance with data protection?</a><div class="inner"><p>In order to show that you comply with data protection rules when you test your employees for symptoms of Covid-19, you can conduct a data protection impact assessment. It should set out the activity, data protection risks, necessity and proportionality of the activity, and mitigating actions that can be placed against the risks.</div></li>
+                            <li><a href="#" class="toggle">What steps should I take to ensure that I do not collect too much data when testing my employees for symptoms of Covid-19?</a><div class="inner"><p>In order to ensure that too much data is not collected when you test your employees for symptoms of Covid-19, you need to ensure that any collection is adequate, relevant and limited to what is necessary. For example, you should only collect the data about tests and not about underlying health conditions.</div></li>
+                            <li><a href="#" class="toggle">Am I allowed to keep a list of the employees who have symptoms?</a><div class="inner"><p>If you collect data about your employees' symptoms or positive results of Covid-19 tests, you can keep the list of the employees provided that it is secure and duty of confidentiality is observed</div></li>
+                            <li><a href="#" class="toggle">Can I share with other employees the information that someone has tested positive?</a><div class="inner"><p>If one of your employees has tested positive, you should inform the rest of the employees about potential risks. However, it is advised not to name the affected employees.</div></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Sick Pay FAQ</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">My employees are unwell with a diagnosed case of Covid-19. Do I have to pay them?</a><div class="inner"><p>If your employees are unwell with or have symptoms of Covid-19, they are entitled to receive usual sick leave.</div></li>
+                            <li><a href="#" class="toggle">My employees have Covid-19 symptoms but have not been diagnosed yet. Do I have to pay them?</a><div class="inner"><p>If your employees are unwell with or have symptoms of Covid-19, they are entitled to receive usual sick leave.</div></li>
+                            <li><a href="#" class="toggle">Can I stop Statutory Sick Pay (SSP) for my employees?</a><div class="inner"><p>For Statutory Sick Pay (SSP) purposes, employers and employees can agree to end a period of incapacity for work in order to stop SSP and commence furlough leave instead.</div></li>
+                            <li><a href="#" class="toggle">Can the period of incapacity for SSP purposes be ended if furlough is commenced?</a><div class="inner"><p>If your employees are unwell with or have symptoms of Covid-19, they are entitled to receive usual sick leave.</div></li>
+                            <li><a href="#" class="toggle">Can an employee claim SSP if they have been asked to self-isolate?</a><div class="inner"><p>	Those employees who meet the earnings criteria will be eligible for Statutory Sick Pay (SSP) of £95.85 (£94.25 before 6 April 2020) from the first day of the period in which they are required to self-isolate.</div></li>
+                            <li><a href="#" class="toggle">What if my employee has contractual sick pay benefits?</a><div class="inner"><p>Employers that offer more generous contractual sick pay benefits, however, should consider whether they will provide sick pay at the usual contractual rate to those self-isolating.</div></li>
+                            <li><a href="#" class="toggle">What is Coronavirus Statutory Sick Pay Rebate Scheme?</a><div class="inner"><p>The scheme enables employers that were registered for Pay As You Earn (PAYE) on or before 28 February 2020, and who had fewer than 250 PAYE employees at that date, to reclaim up to two weeks SSP provided to employees.</div></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Terms of Employment FAQ</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">Can employees take me to Court if I make them redundant during Covid-19 ourbreak?</a><div class="inner"><p>Only employees with two years' continious service are protected from unfair dismissal. A dismissal is unfair unless a) it was for a potentially fair reason listed in the legislation; and b) it was fair in the circumstances. Redundancy is potentially fair reason for dismissal. Redundancy occurs if there is closure of the business, for example. However, it is still unclear whether it will be considered fair when Coronavirus Job Retention Scheme is in place</div></li>
+                            <li><a href="#" class="toggle">What are the alternative options to redundancy?</a><div class="inner"><p>Changing terms and conditions, changing pension scheme, lay-off and short time working, reducing use of contract workers, discreitonary benefits, re-deployment, secondment, freezing recruitment or flexible working.</div></li>
+                            <li><a href="#" class="toggle">What are the main options for changing terms and conditions?</a><div class="inner"><p>Making changes which are allowed under the contract, varation by mutual agreement, unilateral imposition of new terms or terminating employees' contracts and re-engaging them on new terms.</div></li>
+                            <li><a href="#" class="toggle">How can I vary the contractual terms and conditions?</a><div class="inner"><p>If the contract includes a 'flexibility clause', this would provide an expressed right to implement any changes. Depending on the clause, it may be a specific clause which covers the proposed change or it may give general power to vary the contract. However, flexibility clause may be restricted due to being ambiguous.</div></li>
+                            <li><a href="#" class="toggle">How can I vary terms and conditions if there are no rights to impose unilateral changes?</a><div class="inner"><p>The best route is to obtain employees’ consent. Faced with the option of agreeing detrimental changes or potentially being made redundant, many employees are likely to be amenable albeit reluctantly.</div></li>
+                            <li><a href="#" class="toggle">What should I do if my employee refuses to agree to the required change of terms and conditions?</a><div class="inner"><p>You may announce that the change will be implemented from a set date. Although this may be a risky strategy as the employees may continue to work but under protest and reserve the right to sue for breach of contract, or resign and claim constructive dismissal.</div></li>
+                            <li><a href="#" class="toggle">Is there a legal duty for collective consultation purposes?</a><div class="inner"><p>Yes, if 20 or more employees will be dismissed within a 90-day period, you must consult with the recognised trade union if there is one, or elected employee representatives otherwise.</div></li>
+                            <li><a href="#" class="toggle">How long shoud consultation period last?</a><div class="inner"><p>	The consultation period must last at least 60 days to allow consulting with employee representatives.</div></li>
+                            <li><a href="#" class="toggle">Is there any statutory protection of lay-off or short-time working available to my employee?</a><div class="inner"><p>Yes, but it is complex and little-used in practice. It provides a right for employees who have been laid off or kept on short time for four or more consecutive weeks or six weeks in any 13-week period to claim a redundancy payment in certain circumstances. The scheme only applies where the contract of employment allows for lay-off/short-time working without pay.</div></li>
+                            <li><a href="#" class="toggle">Can my employee claim any compensation if they are laid-off without pay?</a><div class="inner"><p>There is a statutory wage protection scheme, where the employee can claim guarantee payment for the days which they would normally be required to work. However, there is a cap of £29.00 per day and entitlement is limited only to five days in any three month period.</div></li>
+                            <li><a href="#" class="toggle">What should I do if my employee does not consent to flexible working?</a><div class="inner"><p>	You can seek to rely on any flexibility clauses in the contract or consider terminating and re-engaging on new terms as a final resort.</div></li>
+                            <li><a href="#" class="toggle">What if my employee holds Tier 2 or Tier 5 Visa?</a><div class="inner"><p>Any of the employees who hold a Tier 2 or 5 visa will have reporting requirements that are likely to be triggered in case of redundancy or decising to lay-off, which may then have knock-on implications for whether they can keep their visa or not.</div></li>
+                            <li><a href="#" class="toggle">Can employers require employees to take or not to take holiday?</a><div class="inner"><p>	It will depend on whether the holiday is statutory or contractual. Statutory holiday is covered by the Working Time Regulations 1998 and allows the employer to request its employees to take holiday during a specific period as long as employer gives twice as much advance notice as the amount of holiday. Conditions of contractual holiday will depend on the terms of the contract or internal holiday policy.</div></li>
+                            <li><a href="#" class="toggle">Can employees carry-over their unused leave?</a><div class="inner"><p>Yes, the employees are allowed to carry forward the four weeks of leave guaranteed under the European Working Time Directive, where it was not reasonably practicable to take holiday in the current leave year, such as a result of the effect of the coronavirus. The unused leave must be taken within the next two leave years.</div></li>
+                            <li><a href="#" class="toggle">Can employers delay the employee’s start date or withdraw a job offer?</a><div class="inner"><p>Employers are committed to the employment terms once a job offer was accepted by the employee. However, the employer can negotiate a new start date with its employee. If the individual is no longer required, the employer can dismiss the employee with less than two years’ service provided the dismissal is not in connection with discrimination or whistleblowing.</div></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Rights to Work FAQ</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">Is it possible to carry out legal right to works checks remotely?</a><div class="inner"><p>Where prospective employees will be working from home, it is now possible to conduct legal right to works checks online via the Home Office’s Employer Checking Service for certain nationals. In addition, the documents checks should also be carried out via live videoconferencing app.</div></li>
+
+                        </ul>
+                    </li>
+
                 </ul>
-            </li>*@
+
+            </li>
+
+            <!-- Accountancy -->
+
+            <li>
+                <a class="toggle">Tax and Accounting FAQ</a>
+                <ul class="inner">
+                    <li>
+                        <a href="#" class="toggle">Business rates holiday for retail, hospitality and leisure businesses</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">what is a business rates holiday for retail, hospitality and leisure businesses?</a><div class="inner"><p>Businesses in the retail, hospitality and leisure sectors in England will not have to pay business rates for the 2020 to 2021 tax year.</div></li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    Am I eligible for the business rates holiday for retail, hospitality and leisure businesses?
+                                </a><div class="inner">
+                                    <p>
+                                        You’re eligible if your property is a:
+                                        <ol>
+                                            <li>shop</li>
+                                            <li>restaurant, café, bar or pub</li>
+                                            <li>cinema or live music venue</li>
+                                            <li>assembly or leisure property - for example, a sports club, a gym or a spa</li>
+                                            <li>hospitality property - for example, a hotel, a guest house or self-catering accommodation</li>
+                                        </ol>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    How do I apply for the business rates holiday for retail, hospitality and leisure businesses?
+                                </a><div class="inner">
+                                    <p>
+                                        <ol>
+                                            <li>You do not need to take any action. Your local council will apply the discount automatically.</li>
+                                            <li>You can estimate the business rate relief using the business rates calculator https://www.gov.uk/calculate-your-business-rates.</li>
+                                            <li>Contact your local council if you’re not getting a relief you think you’re entitled to. https://www.gov.uk/contact-your-local-council-about-business-rates
+                                        </ol>
+                                </div>
+                            </li>
+                            <li><a href="#" class="toggle">When do I apply for the business rates holiday for retail, hospitality and leisure businesses?</a><div class="inner"><p>The relief will apply to your business rates bills for the 2020 to 2021 tax year. Your local council may have to reissue your bill, but will do this as soon as possible.</div></li>
+                            <li><a href="#" class="toggle">When was the business rates holiday for retail, hospitality and leisure businesses launched?</a><div class="inner"><p>	Published 18 March 2020	</div></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Business rates holiday for nurseries</a>
+                        <ul class="inner">
+                            <li>
+                                <a href="#" class="toggle">
+                                    Am I eligible for the business rates holiday for nurseries?
+                                </a><div class="inner">
+                                    <p>
+                                        You’re eligible if your business:
+                                        <ol>
+                                            <li>Is on Ofsted’s Early Years Register</li>
+                                            <li>Provides care and education for children up to 5 years old (early years foundation stage)</li>
+                                            <li>Local authority-run nurseries are not eligible.</li>
+                                        </ol>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    How do I apply for the business rates holiday for nurseries?
+                                </a><div class="inner">
+                                    <p>
+                                        <ol>
+                                            <li>You do not need to take any action. Your local council will apply the discount automatically.</li>
+                                            <li>You can estimate the business rate relief using the business rates calculator.https://www.gov.uk/calculate-your-business-rates</li>
+                                            <li>Contact your local council if you’re not getting a relief you think you’re entitled to. https://www.gov.uk/contact-your-local-council-about-business-rates</li>
+                                        </ol>
+                                </div>
+                            </li>
+                            <li><a href="#" class="toggle">	When do I apply for the business rates holiday for nurseries?	</a><div class="inner"><p>The relief will apply to your business rates bills for the 2020 to 2021 tax year. Your local council may have to reissue your bill, but will do this as soon as possible.</div></li>
+                            <li><a href="#" class="toggle">	When was the business rates holiday for nurseries launched?	</a><div class="inner"><p>	Published 22 March 2020	</div></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">The Small Business Grant Fund (SBGF)</a>
+                        <ul class="inner">
+                            <li><a href="#" class="toggle">	What is the Small Business Grant Fund (SBGF)?	</a><div class="inner"><p>The Small Business Grant Fund (SBGF) supports small and rural businesses in England with their business costs during coronavirus. Small businesses in England which pay little or no business rates are entitled to a one-off cash grant of £10,000 from their local council.</div></li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    Am I eligible for the Small Business Grant Fund (SBGF)?
+                                </a><div class="inner">
+                                    <p>You’re eligible if your business:</p>
 
 
+                                    <ol>
+                                        <li> Is based in England </li>
+                                        <li> Occupies property </li>
+                                        <li> Was eligible for small business rate relief (including tapered relief) or rural rate relief on 11 March 2020 </li>
+                                        <li> Changes made to a business’s rateable value or rating assessment after 11 March 2020 will not affect eligibility.</li>
+                                    </ol>
+                                    <p>Properties excluded from the fund You cannot get funding for:</p>
+                                    <ol>
+                                        <li> properties occupied for personal uses, such as private stables, beach huts and moorings </li>
+                                        <li> car parks and parking spaces </li>
+                                        <li> If you use more than one property </li>
+                                        <li> Eligible businesses can get one grant per property. </li>
+                                        <li> You cannot claim both the small business grant and the retail, hospitality and leisure grant on the same property.</li>
+                                        <li> If you already get state aid </li>
+                                        <li> The small business grant counts towards the total de minimis state aid you’re allowed to get over a 3 year period. </li>
+                                        <li> Your local council will ask you to complete a de minimis declaration confirming that you will not exceed the de minimis state aid threshold of €200,000. </li>
+                                        <li>  If you exceed the de minimis threshold you may still be eligible for funding under the COVID-19 Temporary Framework. </li>
+                                        <li> Your local council will ask you to complete a declaration confirming that: </li>
+                                        <li> you will not exceed the state aid temporary framework threshold of €800,000 </li>
+                                        <li>  you were not an ‘undertaking in difficulty’ on 31 December 2019 </li>
+                                    </ol>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    How do I apply for the Small Business Grant Fund (SBGF)?
+                                </a><div class="inner">
+                                    <p>
+                                        You do not need to take any action. If you’re an eligible business, your local council will contact you and provide details of how to claim.
+                                        Contact your local council if you think you’re eligible for a grant but have not yet received it. https://www.gov.uk/contact-your-local-council-about-business-rates
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    When I shall expect the Small Business Grant Fund (SBGF)?
+                                </a><div class="inner">
+                                    <p>
+                                        The grant will be paid to the person registered as the ratepayer for the property as of 11 March 2020.
+                                        You do not have to pay the grant back but it will be taxable. Only businesses which make an overall profit once grant income is included will be subject to tax.
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="toggle">
+                                    When was the Small Business Grant Fund (SBGF) launched?
+                                </a><div class="inner">
+                                    <p>
+                                    <p>	Published 1 April 2020</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">The Retail, Hospitality and Leisure Grant Fund (RHLGF)</a>
+                        <ul class="inner">
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">The Discretionary Grant Fund</a>
+                        <ul class="inner">
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Bounce Back Loan Scheme</a>
+                        <ul class="inner">
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Terminations Payments</a>
+                        <ul class="inner">
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="toggle">Universal credit while coronavirus outbreak</a>
+                        <ul class="inner">
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
-    </div>
+</div>
 
 </section>
 
 @section scripts {
 
-    <link href="~/Content/ChirpyToggle.less" rel="stylesheet/less" type="text/css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+    @*<link href="~/Content/ChirpyToggle.less" rel="stylesheet/less" type="text/css" />
 
+    <script src="~/Scripts/less.min.js"></script>*@
 
     <script>
 
