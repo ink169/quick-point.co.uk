@@ -194,6 +194,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\articles\61e185ca-cdc0-48c1-957b-4d555727c283-1.jpg" />
     <Content Include="Content\images\articles\article6.PNG" />
     <Content Include="Content\images\articles\companies-house-deadlines.jpg" />
@@ -211,6 +212,7 @@
     <Content Include="Content\images\articles\pawel-czerwinski-IuQBc3aM5Sw-unsplash-700x400.jpg" />
     <Content Include="Content\images\articles\tyler-franta-iusJ25iYu1c-unsplash-700x400.jpg" />
     <Content Include="Content\images\ChirpyTag.png" />
+    <Content Include="Content\images\ChirpyTagBlue.png" />
     <Content Include="Content\images\FA_sml.png" />
     <Content Include="Content\images\heads\alexC.png" />
     <Content Include="Content\images\heads\danaC.png" />

@@ -41,7 +41,7 @@
         </linearGradient>
     </defs>
     <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Home-1" transform="translate(-141.000000, -160.000000)">
+        <g id="Home-2" transform="translate(-141.000000, -160.000000)">
             <g id="Header">
                 <g id="Logo" transform="translate(141.000000, 160.000000)">
                     <text id="Quickpoint" font-family="Poppins-SemiBold, Poppins" font-size="30" font-weight="500" fill="#FFFFFF">
@@ -50,7 +50,7 @@
                     <text id="Business-Support-Por" font-family="Poppins-Medium, Poppins" font-size="18" font-weight="400" fill="#FFFFFF">
                         <tspan x="0.007" y="194">Business Support Portal</tspan>
                     </text>
-                    <g id="Mark" transform="translate(46.000000, 0.000000)">
+                    <g id="Mark" transform="translate(106.000000, 60.500000) rotate(180.000000) translate(-106.000000, -60.500000) translate(46.000000, 0.000000)">
                         <g id="Combined-Shape" transform="translate(24.000000, 29.000000)">
                             <mask id="mask-2" fill="white">
                                 <use xlink:href="#path-1"></use>

@@ -29,13 +29,14 @@
 <main id="main">
     <!-- ======= Chat Section ======= -->
     <section class="section-chat">
-        <div class="container">
+        <div class="container" style=" width: 100%;">
             <div class="row" style="margin-bottom:3px;">
-                <div class="rounded-pill text-center" style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;">Welcome to the Quick-Point Chat Service! Please type a question to get started</div>
+                <div style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;">Welcome to the Quick-Point Chat Service! Please type a question to get started</div>
             </div>
-
+            <div class="row" style="margin-bottom:3px;">
+                <div style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 24px;">What would you like to know? </div>
+            </div>
             <div class="row">
-                @*<div id="webchat" role="main" style="width:100%; height:100%; max-height:300px;  border: 2px solid #2B598F;"></div>*@
                 <div id="webchat" role="main" style="width:100%; height:100%; max-height:300px; overflow-y:auto; border: 2px solid #2B598F;"></div>
                 <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
                 <script>
@@ -67,7 +68,7 @@
                 </script>
             </div>
             <div class="row">
-                <div style="width:100%;"><img class="float-right" src="~/Content/images/ChirpyTag.PNG" /></div>
+                <div style="width:100%;"><img class="float-right" src="~/Content/images/ChirpyTagBlue.PNG" /></div>
             </div>
         </div>
     </section>
