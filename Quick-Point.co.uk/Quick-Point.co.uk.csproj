@@ -216,11 +216,13 @@
     <Content Include="Content\images\FA_sml.png" />
     <Content Include="Content\images\heads\alexC.png" />
     <Content Include="Content\images\heads\danaC.png" />
+    <Content Include="Content\images\heads\edwardM.png" />
     <Content Include="Content\images\heads\innaC.png" />
     <Content Include="Content\images\heads\kuldeepC.png" />
     <Content Include="Content\images\heads\lizC.png" />
     <Content Include="Content\images\heads\LudaC.png" />
     <Content Include="Content\images\heads\michaelC.png" />
+    <Content Include="Content\images\heads\MichaelI.PNG" />
     <Content Include="Content\images\heads\nadiya2C.png" />
     <Content Include="Content\images\heads\navdeepC.png" />
     <Content Include="Content\images\heads\nC.png" />
