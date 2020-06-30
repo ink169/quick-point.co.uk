@@ -13,7 +13,7 @@
                             <img src="~/assets/images/Logo.svg" alt="" class="hero-section-img" />
                         </a>
                     </div>
-                    <div class="col-lg-7 text-center text-lg-left" style="padding-top: 1rem;">
+                    <div class="col-lg-7 text-center text-lg-left" style="padding-top: 2rem;">
                         <h2 data-aos="fade-right">CoronaVirus Business Support Portal</h2>
                         <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
                             Quick, simple, free advice with no hidden fees or waiting for appointments, aimed to help Small and Medium-sized Businesses in any sector, specialisation or stage. We provide support and guidance for core business areas such as finance, legal, accounting, tax and HR.
@@ -29,18 +29,19 @@
 <main id="main">
     <!-- ======= Chat Section ======= -->
     <section class="section-chat">
-        <div class="container" style=" width: 100%;">
-            <div class="row" style="margin-bottom:3px;">
-                <div style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 18px;">Welcome to the Quick-Point Chat Service! Please type a question to get started</div>
+        <div class="container" style="width: 100%; background-color:#294B86; border-radius: 10px;">            
+            <div class="row" style="width: 100%; margin-bottom:3px; padding-top:15px">
+                <div class="text-center" style="width: 100%; height:26px; font-size: 18px; color:#fff;">Welcome to the Quick-Point Chat Service! Please type a question to get started</div>
             </div>
-            <div class="row" style="margin-bottom:3px;">
-                <div style="width: 100%; height:26px; color: #2B588F; background-color: #F5F5F5; font-size: 24px;">What would you like to know? </div>
+            <div class="row" style="width: 100%; margin-bottom:15px;">
+                <div class="text-center" style="width: 100%; height:26px; font-size: 24px; color:#fff;">What would you like to know? </div>
             </div>
             <div class="row">
-                <div id="webchat" role="main" style="width:100%; height:100%; max-height:300px; overflow-y:auto; border: 2px solid #2B598F;"></div>
+                @*<div id="webchat" role="main" style="width:90%; height:100%; max-height:300px; overflow-y:auto; border: 2px solid #2B598F;"></div>*@
+                <div id="webchat" role="main" style="margin-left:50px; width:90%;  max-height:300px; overflow-y:auto;"></div>
+
                 <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
                 <script>
-
 
                     const styleOptions = {
                         rootwidth: 'Auto',
@@ -68,14 +69,14 @@
                 </script>
             </div>
             <div class="row">
-                <div style="width:100%;"><img class="float-right" src="~/Content/images/ChirpyTagBlue.PNG" /></div>
+                <div style="width:90%;"><img class="float-right" src="~/Content/images/ChirpyTagBlue.PNG" /></div>
             </div>
         </div>
     </section>
 
     <!-- ======= Live Chat Section ======= -->
     <!-- Start of  Zendesk Widget script -->
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=07a6407a-f361-483a-b81b-13b60d3efdaf"></script>
+    @*<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=07a6407a-f361-483a-b81b-13b60d3efdaf"></script>*@
 
     <!-- ======= Links Section ======= -->
     <section class="section-links">
