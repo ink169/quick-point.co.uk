@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Mail;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -94,9 +96,42 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
-        public ActionResult FFA()
+        public ActionResult Contact(System.Web.Mvc.FormCollection form)
         {
-            return View();
+
+            try
+            {
+
+                //var fileName = Path.GetFileName(file.FileName);
+                var username = (form["name"].ToString());
+                var email = (form["email"].ToString());
+                var message = (form["message"].ToString());
+                var dt = DateTime.Now.ToString();
+
+
+                var mailMessage = new MailMessage();
+                mailMessage.From = new
+                   MailAddress("freddie.kemp@cybercom.media");
+                mailMessage.To.Add(new
+                   MailAddress("sales@sterling-beanland.co.uk"));
+                mailMessage.Subject = username;
+                mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
+                mailMessage.IsBodyHtml = false;
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "169ajx*!.L");
+                client.Port = 587;
+                client.Host = "smtp.office365.com";
+                client.EnableSsl = true;
+                client.Send(mailMessage);
+                ViewBag.Message = "Email sent";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "Email not sent";
+                return View();
+            }
+
         }       
 
         
@@ -203,12 +238,7 @@ namespace Quick_Point.co.uk.Controllers
             public string fileName { get; set; }
 
         }
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
         public ActionResult About()
         {
             ViewBag.Message = "Meet the team";
