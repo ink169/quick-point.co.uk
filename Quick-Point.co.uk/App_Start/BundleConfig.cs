@@ -30,6 +30,7 @@ namespace Quick_Point.co.uk
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.min.css",
+                      "~/assets/vendor/icofont/icofont.min.css",
                         "~/Content/toastr.css",
 					  //"~/assets/vendor/aos/aos.css",
 					  //"~/owl.carousel/assets/owl.carousel.min.css",

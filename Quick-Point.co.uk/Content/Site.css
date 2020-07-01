@@ -445,7 +445,7 @@ section {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  padding: 0 20px 20px 20px;
+  padding: 0 5px 20px 5px;
   height: calc(100vh - 52px);
   padding-bottom: 150px;
 }
@@ -512,14 +512,18 @@ section {
 }
 
 .site-mobile-menu .site-nav-wrap > li > a {
-  padding-left: 20px;
+  padding-left: 8px;
   font-size: 20px;
 }
 
+.site-mobile-menu .site-nav-wrap > li > a > .hero-section-img {
+  max-width: 267px;
+}
+
 .site-mobile-menu .site-nav-wrap > li > ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .site-mobile-menu .site-nav-wrap > li > ul > li {
@@ -783,6 +787,32 @@ section {
     .feature-1 {
         min-height: 142px;
     }
+}
+
+/*--------------------------------------------------------------
+# Chat Section
+--------------------------------------------------------------*/
+
+.chat-container {
+    padding: 10px 50px;
+    background-color: #294B86;
+    border-radius: 10px;
+    color: #fff
+}
+
+@media screen and (max-width: 768px) {
+    .chat-container {
+        padding: 10px 20px;
+    }
+}
+
+.chat-container .row {
+    margin-bottom: 10px;
+}
+
+.webchat {
+    max-height: 300px;
+    overflow-y: auto;
 }
 /*--------------------------------------------------------------
 
