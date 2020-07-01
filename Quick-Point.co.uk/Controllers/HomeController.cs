@@ -147,7 +147,7 @@ namespace Quick_Point.co.uk.Controllers
         }
 
         [HttpPost]
-        public ActionResult FFA(HttpPostedFileBase file, System.Web.Mvc.FormCollection form)
+        public ActionResult FFA(HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, System.Web.Mvc.FormCollection form)
         {
 
 
