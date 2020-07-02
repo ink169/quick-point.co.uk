@@ -62,7 +62,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress("freddie.kemp@cybercom.media");
                 mailMessage.To.Add(new
-                   MailAddress("FreddieK_02@hotmail.co.uk"));
+                   MailAddress("andrew.ingpen@gmail.com"));
                 mailMessage.Subject = username;
                 mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt +"\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
                    + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" + 
@@ -190,7 +190,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress("freddie.kemp@cybercom.media");
                 mailMessage.To.Add(new
-                   MailAddress("freddie.kemp@cybercom.media"));
+                   MailAddress("andrew.ingpen@gmail.com"));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
