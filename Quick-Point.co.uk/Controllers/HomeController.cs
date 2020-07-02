@@ -16,14 +16,70 @@ using Quick_Point.co.uk.ViewModels;
 using Quick_Point.co.uk.Helpers;
 using System.Reflection;
 using Microsoft.SharePoint.ApplicationPages.Calendar.Exchange;
+using System.Web.Configuration;
 
 namespace Quick_Point.co.uk.Controllers
 {    
     public class HomeController : Controller
-    {
+    { 
         public ActionResult FF()
         {
+         
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult FF(System.Web.Mvc.FormCollection form1, FFAC model)
+        {
+
+            try
+            {
+
+                var username = (form1["name"].ToString());
+                var email = (form1["email"].ToString());
+                var phone = (form1["phone"].ToString());
+                var staffno = (form1["staffno"].ToString());
+                var turnover = (form1["turnover"].ToString());
+                var selected = model.Business;
+
+                //var bookkeeping = model.Bookkeeping;
+
+
+                var mailMessage = new MailMessage();
+                mailMessage.From = new
+                   MailAddress("freddie.kemp@cybercom.media");
+                mailMessage.To.Add(new
+                   MailAddress("FreddieK_02@hotmail.co.uk"));
+                mailMessage.Subject = username;
+                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping ";
+                mailMessage.IsBodyHtml = false;
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw()));
+                client.Port = 587;
+                client.Host = "smtp.office365.com";
+                client.EnableSsl = true;
+                client.Send(mailMessage);
+                ViewBag.Message = "Email sent";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "Email not sent";
+                return View();
+            }
+  
+        }
+
+        public string pw()
+        {
+            string userName = WebConfigurationManager.AppSettings["pw"];
+            return userName;
+        }
+
+        public string email()
+        {
+            string userName = WebConfigurationManager.AppSettings["email"];
+            return userName;
         }
 
 
@@ -164,12 +220,12 @@ namespace Quick_Point.co.uk.Controllers
 
           try
            {
-                
-                    //var fileName = Path.GetFileName(file.FileName);
-                    var username = (form["name"].ToString());
-                    var email = (form["email"].ToString());
-                    var phone = (form["phone"].ToString());
-                    var business = (form["Business type"].ToString());
+
+                //var fileName = Path.GetFileName(file.FileName);
+                var username = (form["name"].ToString());
+                var email = (form["email"].ToString());
+                var phone = (form["phone"].ToString());
+                var business = (form["Business type"].ToString());
                     var turnover = (form["turnover"].ToString());
                     var staff = (form["staff"].ToString());
                     var bookkeeping = (form["Bookkeeping"]);
