@@ -3,7 +3,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<section class="hero-section" id="hero" >
+<section class="hero-section" id="hero">
     <div class="container">
         <div class="row">
             <div class="col-12 hero-text-image">
@@ -29,7 +29,7 @@
 <main id="main">
     <!-- ======= Chat Section ======= -->
     <section class="section-chat">
-        <div class="container chat-container">            
+        <div class="container chat-container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center" style="font-size: 18px;">Welcome to the Quick-Point Chat Service! - Please type a question to get started</div>
@@ -47,34 +47,35 @@
                 <div class="col-lg-12">
                     <div id="webchat" class="webchat" role="main"></div>
                 </div>
-                    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-                    <script>const styleOptions = {
-                            rootwidth: 'Auto',
-                            backgroundColor: 'AliceBlue',
-                            botAvatarImage: 'https://github.com/ink169.png?size=64',
-                            bubbleBackground: 'rgba(46, 115, 187, .2)',
-                            //botAvatarInitials: 'BF',
-                            userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
-                            bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
-                            bubbleMaxWidth: 600,
-                            hideUploadButton: true,
-                            // userAvatarInitials: 'WC'
-                        };
+                <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+                <script>
+                    const styleOptions = {
+                        rootwidth: 'Auto',
+                        backgroundColor: 'AliceBlue',
+                        botAvatarImage: 'https://github.com/ink169.png?size=64',
+                        bubbleBackground: 'rgba(46, 115, 187, .2)',
+                        //botAvatarInitials: 'BF',
+                        userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
+                        bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
+                        bubbleMaxWidth: 600,
+                        hideUploadButton: true,
+                        // userAvatarInitials: 'WC'
+                    };
 
-                        window.WebChat.renderWebChat(
-                            {
-                                directLine: window.WebChat.createDirectLine({
-                                    secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI'
-                                }),
-                                styleOptions
-                            },
-                            document.getElementById('webchat')
-                        );</script>
-                </div>
-                <div class="row">
-                    <div style="width:90%;"><img class="float-right" src="~/Content/images/ChirpyTagBlue.PNG" /></div>
-                </div>
+                    window.WebChat.renderWebChat(
+                        {
+                            directLine: window.WebChat.createDirectLine({
+                                secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI'
+                            }),
+                            styleOptions
+                        },
+                        document.getElementById('webchat')
+                    );</script>
             </div>
+            <div class="row">
+                <div style="width:90%;"><img class="float-right" src="~/Content/images/ChirpyTagBlue.PNG" /></div>
+            </div>
+        </div>
     </section>
 
     <!-- ======= Live Chat Section ======= -->
@@ -152,3 +153,20 @@
         </div>
     </section>
 </main><!-- End #main -->
+
+
+
+@section scripts {
+    <link href="~/Content/purecookie.css" rel="stylesheet" />
+    <script src="~/Scripts/purecookie.js"></script>
+
+    <script type="text/javascript">
+
+        var purecookieTitle = "Quick-Point Terms of Use"; // Title
+        var purecookieDesc = "By using this ChatBot and associacted services, you agree to our Terms of Use and Privacy Policy."; // Description
+        var purecookieLink = '<a href="@Model.BaseUrl/Home/Terms" target="_blank">Terms of Use</a>'; // Cookiepolicy link
+        var privacyLink = '<a href="@Model.BaseUrl/Home/Privacy" target="_blank">Privacy Policy</a>'; // Cookiepolicy link
+        var purecookieButton = "I Agree"; // Button text
+
+    </script>
+}

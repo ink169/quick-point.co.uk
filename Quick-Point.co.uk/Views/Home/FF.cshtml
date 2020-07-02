@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "FFA";
+}
+
+    <section class="hero-section" id="hero">       
+        <div class="container">
+            <div class="row">
+                <div class="col-12 hero-text-image">
+                    <div class="row">
+                        <div class="col-lg-5 iphone-wrap">
+                            <a href="/Home/Index">
+                                <img src="~/assets/images/Logo.svg" alt="" class="hero-section-img" />
+                            </a>
+                        </div>
+                        <div class="col-lg-7 text-center text-lg-left" style="padding-top: 2rem;">
+                            <h2 data-aos="fade-right">Recieve Free Financial Analysis</h2>
+                            <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
+                                You can request a free financial analysis here.. we will get back to you and schedule a call or appointment.
+                            </p>
+                            @*<p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="https://sterling-law.co.uk/" class="btn btn-outline-white">Learn more &raquo;</a></p>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+<main id="main">
+    <!-- ======= Describe Section ======= -->
+    <section class="section section-describe">
+        <div class="container">
+            <div class="row justify-content-center text-left mb-5">
+                <div class="col-md-6" data-aos="fade-up" style="color:black;" >
+
+                    <h2>Upload financial status files</h2>
+                    @using (Html.BeginForm("FFA", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                <div>
+                    Name:<br />
+                    <input type="text" name="name" />
+                    <br />
+                    <br />
+                    Email: <br />
+                    <input type="email" name="email" />
+                    <br />
+                    <br />
+                    Phone: <br />
+                    <input type="number" name="phone" />
+                    <br />
+                    <br />
+                    Are you a: <br />
+                    <select name="Business type">
+                        <option value="Sole Trader">Sole Trader</option>
+                        <option value="LTD">LTD</option>
+                    </select>
+                    <br />
+                    <br />
+                    Estimation of yearly turnover: <br />
+                    <input type="text" name="turnover" />
+                    <br />
+                    <br />
+                    Do you have staff members?
+                    <select name="staff">
+                        <option value="0t5">0-5</option>
+                        <option value="6t10">6-10</option>
+                        <option value="11t15">11-15</option>
+                        <option value="15+">15+</option>
+                    </select>
+                    <br />
+                    <br />
+                    Do you require the following services (please check all applicable):
+                    <ul>
+                        <li><input type="checkbox" name="Bookkeeping"> Bookkeeping</li>
+                        <li><input type="checkbox" name="Payroll"> Payroll</li>
+                        <li><input type="checkbox" name="Companieshousereturns"> Companies House Returns</li>
+                        <li><input type="checkbox" name="Self-Assessment"> Self Assessment</li>
+                        <li><input type="checkbox" name="VAT"> VAT Returns</li>
+                        <li><input type="checkbox" name="AccountsManagement"> Accounts Management</li>
+                        <li><input type="checkbox" name="BusinessConsultations"> Business Consultation</li>
+                        <li><input type="checkbox" name="TaxationAdvice">Taxation Advice</li>
+                    </ul>
+                    <br />
+                    <br />
+                    Financial Status Document: <br />
+                    <input type="file" name="file" />
+                    <br />
+                    <br />
+                    <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc" /><h6 style="font-weight:700; text-decoration:underline;" id="writing"> To upload, please tick to agree with our <a href="~/assets/">T&C's</a></h6>
+                    <br />
+                    <input type="submit" value="Submit" id="submit" style="display:none" />
+                    <br />
+                    <br />
+                    @ViewBag.Message
+
+
+                    <script>
+                        function myFunction() {
+                            // Get the checkbox
+                            var checkBox = document.getElementById("tAc");
+                            // Get the output text
+                            var text = document.getElementById("submit");
+
+                            var writing = document.getElementById("writing");
+
+                            // If the checkbox is checked, display the output text
+                            if (checkBox.checked == true) {
+                                text.style.display = "block";
+                                writing.style.fontWeight = "normal";
+                                writing.style.textDecoration = "none";
+                                writing.textContent = "You have agreed to our T&Cs"
+                            }
+                            else if (checkBox.checked !== true) {
+                                text.style.display = "none";
+                                writing.style.fontWeight = "bold";
+                                writing.style.textDecoration = "underline";
+                                writing.textContent = "To upload, please tick to agree with our T&C's"
+                            }
+                            else {
+                                text.style.display = "none";
+                            }
+                        }
+                    </script>
+
+                </div>
+                    }
+                    </div>
+                <div class="col-md-6">
+                    
+                    <div style="margin:10px 10px 10px 10px; border: 1px solid grey; padding: 10px 10px 10px 10px; color:black; ">
+                        Here you can get a free 15 minute consultation with experienced accountants, using documentation provided by you. All information you supply will be stored securely to comply with UK GDPR Regulations. Please see our Terms of Use and Privacy Policies for full information on this topic.
+                        <br \>
+                        <br \>
+                        Please upload your latest Profit & Loss, Balance Sheet and Cash Flow Statements if you have them. If these not are available, please upload any relevant documents that show proof of your financial status.
+                        <br \>
+                        <br \>
+                        Thank you kindly, and we will be in touch soon!
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main><!-- End #main -->

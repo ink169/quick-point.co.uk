@@ -21,7 +21,12 @@ namespace Quick_Point.co.uk.Controllers
 {    
     public class HomeController : Controller
     {
-               
+        public ActionResult FF()
+        {
+            return View();
+        }
+
+
         private string getHomeAddress()
         {
             return string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Index");
