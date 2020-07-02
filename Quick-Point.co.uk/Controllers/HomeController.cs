@@ -17,6 +17,10 @@ using Quick_Point.co.uk.Helpers;
 using System.Reflection;
 using Microsoft.SharePoint.ApplicationPages.Calendar.Exchange;
 using System.Web.Configuration;
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.Azure.Storage.Blob;
 
 namespace Quick_Point.co.uk.Controllers
 {    
@@ -29,8 +33,10 @@ namespace Quick_Point.co.uk.Controllers
         }
 
         [HttpPost]
-        public ActionResult FF(System.Web.Mvc.FormCollection form1, FFAC model)
+        public ActionResult FF(HttpPostedFileBase file, System.Web.Mvc.FormCollection form1, FFAC model)
         {
+
+            var dt = DateTime.Now.ToString();
             var username = (form1["name"].ToString());
             var email = (form1["email"].ToString());
             var phone = (form1["phone"].ToString());
@@ -45,10 +51,24 @@ namespace Quick_Point.co.uk.Controllers
             var AccountsManagement = model.AccountsManagement;
             var BusinessConsultation = model.BusinessConsultation;
             var TaxationAdvice = model.TaxationAdvice;
+            var fileName = file.FileName;
+            string path = Path.Combine(@"~/Content/Files", fileName);
+            string storageConnection = CloudConfigurationManager.GetSetting("DefaultEndpointsProtocol=https;AccountName=filestoreqp;AccountKey=e4JYnLhm25ImTdkvGyio+dgfCiRduje2FkwC+xQZy9Bk1QJJFK5k/UJXoysv3H74piw1SSlb6MJFtterYyoaPA==;EndpointSuffix=core.windows.net");
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(storageConnection);
+
 
             try
             {
+                try
+                {
+                    
 
+ 
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "File uploaded unsuccessfully, please try again" + " " + ex;
+                }
 
 
                 var mailMessage = new MailMessage();
@@ -57,9 +77,10 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.To.Add(new
                    MailAddress("FreddieK_02@hotmail.co.uk"));
                 mailMessage.Subject = username;
-                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
+                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt +"\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
                    + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" + 
                    "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice +"\n" ;
+                mailMessage.Attachments.Add(new Attachment(path));
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
                 client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
