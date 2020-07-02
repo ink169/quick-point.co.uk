@@ -1,8 +1,9 @@
 // --- Config --- //
-//var purecookieTitle = "Terms of Use."; // Title
-//var purecookieDesc = "By using this website, you automatically accept that we use cookies."; // Description
-//var purecookieLink = '<a href="cookie-policy.html" target="_blank">What for?</a>'; // Cookiepolicy link
-//var purecookieButton = "Understood"; // Button text
+var purecookieTitle = "Terms of Use"; // Title
+var purecookieDesc = "By using this website, you automatically accept that we use cookies."; // Description
+var purecookieLink = '<a href="cookie-policy.html" target="_blank">What for?</a>'; // Cookiepolicy link
+var privacyLink = '<a href="cookie-policy.html" target="_blank">What for?</a>'; // Cookiepolicy link
+var purecookieButton = "Understood"; // Button text
 // ---        --- //
 
 
@@ -70,10 +71,41 @@ function cookieConsent_OLD() {
 }
 
 function purecookieDismiss() {
-  setCookie('purecookieDismiss','1',7);
-  pureFadeOut("cookieConsentContainer");
+  // setCookie('purecookieDismiss','1',7);
+
+    startChat();
+    pureFadeOut("cookieConsentContainer");
 }
+
+
+
+function startChat() {
+        const styleOptions = {
+            rootwidth: 'Auto',
+                        backgroundColor: 'AliceBlue',
+                        botAvatarImage: 'https://github.com/ink169.png?size=64',
+                        bubbleBackground: 'rgba(46, 115, 187, .2)',
+                        //botAvatarInitials: 'BF',
+                        userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
+                        bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
+                        bubbleMaxWidth: 600,
+                        hideUploadButton: true,
+                        // userAvatarInitials: 'WC'
+                    };
+
+                    window.WebChat.renderWebChat(
+                        {
+            directLine: window.WebChat.createDirectLine({
+            secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI'
+                            }),
+                            styleOptions
+                        },
+                        document.getElementById('webchat')
+            );
+   }
+
+
 
 window.onload = function () {
     cookieConsent();
-};
+}; 
