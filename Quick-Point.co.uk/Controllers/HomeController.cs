@@ -190,12 +190,12 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress("freddie.kemp@cybercom.media");
                 mailMessage.To.Add(new
-                   MailAddress("sales@sterling-beanland.co.uk"));
+                   MailAddress("freddie.kemp@cybercom.media"));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "169ajx*!.L");
+                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
                 client.Port = 587;
                 client.Host = "smtp.office365.com";
                 client.EnableSsl = true;
