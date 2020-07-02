@@ -31,18 +31,24 @@ namespace Quick_Point.co.uk.Controllers
         [HttpPost]
         public ActionResult FF(System.Web.Mvc.FormCollection form1, FFAC model)
         {
+            var username = (form1["name"].ToString());
+            var email = (form1["email"].ToString());
+            var phone = (form1["phone"].ToString());
+            var staffno = (form1["staffno"].ToString());
+            var turnover = (form1["turnover"].ToString());
+            var selected = model.Business;
+            var bookkeeping = model.Bookkeeping;
+            var payroll = model.Payroll;
+            var CompaniesHouseReturns = model.CompaniesHouseReturns;
+            var SelfAssessment = model.SelfAssessment;
+            var VATReturns = model.VATReturns;
+            var AccountsManagement = model.AccountsManagement;
+            var BusinessConsultation = model.BusinessConsultation;
+            var TaxationAdvice = model.TaxationAdvice;
 
             try
             {
 
-                var username = (form1["name"].ToString());
-                var email = (form1["email"].ToString());
-                var phone = (form1["phone"].ToString());
-                var staffno = (form1["staffno"].ToString());
-                var turnover = (form1["turnover"].ToString());
-                var selected = model.Business;
-
-                //var bookkeeping = model.Bookkeeping;
 
 
                 var mailMessage = new MailMessage();
@@ -51,10 +57,12 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.To.Add(new
                    MailAddress("FreddieK_02@hotmail.co.uk"));
                 mailMessage.Subject = username;
-                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping ";
+                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
+                   + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" + 
+                   "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice +"\n" ;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw()));
+                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
                 client.Port = 587;
                 client.Host = "smtp.office365.com";
                 client.EnableSsl = true;
@@ -62,9 +70,9 @@ namespace Quick_Point.co.uk.Controllers
                 ViewBag.Message = "Email sent";
                 return View();
             }
-            catch
+            catch(Exception ex)
             {
-                ViewBag.Message = "Email not sent";
+                ViewBag.Message = "Email not sent" + "\n" + ex;
                 return View();
             }
   
@@ -136,12 +144,11 @@ namespace Quick_Point.co.uk.Controllers
         public ActionResult Index()
         {
 
-            var baseAddress = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
 
             return View(new Resource() { BaseUrl = baseAddress });
 
         }
-
 
         public ActionResult Test()
         {
