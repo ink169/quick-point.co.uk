@@ -80,11 +80,12 @@ namespace Quick_Point.co.uk.Controllers
         public ActionResult Index()
         {
 
-            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
+            var baseAddress = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
 
             return View(new Resource() { BaseUrl = baseAddress });
 
         }
+
 
         public ActionResult Test()
         {
