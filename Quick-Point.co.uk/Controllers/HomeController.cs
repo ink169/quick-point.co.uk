@@ -51,39 +51,44 @@ namespace Quick_Point.co.uk.Controllers
             var AccountsManagement = model.AccountsManagement;
             var BusinessConsultation = model.BusinessConsultation;
             var TaxationAdvice = model.TaxationAdvice;
-          
 
             try
             {
-               
+
+                using (MemoryStream ms = new MemoryStream())
+                using (StreamWriter writer = new StreamWriter(ms))
+                using (var client = new SmtpClient("smtp.office365.com", 587))
+                using (var message = new MailMessage("freddie.kemp@cybercom.media", "andrew.ingpen@gmail.com"))
+                {
+                    writer.Write("Hello its my sample file");
+                    writer.Flush();
+                    ms.Position = 0;
+
+                    System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Text.Plain);
+                    Attachment attachment = new Attachment(ms, ct);
+                    message.Subject = username;
+                    message.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
+                   + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" +
+                   "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice + "\n";
 
 
-                var mailMessage = new MailMessage();
-                mailMessage.From = new
-                   MailAddress("freddie.kemp@cybercom.media");
-                mailMessage.To.Add(new
-                   MailAddress("andrew.ingpen@gmail.com"));
-                mailMessage.Subject = username;
-                mailMessage.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt +"\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
-                   + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" + 
-                   "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice +"\n" ;
+                    message.Attachments.Add(attachment);
 
-                mailMessage.IsBodyHtml = false;
-                SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
-                client.Port = 587;
-                client.Host = "smtp.office365.com";
-                client.EnableSsl = true;
-                client.Send(mailMessage);
+                    message.IsBodyHtml = false;
+
+                    client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
+
+                    client.EnableSsl = true;
+                    client.Send(message);
+                }
                 ViewBag.Message = "Email sent";
                 return View();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Message = "Email not sent" + "\n" + ex;
                 return View();
             }
-  
         }
 
         public string pw()
