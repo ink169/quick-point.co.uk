@@ -58,7 +58,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (MemoryStream ms = new MemoryStream())
                 using (StreamWriter writer = new StreamWriter(ms))
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage("freddie.kemp@cybercom.media", "andrew.ingpen@gmail.com"))
+                using (var message = new MailMessage("freddie.kemp@cybercom.media", "freddie.kemp@cybercom.media"))
                 {
                     writer.Write("Hello its my sample file");
                     writer.Flush();
