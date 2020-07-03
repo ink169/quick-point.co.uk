@@ -1,10 +1,23 @@
 ﻿using System;
+using System.Web.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Quick_Point.co.uk.Helpers
 {
+    public static class Utils
+    {
+        public static String GetConfigSetting(String setting)
+        {
+               return WebConfigurationManager.AppSettings[setting] ?? null;
+        }
+    }
+
+
+
+
+
     public static class ArticleHelpers
     {
         private static Dictionary<string, string> _articleDictionary;
