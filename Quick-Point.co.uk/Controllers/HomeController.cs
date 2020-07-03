@@ -69,7 +69,7 @@ namespace Quick_Point.co.uk.Controllers
                     }
 
                     System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Application.Octet);
-                    message.Subject = username;
+                    message.Subject = "New Financial Request from " + username;
                     message.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
                    + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" +
                    "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice + "\n";
@@ -187,7 +187,7 @@ namespace Quick_Point.co.uk.Controllers
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
-                mailMessage.Subject = username;
+                mailMessage.Subject = "New Contact Request from " + username; ;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
