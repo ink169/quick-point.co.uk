@@ -53,7 +53,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (Stream inputStream = file.InputStream)
                 using (MemoryStream ms = new MemoryStream())
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage(Utils.GetConfigSetting("email"), Utils.GetConfigSetting("LudaEmail")))
+                using (var message = new MailMessage(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("LudaEmail")))
                 {
                     if (file != null)
                     {
@@ -77,7 +77,8 @@ namespace Quick_Point.co.uk.Controllers
 
                     message.IsBodyHtml = false;
 
-                    client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredmail"), Utils.GetConfigSetting("fpw"));
+                    client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
+                    
                     message.CC.Add(Utils.GetConfigSetting("Fredemail"));
                     message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                     client.EnableSsl = true;
@@ -181,7 +182,7 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("Fredemail"));
+                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
@@ -221,7 +222,7 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("fredemail"));
+                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
@@ -230,7 +231,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
+                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("QuickPointemail"), Utils.GetConfigSetting("fpw"));
                 client.Port = 587;
                 client.Host = "smtp.office365.com";
                 client.EnableSsl = true;
