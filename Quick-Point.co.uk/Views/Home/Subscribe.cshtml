@@ -2,6 +2,10 @@
     ViewBag.Title = "MeetTheTeam";
 }
 
+<head>
+    @Styles.Render("~/Content/FormStyle.css")
+</head>
+
 <section class="hero-section" id="hero">
     <div class="container">
         <div class="row">
@@ -38,26 +42,32 @@
                     <h2>Subscribe to our mailing list</h2>
                     @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <div>
-                            Name:<br />
-                            <input type="text" name="name" />
-                            <br />
-                            <br />
-                            Email: <br />
-                            <input type="email" name="email" />
-                            <br />
-                            <br />
-                            <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc" /><h6 style="font-weight:700;" id="writing">To subscribe, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
-                            <br />
-                            <input type="submit" value="Sign Up" id="submit" />
+                <div>
 
-                        </div>
+                    <div class="field" tabindex="1">
+                        <label for="username">
+                            <i class="far fa-user"></i>Your Name
+                        </label>
+                        <input type="text" name="name" placeholder="e.g. Adam Smith" required />
+                    </div>
+                    <div class="field" tabindex="2">
+                        <label for="email">
+                            <i class="far fa-envelope"></i>
+                            Email:
+                        </label>
+                        <input type="email" name="email" placeholder="email@domain.com" required />
+                    </div>
+                    <input type="checkbox" name="checkbox" onclick="myFunction()" class="tcheckbox" id="tAc" style="width:15px; height:15px; margin-left:20px;" /><h6 style="font-weight:700; margin-left:15px;" id="writing">To subscribe, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
+                    <br />
+                    <input type="submit" value="Sign Up" id="submit" />
+
+                </div>
                         @ViewBag.Message
                     }
 
                 </div>
                 <div class="col-md-6">
-                    <img src="~/Content/images/subscribe.jpg" style="height:500px; width:750px;"/>
+                    <img src="~/Content/images/subscribe.jpg" style="height:500px; width:750px;" />
                 </div>
             </div>
         </div>

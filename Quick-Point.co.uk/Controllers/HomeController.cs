@@ -271,7 +271,7 @@ namespace Quick_Point.co.uk.Controllers
             }
             catch
             {
-                ViewBag.Message = "Please Sign Up";
+                ViewBag.Message = "";
                 return View();
             }
         }
