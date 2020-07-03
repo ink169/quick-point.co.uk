@@ -252,6 +252,7 @@
     <Content Include="Content\images\heads\YuriyC.png" />
     <Content Include="Content\images\icons-18-white.png" />
     <Content Include="Content\images\SL.jpg" />
+    <Content Include="Content\images\subscribe.jpg" />
     <Content Include="Content\jquery.mobile-1.3.0-rc.1.css" />
     <Content Include="Content\purecookie.css" />
     <Content Include="Content\toastr.css" />

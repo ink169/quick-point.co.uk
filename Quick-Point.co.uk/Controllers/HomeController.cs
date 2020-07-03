@@ -58,7 +58,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (MemoryStream ms = new MemoryStream())
                 using (StreamWriter writer = new StreamWriter(ms))
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage("freddie.kemp@cybercom.media", "freddie.kemp@cybercom.media"))
+                using (var message = new MailMessage(FredEmail(), FredEmail()))
                 {
                     writer.Write("Hello its my sample file");
                     writer.Flush();
@@ -76,7 +76,7 @@ namespace Quick_Point.co.uk.Controllers
 
                     message.IsBodyHtml = false;
 
-                    client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
+                    client.Credentials = new NetworkCredential(FredEmail(), pw());
 
                     client.EnableSsl = true;
                     client.Send(message);
@@ -96,8 +96,13 @@ namespace Quick_Point.co.uk.Controllers
             string userName = WebConfigurationManager.AppSettings["pw"];
             return userName;
         }
+        public string LudaEmail()
+        {
+            string ludaEmail = WebConfigurationManager.AppSettings["Ludaemail"];
+            return ludaEmail;
+        }
 
-        public string email()
+        public string FredEmail()
         {
             string userName = WebConfigurationManager.AppSettings["email"];
             return userName;
@@ -193,14 +198,14 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new
-                   MailAddress("freddie.kemp@cybercom.media");
+                   MailAddress(FredEmail());
                 mailMessage.To.Add(new
-                   MailAddress("andrew.ingpen@gmail.com"));
+                   MailAddress(FredEmail()));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
+                client.Credentials = new NetworkCredential(FredEmail(), pw());
                 client.Port = 587;
                 client.Host = "smtp.office365.com";
                 client.EnableSsl = true;
@@ -214,14 +219,46 @@ namespace Quick_Point.co.uk.Controllers
                 return View();
             }
 
-        }       
-
-        
-
-        public ActionResult Subscribe()
-        {
-            return View();
         }
+
+
+
+        public ActionResult Subscribe(System.Web.Mvc.FormCollection form)
+        {
+            try
+            {
+
+                //var fileName = Path.GetFileName(file.FileName);
+                var username = (form["name"].ToString());
+                var email = (form["email"].ToString());
+                var dt = DateTime.Now.ToString();
+
+
+                var mailMessage = new MailMessage();
+                mailMessage.From = new
+                   MailAddress(FredEmail());
+                mailMessage.To.Add(new
+                   MailAddress(LudaEmail()));
+                mailMessage.Subject = "Subscribe" + " " + email;
+                mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
+                mailMessage.IsBodyHtml = false;
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(FredEmail(), pw());
+                client.Port = 587;
+                client.Host = "smtp.office365.com";
+                client.EnableSsl = true;
+                client.Send(mailMessage);
+                ViewBag.Message = "Subscribed";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "Please Sign Up";
+                return View();
+            }
+        }
+
+
 
         public ActionResult FAQ()
         {
