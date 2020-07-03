@@ -83,7 +83,8 @@ namespace Quick_Point.co.uk.Controllers
                     message.IsBodyHtml = false;
 
                     client.Credentials = new NetworkCredential(FredEmail(), pw());
-
+                    message.CC.Add(FredEmail());
+                    message.CC.Add(AndrewEmail());
                     client.EnableSsl = true;
                     client.Send(message);
                 }
@@ -107,6 +108,12 @@ namespace Quick_Point.co.uk.Controllers
         {
             string ludaEmail = WebConfigurationManager.AppSettings["Ludaemail"];
             return ludaEmail;
+        }
+
+        public string AndrewEmail()
+        {
+            string Email = WebConfigurationManager.AppSettings["Andrewemail"];
+            return Email;
         }
 
         public string FredEmail()
@@ -208,6 +215,8 @@ namespace Quick_Point.co.uk.Controllers
                    MailAddress(FredEmail());
                 mailMessage.To.Add(new
                    MailAddress(LudaEmail()));
+                mailMessage.CC.Add(FredEmail());
+                mailMessage.CC.Add(AndrewEmail());
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
@@ -246,6 +255,8 @@ namespace Quick_Point.co.uk.Controllers
                    MailAddress(FredEmail());
                 mailMessage.To.Add(new
                    MailAddress(LudaEmail()));
+                mailMessage.CC.Add(FredEmail());
+                mailMessage.CC.Add(AndrewEmail());
                 mailMessage.Subject = "Subscribe" + " " + email;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
                 mailMessage.IsBodyHtml = false;

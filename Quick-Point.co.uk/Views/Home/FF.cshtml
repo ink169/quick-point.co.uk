@@ -34,101 +34,102 @@
 
 <main id="main">
     <!-- ======= Describe Section ======= -->
+    <div style="height:30px; width:100%;"></div>
     <section class="section section-describe">
         <div class="container">
             <div class="row justify-content-center text-left mb-5">
-                <div class="col-md-8" data-aos="fade-up" style="color:black;">
+                <div class="col-md-6" data-aos="fade-up" style="color:black;">
 
                     <h2>Upload financial status files</h2>
                     @using (Html.BeginForm("FF", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-              <div style="width:100%;">
-                    <div class="field" tabindex="1">
-                        <label for="username">
-                            <i class="far fa-user"></i>
-                            Name:<br />
-                        </label>
-                        <input type="text" name="name" placeholder="e.g. Sir Quick Point" required />
-                    </div>
-                    <div class="field" tabindex="2">
-                        <label for="email">
-                            <i class="far fa-envelope"></i>
-                            Email:<br />
-                        </label>
-                        <input type="email" name="email" placeholder="email@domain.com" required />
+                        <div style="width:100%;">
+                            <div class="field" tabindex="1">
+                                <label for="username">
+                                    <i class="far fa-user"></i>
+                                    Name:<br />
+                                </label>
+                                <input type="text" name="name" placeholder="e.g. Adam Smith" required />
+                            </div>
+                            <div class="field" tabindex="2">
+                                <label for="email">
+                                    <i class="far fa-envelope"></i>
+                                    Email:<br />
+                                </label>
+                                <input type="email" name="email" placeholder="email@domain.com" required />
 
-                    </div>
+                            </div>
 
-                    <div class="field" tabindex="3">
-                        <label for="phone">
-                            <i class="far fa-edit"></i>
-                            Phone:<br />
-                        </label>
-                        <input type="text" name="phone" placeholder="07777777777" />
+                            <div class="field" tabindex="3">
+                                <label for="phone">
+                                    <i class="far fa-edit"></i>
+                                    Phone:<br />
+                                </label>
+                                <input type="text" name="phone" placeholder="07777777777" />
 
-                    </div>
-                    <div class="field" tabindex="4">
-                        <label for="Business Type">
-                            <i class="far fa-edit"></i>
+                            </div>
+                            <div class="field" tabindex="4">
+                                <label for="Business Type">
+                                    <i class="far fa-edit"></i>
 
-                            Select Business Type: <br />
-                        </label>
+                                    Select Business Type: <br />
+                                </label>
 
-                        @using (Html.BeginForm("Home", "FF", FormMethod.Post))
-                        {
-                            @Html.DropDownListFor(m => m.Business, FFAC.GetSelectItems(), new { @class = "dropitdown" })
+                                @using (Html.BeginForm("Home", "FF", FormMethod.Post))
+                                {
+                                    @Html.DropDownListFor(m => m.Business, FFAC.GetSelectItems(), new { @class = "dropitdown" })
 
-                        }
+                                }
 
-                    </div>
+                            </div>
 
-                    <div class="field" tabindex="5">
-                        <label for="Business Type">
-                            <i class="far fa-edit"></i>
-                            Estimation of yearly turnover: <br />
-                        </label>
-                        <input type="text" name="turnover" />
-                    </div>
-                    <div class="field" tabindex="6">
-                        <label for="Business Type">
-                            <i class="far fa-edit"></i>
-                            Estimated Number of Staff: <br />
-                        </label>
-                        <input type="number" name="staffno" />
-                    </div>
+                            <div class="field" tabindex="5">
+                                <label for="Business Type">
+                                    <i class="far fa-edit"></i>
+                                    Estimation of yearly turnover: <br />
+                                </label>
+                                <input type="text" name="turnover" />
+                            </div>
+                            <div class="field" tabindex="6">
+                                <label for="Business Type">
+                                    <i class="far fa-edit"></i>
+                                    Estimated Number of Staff: <br />
+                                </label>
+                                <input type="number" name="staffno" />
+                            </div>
 
-                       <div class="field" tabindex="7">
-                            <label for="Business Type">
-                              <i class="far fa-edit"></i>
-                              Do you require the following services (please check all applicable):
-                            </label>
-                       </div>
-                       <div>
-                           @Html.CheckBoxFor(FFAC => FFAC.Bookkeeping, new { @class = "checkbox" })
-                           Bookkeeping
-                           <br />
+                            <div class="field" tabindex="7">
+                                <label for="Business Type">
+                                    <i class="far fa-edit"></i>
+                                    Do you require the following services (please check all applicable):
+                                </label>
+                            </div>
+                            <div>
+                                @Html.CheckBoxFor(FFAC => FFAC.Bookkeeping, new { @class = "checkbox" })
+                                Bookkeeping
+                                <br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.Payroll, new { @class = "checkbox" })
-                           Payroll<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.Payroll, new { @class = "checkbox" })
+                                Payroll<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.CompaniesHouseReturns, new { @class = "checkbox" })
-                           Companies House Returns<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.CompaniesHouseReturns, new { @class = "checkbox" })
+                                Companies House Returns<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.SelfAssessment, new { @class = "checkbox" })
-                           Self Assessment<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.SelfAssessment, new { @class = "checkbox" })
+                                Self Assessment<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.VATReturns, new { @class = "checkbox" })
-                           VAT Returns<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.VATReturns, new { @class = "checkbox" })
+                                VAT Returns<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.AccountsManagement, new { @class = "checkbox" })
-                           Accounts Management<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.AccountsManagement, new { @class = "checkbox" })
+                                Accounts Management<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.BusinessConsultation, new { @class = "checkbox" })
-                           Business Consultation<br />
+                                @Html.CheckBoxFor(FFAC => FFAC.BusinessConsultation, new { @class = "checkbox" })
+                                Business Consultation<br />
 
-                           @Html.CheckBoxFor(FFAC => FFAC.TaxationAdvice, new { @class = "checkbox" })
-                           Taxation Advice<br />
-                       </div>
+                                @Html.CheckBoxFor(FFAC => FFAC.TaxationAdvice, new { @class = "checkbox" })
+                                Taxation Advice<br />
+                            </div>
                             <br />
                             <br />
                             Financial Status Document: <br />
@@ -136,7 +137,8 @@
                             <br />
                             <br />
                             <input type="checkbox" name="checkbox" onclick="myFunction()" class="tcheckbox" id="tAc" style="width:15px; height:15px; margin-left:20px;" /><h6 style="font-weight:700; margin-left:15px;" id="writing">
-                  To upload, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
+                                To upload, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a>
+                            </h6>
                             <br />
                             <input type="submit" value="Submit" id="submit" style="display:none" />
                             <br />
@@ -172,13 +174,13 @@
                                 }
                             </script>
 
-                    </div>
+                        </div>
 
                     }
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
 
-                    <div style="margin:10px 10px 10px 10px;  padding: 10px 10px 10px 10px; font-size:14px; color:black; ">
+                    <h5 style="margin:10px 10px 10px 10px; color:#2B588F; padding: 10px 10px 10px 10px; " class="text-center">
                         Here you can get a free 15 minute consultation with experienced accountants, using documentation provided by you. All information you supply will be stored securely to comply with UK GDPR Regulations. Please see our Terms of Use and Privacy Policies for full information on this topic.
                         <br \>
                         <br \>
@@ -188,11 +190,12 @@
                         Thank you kindly, and we will be in touch soon!
 
 
-                    </div>
+                    </h5>
 
                 </div>
+                <div class="col-md-1">
+                </div>
             </div>
-        </div>
 
     </section>
 
