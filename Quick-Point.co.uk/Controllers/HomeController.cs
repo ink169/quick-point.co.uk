@@ -58,7 +58,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (MemoryStream ms = new MemoryStream())
                 using (StreamWriter writer = new StreamWriter(ms))
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage(FredEmail(), FredEmail()))
+                using (var message = new MailMessage(FredEmail(), LudaEmail()))
                 {
                     writer.Write("Hello its my sample file");
                     writer.Flush();
@@ -200,7 +200,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress(FredEmail());
                 mailMessage.To.Add(new
-                   MailAddress(FredEmail()));
+                   MailAddress(LudaEmail()));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
