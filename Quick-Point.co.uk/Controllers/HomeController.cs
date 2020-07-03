@@ -54,29 +54,35 @@ namespace Quick_Point.co.uk.Controllers
 
             try
             {
-
+                byte[] data;
+                using (Stream inputStream = file.InputStream)
                 using (MemoryStream ms = new MemoryStream())
-                using (StreamWriter writer = new StreamWriter(ms))
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage(FredEmail(), LudaEmail()))
+                using (var message = new MailMessage("freddie.kemp@cybercom.media", "andrew.ingpen@cybercom.media"))
                 {
-                    writer.Write("Hello its my sample file");
-                    writer.Flush();
-                    ms.Position = 0;
+                    if (file != null)
+                    {
+                        MemoryStream memoryStream = inputStream as MemoryStream;
+                        if (memoryStream == null)
+                        {
+                            memoryStream = new MemoryStream();
+                            inputStream.CopyTo(memoryStream);
+                        }
+                        data = memoryStream.ToArray();
+                        memoryStream.Position = 0;
+                        message.Attachments.Add(new Attachment(memoryStream, file.FileName, file.ContentType));
+                    }
 
-                    System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Text.Plain);
-                    Attachment attachment = new Attachment(ms, ct);
+                    System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Application.Octet);
                     message.Subject = username;
                     message.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
                    + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" +
                    "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice + "\n";
 
 
-                    message.Attachments.Add(attachment);
-
                     message.IsBodyHtml = false;
 
-                    client.Credentials = new NetworkCredential(FredEmail(), pw());
+                    client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
 
                     client.EnableSsl = true;
                     client.Send(message);
@@ -90,6 +96,7 @@ namespace Quick_Point.co.uk.Controllers
                 return View();
             }
         }
+
 
         public string pw()
         {
