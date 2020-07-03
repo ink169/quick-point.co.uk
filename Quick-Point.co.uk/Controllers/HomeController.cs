@@ -200,7 +200,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress(FredEmail());
                 mailMessage.To.Add(new
-                   MailAddress(LudaEmail()));
+                   MailAddress(FredEmail()));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
@@ -215,7 +215,7 @@ namespace Quick_Point.co.uk.Controllers
             }
             catch
             {
-                ViewBag.Message = "Email not sent";
+             
                 return View();
             }
 

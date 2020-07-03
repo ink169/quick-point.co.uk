@@ -4,6 +4,7 @@
     ViewBag.Title = "FFA";
 }
 
+
 <section class="hero-section" id="hero">
     <div class="container">
         <div class="row">
@@ -37,106 +38,106 @@
                     <h2>Upload financial status files</h2>
                     @using (Html.BeginForm("FF", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                <div>
-                    Name:<br />
-                    <input type="text" name="name" />
-                    <br />
-                    <br />
-                    Email: <br />
-                    <input type="email" name="email" />
-                    <br />
-                    <br />
-                    Phone: <br />
-                    <input type="text" name="phone" />
-                    <br />
-                    <br />
-                    Select Business Type: <br />
-                    @using (Html.BeginForm("Home", "FF", FormMethod.Post))
-                    {
-                        @Html.DropDownListFor(m => m.Business, FFAC.GetSelectItems())
+                        <div>
+                            Name:<br />
+                            <input type="text" name="name" />
+                            <br />
+                            <br />
+                            Email: <br />
+                            <input type="email" name="email" />
+                            <br />
+                            <br />
+                            Phone: <br />
+                            <input type="text" name="phone" />
+                            <br />
+                            <br />
+                            Select Business Type: <br />
+                            @using (Html.BeginForm("Home", "FF", FormMethod.Post))
+                            {
+                                @Html.DropDownListFor(m => m.Business, FFAC.GetSelectItems())
 
-                    }
-                    <br />
-                    <br />
-                    Estimation of yearly turnover: <br />
-                    <input type="text" name="turnover" />
-                    <br />
-                    <br />
-                    Estimated Number of Staff: <br />
-                    <input type="number" name="staffno" />
-                    <br />
-                    <br />
-                    Do you require the following services (please check all applicable):
-                    <br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.Bookkeeping)
-                    Bookkeeping
-                    <br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.Payroll)
-                    Payroll<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.CompaniesHouseReturns)
-                    Companies House Returns<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.SelfAssessment)
-                    Self Assessment<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.VATReturns)
-                    VAT Returns<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.AccountsManagement)
-                    Accounts Management<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.BusinessConsultation)
-                    Business Consultation<br />
-
-                    @Html.CheckBoxFor(FFAC => FFAC.TaxationAdvice)
-                    Taxation Advice<br />
-
-                    <br />
-                    <br />
-                    Financial Status Document: <br />
-                    <input type="file" name="file" />
-                    <br />
-                    <br />
-                    <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc" /><h6 style="font-weight:700;" id="writing"> To upload, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
-                    <br />
-                    <input type="submit" value="Submit" id="submit" style="display:none" />
-                    <br />
-                    <br />
-                    @ViewBag.Message
-
-
-                    <script>
-                        function myFunction() {
-                            // Get the checkbox
-                            var checkBox = document.getElementById("tAc");
-                            // Get the output text
-                            var text = document.getElementById("submit");
-
-                            var writing = document.getElementById("writing");
-
-                            // If the checkbox is checked, display the output text
-                            if (checkBox.checked == true) {
-                                text.style.display = "block";
-                                writing.style.fontWeight = "normal";
-                                writing.style.textDecoration = "none";
-                                writing.textContent = "You have agreed to our T&Cs"
                             }
-                            else if (checkBox.checked !== true) {
-                                text.style.display = "none";
-                                writing.style.fontWeight = "bold";
-                                writing.style.textDecoration = "underline";
-                                writing.textContent = "To upload, please tick to agree with our T&C's"
-                            }
-                            else {
-                                text.style.display = "none";
-                            }
-                        }
-                    </script>
+                            <br />
+                            <br />
+                            Estimation of yearly turnover: <br />
+                            <input type="text" name="turnover" />
+                            <br />
+                            <br />
+                            Estimated Number of Staff: <br />
+                            <input type="number" name="staffno" />
+                            <br />
+                            <br />
+                            Do you require the following services (please check all applicable):
+                            <br />
 
-                </div>
+                            @Html.CheckBoxFor(FFAC => FFAC.Bookkeeping)
+                            Bookkeeping
+                            <br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.Payroll)
+                            Payroll<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.CompaniesHouseReturns)
+                            Companies House Returns<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.SelfAssessment)
+                            Self Assessment<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.VATReturns)
+                            VAT Returns<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.AccountsManagement)
+                            Accounts Management<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.BusinessConsultation)
+                            Business Consultation<br />
+
+                            @Html.CheckBoxFor(FFAC => FFAC.TaxationAdvice)
+                            Taxation Advice<br />
+
+                            <br />
+                            <br />
+                            Financial Status Document: <br />
+                            <input type="file" name="file" />
+                            <br />
+                            <br />
+                            <input type="checkbox" name="checkbox" onclick="myFunction()" id="tAc" /><h6 style="font-weight:700;" id="writing"> To upload, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
+                            <br />
+                            <input type="submit" value="Submit" id="submit" style="display:none" />
+                            <br />
+                            <br />
+                            @ViewBag.Message
+
+
+                            <script>
+                                function myFunction() {
+                                    // Get the checkbox
+                                    var checkBox = document.getElementById("tAc");
+                                    // Get the output text
+                                    var text = document.getElementById("submit");
+
+                                    var writing = document.getElementById("writing");
+
+                                    // If the checkbox is checked, display the output text
+                                    if (checkBox.checked == true) {
+                                        text.style.display = "block";
+                                        writing.style.fontWeight = "normal";
+                                        writing.style.textDecoration = "none";
+                                        writing.textContent = "You have agreed to our T&Cs"
+                                    }
+                                    else if (checkBox.checked !== true) {
+                                        text.style.display = "none";
+                                        writing.style.fontWeight = "bold";
+                                        writing.style.textDecoration = "underline";
+                                        writing.textContent = "To upload, please tick to agree with our T&C's"
+                                    }
+                                    else {
+                                        text.style.display = "none";
+                                    }
+                                }
+                            </script>
+
+                        </div>
                     }
                 </div>
                 <div class="col-md-6">
