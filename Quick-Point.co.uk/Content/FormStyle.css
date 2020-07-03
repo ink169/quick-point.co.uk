@@ -5,6 +5,28 @@
 
 body {
     background: white;
+    font-family: "Roboto", sans-serif;
+}
+
+.checkbox {
+    width:15px;
+    height:15px;
+    margin-left:20px;
+}
+
+.tccheckbox {
+    width: 15px;
+    height: 15px;
+
+}
+
+.dropitdown {
+    background: rgba(44, 103, 152, 0.1);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 8px 6px -6px #555;
+    height:40px;
+    width:280px;
 }
 
 .formcontainer {
@@ -18,7 +40,7 @@ body {
 }
 
 form {
-    width: 400px;
+    width: 100%;
     display: flex;
     flex-flow: column wrap;
     align-items: center;

@@ -58,7 +58,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (Stream inputStream = file.InputStream)
                 using (MemoryStream ms = new MemoryStream())
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage("freddie.kemp@cybercom.media", "andrew.ingpen@cybercom.media"))
+                using (var message = new MailMessage(FredEmail(), LudaEmail()))
                 {
                     if (file != null)
                     {
@@ -82,7 +82,7 @@ namespace Quick_Point.co.uk.Controllers
 
                     message.IsBodyHtml = false;
 
-                    client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", pw());
+                    client.Credentials = new NetworkCredential(FredEmail(), pw());
 
                     client.EnableSsl = true;
                     client.Send(message);
@@ -207,7 +207,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress(FredEmail());
                 mailMessage.To.Add(new
-                   MailAddress(FredEmail()));
+                   MailAddress(LudaEmail()));
                 mailMessage.Subject = username;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
