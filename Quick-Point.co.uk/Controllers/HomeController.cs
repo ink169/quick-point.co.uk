@@ -53,7 +53,7 @@ namespace Quick_Point.co.uk.Controllers
                 using (Stream inputStream = file.InputStream)
                 using (MemoryStream ms = new MemoryStream())
                 using (var client = new SmtpClient("smtp.office365.com", 587))
-                using (var message = new MailMessage(Utils.GetConfigSetting("email"), Utils.GetConfigSetting("LudaEmail")))
+                using (var message = new MailMessage(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("LudaEmail")))
                 {
                     if (file != null)
                     {
@@ -69,7 +69,7 @@ namespace Quick_Point.co.uk.Controllers
                     }
 
                     System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Application.Octet);
-                    message.Subject = username;
+                    message.Subject = "New Financial Request from " + username;
                     message.Body = "Name:" + "\n" + username + "\n" + "\n" + "Time" + "\n" + dt + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Phone:" + "\n" + phone + "\n" + "\n" + "Business Type:" + "\n" + "\n" + selected + "\n" + "\n" + "Turnover:" + "\n" + "\n" + turnover + "\n" + "\n" + "Number of Staff:" + "\n" + staffno + "\n" + "\n" + "Required Services:" + "\n" + "\n" + "Bookkeeping: " + bookkeeping
                    + "\n" + "Payroll: " + payroll + "\n" + "Companies House Returns: " + CompaniesHouseReturns + "\n" + "Self Assessment: " + SelfAssessment + "\n" +
                    "VAT Returns: " + VATReturns + "\n" + "Accounts Management: " + AccountsManagement + "\n" + "Business Consultation: " + BusinessConsultation + "\n" + "Taxation Advice: " + TaxationAdvice + "\n";
@@ -77,7 +77,8 @@ namespace Quick_Point.co.uk.Controllers
 
                     message.IsBodyHtml = false;
 
-                    client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredmail"), Utils.GetConfigSetting("fpw"));
+                    client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
+                    
                     message.CC.Add(Utils.GetConfigSetting("Fredemail"));
                     message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                     client.EnableSsl = true;
@@ -181,12 +182,12 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("Fredemail"));
+                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
-                mailMessage.Subject = username;
+                mailMessage.Subject = "New Contact Request from " + username; ;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
@@ -221,7 +222,7 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("fredemail"));
+                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
@@ -230,7 +231,7 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
                 mailMessage.IsBodyHtml = false;
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
+                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("QuickPointemail"), Utils.GetConfigSetting("fpw"));
                 client.Port = 587;
                 client.Host = "smtp.office365.com";
                 client.EnableSsl = true;
