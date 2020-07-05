@@ -10,14 +10,44 @@ using Microsoft.Bot.Builder.AI.QnA;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using AdaptiveCards;
 
 namespace Microsoft.BotBuilderSamples
 {
     public class QnABot : ActivityHandler
     {
+        private Attachment CreateAdaptiveCardUsingSdk()
+        {
+            var card = new AdaptiveCard();
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Colour", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveChoiceSetInput()
+            {
+                Id = "Colour",
+                Style = AdaptiveChoiceInputStyle.Compact,
+                Choices = new List<AdaptiveChoice>(new[] {
+                        new AdaptiveChoice() { Title = "Red", Value = "RED" },
+                        new AdaptiveChoice() { Title = "Green", Value = "GREEN" },
+                        new AdaptiveChoice() { Title = "Blue", Value = "BLUE" } })
+            });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Registration number:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "RegistrationNumber" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+            return new Attachment()
+            {
+                ContentType = AdaptiveCard.ContentType,
+                Content = card
+            };
+        }
+
         private readonly IConfiguration _configuration;
         private readonly ILogger<QnABot> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
+        HeroCard card = new HeroCard()
+        {
+            Title = $"Appointment with doctor"
+        };
+        
+
 
         public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory)
         {
@@ -71,7 +101,12 @@ namespace Microsoft.BotBuilderSamples
             }
             else
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
+                //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
+                var reply = ((Activity)turnContext.Activity).CreateReply();
+                reply.Attachments = new List<Attachment>() { CreateAdaptiveCardUsingSdk() };
+
+                await turnContext.SendActivityAsync(reply);
+
             }
         }
     }
