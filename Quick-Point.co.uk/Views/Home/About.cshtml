@@ -116,12 +116,12 @@
                         <div class="overlay">
                             <div class="text">
                                 <br />
-                                Luda graduated in 1999 from Moscow Academy of Labour and Social Relations with a degree in 
-                                Accountancy with Honours. She finished her CIMA qualification in 2008 and did further training 
-                                which led to her obtaining a Masters Degree at the Cass Business School in 2011, during which 
-                                one of her course projects was published on the Charity Finance Group website. Currently, she is 
-                                completing another qualification as a Chartered Tax Advisor. Having worked in both the Commercial 
-                                and Charity Sectors, she specialises in Taxation, Management Accounting and Cash Flow Management. 
+                                Luda graduated in 1999 from Moscow Academy of Labour and Social Relations with a degree in
+                                Accountancy with Honours. She finished her CIMA qualification in 2008 and did further training
+                                which led to her obtaining a Masters Degree at the Cass Business School in 2011, during which
+                                one of her course projects was published on the Charity Finance Group website. Currently, she is
+                                completing another qualification as a Chartered Tax Advisor. Having worked in both the Commercial
+                                and Charity Sectors, she specialises in Taxation, Management Accounting and Cash Flow Management.
                                 In her free time, she likes sport and travelling.
                             </div>
                         </div>
@@ -387,7 +387,7 @@
 
             </div>
 
-          <!-- Nadiya Pylypchuk,    Nozima Rakhimjonova, Dana Turmane -->
+            <!-- Nadiya Pylypchuk,    Nozima Rakhimjonova, Dana Turmane -->
 
             <div class="row">
 
@@ -522,8 +522,20 @@
                 </div>
             </div>
         </div>
-</section>
+    </section>
 
+    <button onclick="cuteAlert()"></button>
 
+    @section scripts {
+        <link rel="stylesheet" href="style.css" />
+        <script src="cute-alert.js"></script>
+
+        cuteAlert({
+        type: "success",
+        title: "Success Title",
+        message: "Success Message",
+        buttonText: "Okay"
+        })
+    }
 
 </main><!-- End #main -->
