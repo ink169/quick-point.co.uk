@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Logging;
 using AdaptiveCards;
+using System.Net.Mail;
+using System.Net;
 
 namespace Microsoft.BotBuilderSamples
 {
@@ -20,7 +22,7 @@ namespace Microsoft.BotBuilderSamples
     {
 
 
-        private Attachment CreateAdaptiveCardUsingSdk()
+        private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
         {
             var card = new AdaptiveCard();
             card.Body.Add(new AdaptiveTextBlock() { Text = "Unfortunately, the Quick-Point bot couldn't find an accurate answer to your query. Please try again, using specific key words. Thanks for your patience - the ChatBot gets smarter with each question!", Size = AdaptiveTextSize.Medium, Wrap = true });
@@ -33,7 +35,7 @@ namespace Microsoft.BotBuilderSamples
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Question" });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
 
-            return new Attachment()
+            return new Microsoft.Bot.Schema.Attachment()
             {
                 ContentType = AdaptiveCard.ContentType,
                 Content = card
@@ -80,9 +82,6 @@ namespace Microsoft.BotBuilderSamples
             }
 
 
-
-
-
             if (turnContext.Activity.Value == null)
             {
 
@@ -98,7 +97,7 @@ namespace Microsoft.BotBuilderSamples
                 },
                 null,
                 httpClient); ;
-                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT & Change email adress to sales *********** //////////////
                 _logger.LogInformation("Calling QnA Maker");
 
                 var options = new QnAMakerOptions { Top = 1 };
@@ -117,7 +116,7 @@ namespace Microsoft.BotBuilderSamples
                 {
                     //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
                     var reply = ((Activity)turnContext.Activity).CreateReply();
-                    reply.Attachments = new List<Attachment>() { CreateAdaptiveCardUsingSdk() };
+                    reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { CreateAdaptiveCardUsingSdk() };
 
                     await turnContext.SendActivityAsync(reply);
 
@@ -130,6 +129,40 @@ namespace Microsoft.BotBuilderSamples
                     var name = jobj["Name"].ToString();
                     var question = jobj["Question"].ToString();
 
+                try
+                {
+
+                    
+                    var dt = DateTime.Now.ToString();
+
+
+                    var mailMessage = new MailMessage();
+                    mailMessage.From = new
+                       MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
+                    mailMessage.To.Add("freddie.kemp@cybercom.media");
+                    mailMessage.CC.Add("freddie.kemp@cybercom.media");
+                    mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                    mailMessage.Subject = "Unanswered Question from " + name; ;
+                    mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
+                    mailMessage.IsBodyHtml = false;
+                    SmtpClient client = new SmtpClient();
+                    client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145fred89jk!*.");
+                    client.Port = 587;
+                    client.Host = "smtp.office365.com";
+                    client.EnableSsl = true;
+                    client.Send(mailMessage);
+
+                    string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
+
+                    await turnContext.SendActivityAsync(success);
+
+                }
+                catch
+                {
+                    string fail = "Unfortunately we could not process your details. Please make sure all boxes are filled in and try again.";
+                    await turnContext.SendActivityAsync(fail);
+
+                }
             }
         }
     }

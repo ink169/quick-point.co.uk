@@ -259,9 +259,7 @@
     <Content Include="Content\FormStyle.css" />
     <Content Include="Content\scripts\alerty.js" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\NewsletterStyle.css" />
     <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.js" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -274,8 +272,6 @@
     <Content Include="assets\vendor\icofont\fonts\icofont.woff2" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\toastr.less" />
-    <Content Include="Content\toastr.scss" />
     <Content Include="Content\sass\alerty.scss" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
