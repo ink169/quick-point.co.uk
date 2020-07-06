@@ -22,6 +22,8 @@ namespace Microsoft.BotBuilderSamples
     {
 
 
+
+
         private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
         {
             var card = new AdaptiveCard();
@@ -63,6 +65,7 @@ namespace Microsoft.BotBuilderSamples
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
+
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
@@ -101,7 +104,7 @@ namespace Microsoft.BotBuilderSamples
 
                 var options = new QnAMakerOptions { Top = 1 };
                 // Returns no accurate answer found on any questions below 70 score
-                options.ScoreThreshold = 0.7F;
+                options.ScoreThreshold = 0.4F;
 
 
 
