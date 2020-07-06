@@ -16,22 +16,21 @@ namespace Microsoft.BotBuilderSamples
 {
     public class QnABot : ActivityHandler
     {
+
+
         private Attachment CreateAdaptiveCardUsingSdk()
         {
             var card = new AdaptiveCard();
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Colour", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
-            card.Body.Add(new AdaptiveChoiceSetInput()
-            {
-                Id = "Colour",
-                Style = AdaptiveChoiceInputStyle.Compact,
-                Choices = new List<AdaptiveChoice>(new[] {
-                        new AdaptiveChoice() { Title = "Red", Value = "RED" },
-                        new AdaptiveChoice() { Title = "Green", Value = "GREEN" },
-                        new AdaptiveChoice() { Title = "Blue", Value = "BLUE" } })
-            });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Registration number:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
-            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "RegistrationNumber" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Unfortunately, the Quick-Point bot couldn't find an accurate answer to your query. Please try again, using specific key words. Thanks for your patience - the ChatBot gets smarter with each question!", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Your Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Your Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Your Question:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Question" });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+
             return new Attachment()
             {
                 ContentType = AdaptiveCard.ContentType,
@@ -44,7 +43,7 @@ namespace Microsoft.BotBuilderSamples
         private readonly IHttpClientFactory _httpClientFactory;
         HeroCard card = new HeroCard()
         {
-            Title = $"Appointment with doctor"
+            Title = $"Answer not found"
         };
         
 
@@ -59,7 +58,7 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            var welcomeText = "Welcome to QuickPoint, what can we help you with today  !";
+            var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
@@ -73,18 +72,13 @@ namespace Microsoft.BotBuilderSamples
         {
             var httpClient = _httpClientFactory.CreateClient();
 
+            
+
             var qnaMaker = new QnAMaker(new QnAMakerEndpoint
             {
                 KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
                 Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
                 EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
-                //KnowledgeBaseId = _configuration["QnAKnowledgebaseId"],
-                //EndpointKey = _configuration["QnAEndpointKey"],
-                //Host = _configuration["QnAEndpointHostName"]
-
-
-
-
             },
             null,
             httpClient); ;
@@ -92,6 +86,10 @@ namespace Microsoft.BotBuilderSamples
             _logger.LogInformation("Calling QnA Maker");
 
             var options = new QnAMakerOptions { Top = 1 };
+            // Returns no accurate answer found on any questions below 60 score
+            options.ScoreThreshold = 0.6F;
+            
+
 
             // The actual call to the QnA Maker service.
             var response = await qnaMaker.GetAnswersAsync(turnContext, options);
