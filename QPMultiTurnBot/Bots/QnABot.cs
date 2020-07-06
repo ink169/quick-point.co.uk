@@ -72,7 +72,7 @@ namespace Microsoft.BotBuilderSamples
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-            
+            /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
 
             var qnaMaker = new QnAMaker(new QnAMakerEndpoint
             {
@@ -82,7 +82,7 @@ namespace Microsoft.BotBuilderSamples
             },
             null,
             httpClient); ;
-
+            /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
             _logger.LogInformation("Calling QnA Maker");
 
             var options = new QnAMakerOptions { Top = 1 };
