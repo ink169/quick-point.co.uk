@@ -76,7 +76,7 @@ namespace Microsoft.BotBuilderSamples
 
             var qnaMaker = new QnAMaker(new QnAMakerEndpoint
             {
-                KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
+                KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
                 Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
                 EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
             },
@@ -86,8 +86,8 @@ namespace Microsoft.BotBuilderSamples
             _logger.LogInformation("Calling QnA Maker");
 
             var options = new QnAMakerOptions { Top = 1 };
-            // Returns no accurate answer found on any questions below 60 score
-            options.ScoreThreshold = 0.6F;
+            // Returns no accurate answer found on any questions below 70 score
+            options.ScoreThreshold = 0.7F;
             
 
 
