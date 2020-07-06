@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.QnA;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Logging;
 using AdaptiveCards;
 
@@ -70,40 +72,63 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            var httpClient = _httpClientFactory.CreateClient();
+            // check for response from card
+            if (turnContext.Activity.Value != null) {
+               
+                
 
-            /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
-
-            var qnaMaker = new QnAMaker(new QnAMakerEndpoint
-            {
-                KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
-                Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
-                EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
-            },
-            null,
-            httpClient); ;
-            /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
-            _logger.LogInformation("Calling QnA Maker");
-
-            var options = new QnAMakerOptions { Top = 1 };
-            // Returns no accurate answer found on any questions below 70 score
-            options.ScoreThreshold = 0.7F;
-            
-
-
-            // The actual call to the QnA Maker service.
-            var response = await qnaMaker.GetAnswersAsync(turnContext, options);
-            if (response != null && response.Length > 0)
-            {
-                await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
             }
-            else
-            {
-                //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
-                var reply = ((Activity)turnContext.Activity).CreateReply();
-                reply.Attachments = new List<Attachment>() { CreateAdaptiveCardUsingSdk() };
 
-                await turnContext.SendActivityAsync(reply);
+
+
+
+
+            if (turnContext.Activity.Value == null)
+            {
+
+                var httpClient = _httpClientFactory.CreateClient();
+
+                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+
+                var qnaMaker = new QnAMaker(new QnAMakerEndpoint
+                {
+                    KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
+                    Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
+                    EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
+                },
+                null,
+                httpClient); ;
+                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+                _logger.LogInformation("Calling QnA Maker");
+
+                var options = new QnAMakerOptions { Top = 1 };
+                // Returns no accurate answer found on any questions below 70 score
+                options.ScoreThreshold = 0.7F;
+
+
+
+                // The actual call to the QnA Maker service.
+                var response = await qnaMaker.GetAnswersAsync(turnContext, options);
+                if (response != null && response.Length > 0)
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
+                }
+                else
+                {
+                    //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
+                    var reply = ((Activity)turnContext.Activity).CreateReply();
+                    reply.Attachments = new List<Attachment>() { CreateAdaptiveCardUsingSdk() };
+
+                    await turnContext.SendActivityAsync(reply);
+
+                }
+            }
+            else   // value contains JSON result of card entries 
+            {
+                    var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
+                    var email = (string)jobj["Email"];
+                    var name = jobj["Name"].ToString();
+                    var question = jobj["Question"].ToString();
 
             }
         }
