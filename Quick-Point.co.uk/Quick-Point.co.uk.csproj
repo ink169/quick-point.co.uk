@@ -258,6 +258,7 @@
     <Content Include="Content\purecookie.css" />
     <Content Include="Content\FormStyle.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\Subscribe.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
