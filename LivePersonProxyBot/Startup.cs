@@ -26,6 +26,9 @@ namespace LivePersonProxyBot
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // Add the HttpClientFactory to be used for the QnAMaker calls.
+            services.AddHttpClient();
+
             var storage = new MemoryStorage();
             // Create the User state passing in the storage layer.
             var userState = new UserState(storage);

@@ -24,6 +24,7 @@ namespace LivePersonProxyBot
 
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default)
         {
+            
             var conversationStateAccessors = _conversationState.CreateProperty<LoggingConversationData>(nameof(LoggingConversationData));
             var conversationData = await conversationStateAccessors.GetAsync(turnContext, () => new LoggingConversationData()).ConfigureAwait(false);
 
