@@ -87,8 +87,8 @@ namespace LivePersonProxyBot.Bots
             var conversationStateAccessors = _conversationState.CreateProperty<LoggingConversationData>(nameof(LoggingConversationData));
             var conversationData = await conversationStateAccessors.GetAsync(turnContext, () => new LoggingConversationData());
 
-            var userText = turnContext.Activity.Text.ToLower();
-            if (userText.Contains("agent"))
+            
+            if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
             {
                 await turnContext.SendActivityAsync("Your request will be escalated to a human agent");
 
@@ -106,7 +106,7 @@ namespace LivePersonProxyBot.Bots
 
                 await turnContext.SendActivityAsync(evnt);
             }
-            else if (turnContext.Activity.Value == null)
+            else if (turnContext == null)
             {
 
                 var httpClient = _httpClientFactory.CreateClient();
@@ -153,57 +153,57 @@ namespace LivePersonProxyBot.Bots
 
                 }
             }
-            else   // value contains JSON result of card entries 
-            {
-                var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
-                var email = (string)jobj["Email"];
-                var name = jobj["Name"].ToString();
-                var question = jobj["Question"].ToString();
+             else   // value contains JSON result of card entries 
+             {
+                 var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
+                 var email = (string)jobj["Email"];
+                 var name = jobj["Name"].ToString();
+                 var question = jobj["Question"].ToString();
 
-                /*try
-                {
+                 /*try
+                 {
 
-                    if (question != "")
-                    {
+                     if (question != "")
+                     {
 
-                        var dt = DateTime.Now.ToString();
+                         var dt = DateTime.Now.ToString();
 
 
-                        var mailMessage = new MailMessage();
-                        mailMessage.From = new
-                           MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                        mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                        mailMessage.CC.Add("freddie.kemp@cybercom.media");
-                        mailMessage.CC.Add("andrew.ingpen@cybercom.media");
-                        mailMessage.Subject = "Unanswered Question from " + name; ;
-                        mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
-                        mailMessage.IsBodyHtml = false;
-                        SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145fred89jk!*.");
-                        client.Port = 587;
-                        client.Host = "smtp.office365.com";
-                        client.EnableSsl = true;
-                        client.Send(mailMessage);
+                         var mailMessage = new MailMessage();
+                         mailMessage.From = new
+                            MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
+                         mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                         mailMessage.CC.Add("freddie.kemp@cybercom.media");
+                         mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                         mailMessage.Subject = "Unanswered Question from " + name; ;
+                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
+                         mailMessage.IsBodyHtml = false;
+                         SmtpClient client = new SmtpClient();
+                         client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145fred89jk!*.");
+                         client.Port = 587;
+                         client.Host = "smtp.office365.com";
+                         client.EnableSsl = true;
+                         client.Send(mailMessage);
 
-                        string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
+                         string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
 
-                        await turnContext.SendActivityAsync(success);
-                    }
-                    else
-                    {
-                        string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
-                        await turnContext.SendActivityAsync(fail);
-                    }
+                         await turnContext.SendActivityAsync(success);
+                     }
+                     else
+                     {
+                         string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                         await turnContext.SendActivityAsync(fail);
+                     }
 
-                }
-                catch
-                {
-                    string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
-                    await turnContext.SendActivityAsync(fail);
+                 }
+                 catch
+                 {
+                     string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                     await turnContext.SendActivityAsync(fail);
 
-                }*/
-            }
+                 }*/
         }
+    }
 
         protected override async Task OnEventAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken)
         {
