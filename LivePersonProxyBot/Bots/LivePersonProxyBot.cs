@@ -2,27 +2,28 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Net.Http;
-using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using LivePersonConnector;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.AI.QnA;
+using Microsoft.Bot.Connector;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
-using Microsoft.Extensions.Logging;
 using AdaptiveCards;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.QnA;
 using System.Net.Mail;
 using System.Net;
 
-namespace Microsoft.BotBuilderSamples
+namespace LivePersonProxyBot.Bots
 {
-    public class QnABot : ActivityHandler
+    public class LivePersonProxyBot : ActivityHandler
     {
-
-
-
 
         private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
         {
@@ -44,22 +45,26 @@ namespace Microsoft.BotBuilderSamples
             };
         }
 
+        private readonly BotState _conversationState;
+        private readonly ILivePersonCredentialsProvider _creds;
         private readonly IConfiguration _configuration;
-        private readonly ILogger<QnABot> _logger;
+        private readonly ILogger<LivePersonProxyBot> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
         HeroCard card = new HeroCard()
         {
             Title = $"Answer not found"
         };
-        
 
 
-        public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory)
+        public LivePersonProxyBot(ConversationState conversationState, ILivePersonCredentialsProvider creds, IConfiguration configuration, ILogger<LivePersonProxyBot> logger, IHttpClientFactory httpClientFactory)
         {
+            _conversationState = conversationState;
+            _creds = creds;
             _configuration = configuration;
             _logger = logger;
             _httpClientFactory = httpClientFactory;
         }
+
 
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
@@ -77,7 +82,29 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            if (turnContext.Activity.Value == null)
+            var conversationStateAccessors = _conversationState.CreateProperty<LoggingConversationData>(nameof(LoggingConversationData));
+            var conversationData = await conversationStateAccessors.GetAsync(turnContext, () => new LoggingConversationData());
+
+            
+            if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
+            {
+                await turnContext.SendActivityAsync("Your request will be escalated to a human agent");
+
+                var transcript = new Transcript(conversationData.ConversationLog.Where(a => a.Type == ActivityTypes.Message).ToList());
+
+                var evnt = EventFactory.CreateHandoffInitiation(turnContext,
+                    new { Skill = "chat",
+                          EngagementAttributes = new EngagementAttribute[]
+                          {
+                              new EngagementAttribute { Type = "ctmrinfo", CustomerType = "vip", SocialId = "123456789"},
+                              new EngagementAttribute { Type = "personal", FirstName = turnContext.Activity.From.Name }
+                          }
+                    },
+                    transcript);
+
+                await turnContext.SendActivityAsync(evnt);
+            }
+            else if (turnContext.Activity.Value == null)
             {
 
                 var httpClient = _httpClientFactory.CreateClient();
@@ -131,7 +158,7 @@ namespace Microsoft.BotBuilderSamples
                 var name = jobj["Name"].ToString();
                 var question = jobj["Question"].ToString();
 
-                /*try
+                try
                 {
 
                     if (question != "")
@@ -143,9 +170,10 @@ namespace Microsoft.BotBuilderSamples
                         var mailMessage = new MailMessage();
                         mailMessage.From = new
                            MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                        mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                      //  mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                        mailMessage.To.Add("freddie.kemp@cybercom.media");
                         mailMessage.CC.Add("freddie.kemp@cybercom.media");
-                        mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                        //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                         mailMessage.Subject = "Unanswered Question from " + name; ;
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
                         mailMessage.IsBodyHtml = false;
@@ -172,8 +200,45 @@ namespace Microsoft.BotBuilderSamples
                     string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
                     await turnContext.SendActivityAsync(fail);
 
-                }*/
+                }
             }
+        }
+
+        protected override async Task OnEventAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken)
+        {
+            if(turnContext.Activity.Name == "handoff.status")
+            {
+                var conversationStateAccessors = _conversationState.CreateProperty<LoggingConversationData>(nameof(LoggingConversationData));
+                var conversationData = await conversationStateAccessors.GetAsync(turnContext, () => new LoggingConversationData());
+
+                Activity replyActivity;
+                var state = (turnContext.Activity.Value as JObject)?.Value<string>("state");
+                if (state == "typing")
+                {
+                    replyActivity = new Activity
+                    {
+                        Type = ActivityTypes.Typing,
+                        Text = "agent is typing",
+                    };
+                }
+                else if (state == "accepted")
+                {
+                    replyActivity = MessageFactory.Text("An agent has accepted the conversation and will respond shortly.");
+                    await _conversationState.SaveChangesAsync(turnContext);
+                }
+                else if (state == "completed")
+                {
+                    replyActivity = MessageFactory.Text("The agent has closed the conversation.");
+                }
+                else
+                {
+                    replyActivity = MessageFactory.Text($"Conversation status changed to '{state}'");
+                }
+
+                await turnContext.SendActivityAsync(replyActivity);
+            }
+
+            await base.OnEventAsync(turnContext, cancellationToken);
         }
     }
 }

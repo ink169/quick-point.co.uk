@@ -72,76 +72,40 @@ function cookieConsent_OLD() {
 
 function purecookieDismiss() {
   // setCookie('purecookieDismiss','1',7);
- pureFadeOut("cookieConsentContainer");
+
     startChat();
-   
+    pureFadeOut("cookieConsentContainer");
 }
 
 
 
-// https://github.com/microsoft/BotFramework-WebChat/issues/1397
-//  directLine: window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' }),
-
-
-    function guid() {
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
-
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-
-
 function startChat() {
-
-        var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
-  
-
-        var userId = guid().toUpperCase();
-        var userName = 'User-' + Math.floor((1 + Math.random()) * 10000);
-
         const styleOptions = {
             rootwidth: 'Auto',
-            backgroundColor: 'AliceBlue',
-            botAvatarImage: 'https://github.com/ink169.png?size=64',
-            bubbleBackground: 'rgba(46, 115, 187, .2)',
-            //botAvatarInitials: 'BF',
-            userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
-            bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
-            bubbleMaxWidth: 600,
-            hideUploadButton: true,
+                        backgroundColor: 'AliceBlue',
+                        botAvatarImage: 'https://github.com/ink169.png?size=64',
+                        bubbleBackground: 'rgba(46, 115, 187, .2)',
+                        //botAvatarInitials: 'BF',
+                        userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
+                        bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
+                        bubbleMaxWidth: 600,
+                        hideUploadButton: true,
                         // userAvatarInitials: 'WC'
-        };
+                    };
 
-        window.WebChat.renderWebChat({ directLine: d1,  styleOptions }, document.getElementById('webchat'));
-
-        var activity = {
-            from: {
-                id: userId,
-                name: userName
-            },
-            name: 'startConversation',
-            type: 'event',
-            value: '',
-            channelData: {
-                "personId": userId,
-                "environment": window.location.host
-            }
-        };
-
-        d1.postActivity(activity).subscribe(function (id) {
-            //alert('trigger requestWelcomeDialog');
-            //if (console) {
-            //    console.log('"trigger requestWelcomeDialog" sent');
-            //}
-        }); 
+                    window.WebChat.renderWebChat(
+                        {
+            directLine: window.WebChat.createDirectLine({
+            secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI'
+                            }),
+                            styleOptions
+                        },
+                        document.getElementById('webchat')
+            );
    }
 
 
 
 window.onload = function () {
     cookieConsent();
-}; 
+};
