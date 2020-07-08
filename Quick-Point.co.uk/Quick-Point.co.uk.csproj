@@ -333,7 +333,6 @@
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle1.cshtml" />
     <Content Include="Views\Home\Article.cshtml" />
-    <Content Include="Views\Shared\_BeanlandLayout.cshtml" />
     <Content Include="Views\Home\RequestArticle.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle2.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle10.cshtml" />
@@ -357,13 +356,12 @@
     <Content Include="Views\Articles\_LegalArticle7.cshtml" />
     <Content Include="Views\Articles\_LegalArticle8.cshtml" />
     <Content Include="Views\Articles\_LegalArticle9.cshtml" />
-    <Content Include="Views\Shared\_LayoutNoBling.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
-    <Content Include="Views\Shared\_LayoutFFA.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Articles\_LegalArticle5.cshtml" />
     <Content Include="Views\Home\FF.cshtml" />
-    <Content Include="Views\Shared\_LayoutSubscribe.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\_ArticleLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

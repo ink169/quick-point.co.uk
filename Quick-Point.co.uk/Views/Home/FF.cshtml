@@ -4,9 +4,8 @@
     ViewBag.Title = "FFA";
 }
 
-<head>
-    @Styles.Render("~/Content/FormStyle.css")
-</head>
+@Styles.Render("~/Content/FormStyle.css")
+
 
 
 <section class="hero-section" id="hero">
@@ -39,7 +38,6 @@
         <div class="container">
             <div class="row justify-content-center text-left mb-5">
                 <div class="col-md-6" data-aos="fade-up" style="color:black;">
-
                     <h2>Upload financial status files</h2>
                     @using (Html.BeginForm("FF", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
