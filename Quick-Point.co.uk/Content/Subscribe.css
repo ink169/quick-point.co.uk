@@ -1,8 +1,9 @@
 ﻿#fixed-form-container {
     position: fixed;
+    font-size: 0.8em;
     bottom: 0px;
     left: 3%;
-    width: 350px;
+    width: 250px;
     text-align: center;
     margin: 0;
     z-index: 999;
@@ -47,7 +48,7 @@
         box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.3);
     }
 
-media only screen and (min-width:768px) {
+/*media only screen and (min-width:768px) {
     #fixed-form-container .button {
         margin: 0;
     }
@@ -62,6 +63,6 @@ media only screen and (min-width:768px) {
             padding: 30px;
             border-radius: 0px 5px 5px 5px;
         }
-}
+}*/
 
 

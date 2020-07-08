@@ -149,7 +149,7 @@ namespace Quick_Point.co.uk.Controllers
 
         }
 
-        public ActionResult Test()
+        public ActionResult Contact()
         {
             return View();
         }

@@ -140,15 +140,25 @@
 
     <script type="text/javascript">
        // alert('hay');
-       // $("#fixed-form-container .body").hide();
-        //$("#fixed-form-container .button").click(function () {
 
+        var subOpen = false;
 
+        $("#fixed-form-container .body").hide();
+
+        
 
         function toggleSubmit() {
-            alert('hooky');
-            $(this).next("#fixed-form-container div").slideToggle(400);
-            $(this).toggleClass("expanded");
+
+            if (subOpen == false) {
+                $("#fixed-form-container div").slideDown(400);
+                subOpen = true;
+            }
+            else {
+                //$("#fixed-form-container div").slideToggle(400);
+                $("#fixed-form-container .body").hide(400);
+                subOpen = false;
+            }
+           
         }
 
 
@@ -172,6 +182,7 @@
                         alert(response.responseText);
                     }
                 });
+                $("#fixed-form-container .body").hide(400);
             }
         }
 
