@@ -114,7 +114,7 @@ namespace LivePersonProxyBot.Bots
                 var qnaMaker = new QnAMaker(new QnAMakerEndpoint
                 {
                     //Practise Details
-                    KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
+                    KnowledgeBaseId = "4b7ef3b6-a4bc-48eb-90ab-ec6640d4c8b4",
                     Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
                     EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
                     // Live Details
