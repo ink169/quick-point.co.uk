@@ -1,9 +1,15 @@
 ﻿@{
+    Layout = "~/Views/Shared/_LayoutSubscribe.cshtml";
     ViewBag.Title = "MeetTheTeam";
 }
 
 <head>
     @Styles.Render("~/Content/FormStyle.css")
+    @Styles.Render("~/Content/Subscribe.css")
+    <style>
+    </style>
+
+
 </head>
 
 <section class="hero-section" id="hero">
@@ -31,77 +37,70 @@
 
 <main id="main">
     <!-- ======= Describe Section ======= -->
-    <section class="section section-describe">
+    @*<section class="section section-describe">
 
-        <div class="container">
-            <div class="row  mb-5">
-                <div class="col-md-6" data-aos="fade-up">
-                    <div style="height:80px;">
+            <div class="container">
+                <div class="row  mb-5">
+                    <div class="col-md-6" data-aos="fade-up">
+                        <div style="height:80px;">
+
+                        </div>
+                        <h2>Subscribe to our mailing list</h2>
+                        @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div>
+
+                                <div class="field" tabindex="1">
+                                    <label for="username">
+                                        <i class="far fa-user"></i>Your Name
+                                    </label>
+                                    <input type="text" name="name" placeholder="e.g. Adam Smith" required />
+                                </div>
+                                <div class="field" tabindex="2">
+                                    <label for="email">
+                                        <i class="far fa-envelope"></i>
+                                        Email:
+                                    </label>
+                                    <input type="email" name="email" placeholder="email@domain.com" required />
+                                </div>
+                                <input type="checkbox" name="checkbox" onclick="myFunction()" class="tcheckbox" id="tAc" style="width:15px; height:15px; margin-left:20px;" /><h6 style="font-weight:700; margin-left:15px;" id="writing">To subscribe, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
+                                <br />
+                                <input type="submit" value="Sign Up" id="submit" />
+
+                            </div>
+                            @ViewBag.Message
+                        }
 
                     </div>
-                    <h2>Subscribe to our mailing list</h2>
-                    @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                <div>
-
-                    <div class="field" tabindex="1">
-                        <label for="username">
-                            <i class="far fa-user"></i>Your Name
-                        </label>
-                        <input type="text" name="name" placeholder="e.g. Adam Smith" required />
+                    <div class="col-md-6">
+                        <img src="~/Content/images/subscribe.jpg" style="height:500px; width:750px;" />
                     </div>
-                    <div class="field" tabindex="2">
-                        <label for="email">
-                            <i class="far fa-envelope"></i>
-                            Email:
-                        </label>
-                        <input type="email" name="email" placeholder="email@domain.com" required />
-                    </div>
-                    <input type="checkbox" name="checkbox" onclick="myFunction()" class="tcheckbox" id="tAc" style="width:15px; height:15px; margin-left:20px;" /><h6 style="font-weight:700; margin-left:15px;" id="writing">To subscribe, please tick to agree with our <a href="https://www.quick-point.co.uk/Home/Terms" style="text-decoration:underline;">Terms of Use and Privacy Policy</a></h6>
-                    <br />
-                    <input type="submit" value="Sign Up" id="submit" />
-
-                </div>
-                        @ViewBag.Message
-                    }
-
-                </div>
-                <div class="col-md-6">
-                    <img src="~/Content/images/subscribe.jpg" style="height:500px; width:750px;" />
                 </div>
             </div>
+        </section>*@
+
+</main>
+@*https://codepen.io/MarinaKam/pen/RBPKgq*@
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <section id="fixed-form-container">
+        <div class="button">Subscribe to Newsletter</div>
+        <div class="body">
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            @*<div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>*@
+            <button id="subBtn" type="button" class="btn btn-default">Subscribe!</button>
         </div>
-
     </section>
+}
 
 
-    <script>
-        function myFunction() {
-            // Get the checkbox
-            var checkBox = document.getElementById("tAc");
-            // Get the output text
-            var text = document.getElementById("submit");
-
-            var writing = document.getElementById("writing");
-
-            // If the checkbox is checked, display the output text
-            if (checkBox.checked == true) {
-                text.style.display = "block";
-                writing.style.fontWeight = "normal";
-                writing.style.textDecoration = "none";
-                writing.textContent = "You have agreed to our T&Cs"
-            }
-            else if (checkBox.checked !== true) {
-                text.style.display = "none";
-                writing.style.fontWeight = "bold";
-                writing.style.textDecoration = "underline";
-                writing.textContent = "To upload, please tick to agree with our T&C's"
-            }
-            else {
-                text.style.display = "none";
-            }
-        }
-    </script>
-
-
-</main><!-- End #main -->

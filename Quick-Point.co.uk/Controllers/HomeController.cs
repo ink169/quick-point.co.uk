@@ -1,29 +1,24 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mail;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using MongoDB;
+using System.Net;
 using MongoDB.Bson;
+using System.Web.Mvc;
 using MongoDB.Driver;
-using Recaptcha;
 using System.Security;
-using Quick_Point.co.uk.ViewModels;
+using System.Net.Mail;
+using Newtonsoft.Json.Linq;
 using Quick_Point.co.uk.Helpers;
+using Quick_Point.co.uk.ViewModels;
 using Utils = Quick_Point.co.uk.Helpers.Utils;
-using System.Web.Configuration;
-using Newtonsoft.Json;
 
 namespace Quick_Point.co.uk.Controllers
-{    
+{
     public class HomeController : Controller
-    { 
+    {
         public ActionResult FF()
         {
-         
+
             return View();
         }
 
@@ -80,7 +75,7 @@ namespace Quick_Point.co.uk.Controllers
                     message.IsBodyHtml = false;
 
                     client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
-                    
+
                     message.CC.Add(Utils.GetConfigSetting("Fredemail"));
                     message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                     client.EnableSsl = true;
@@ -109,7 +104,7 @@ namespace Quick_Point.co.uk.Controllers
         }
 
         [HttpPost]
-        public ActionResult RequestArticle(string firstName, string lastName, string company, string email, string articleID )
+        public ActionResult RequestArticle(string firstName, string lastName, string company, string email, string articleID)
         {
             Session["articleID"] = articleID;
             return RedirectToAction("Article");
@@ -117,7 +112,7 @@ namespace Quick_Point.co.uk.Controllers
 
         public ActionResult Article(string id)
         {
-           
+
             if (!String.IsNullOrEmpty(id))
             {
                 return View(new Article() { Description = ArticleHelpers.GetTitle(id), ID = id });
@@ -134,14 +129,14 @@ namespace Quick_Point.co.uk.Controllers
             if (id != null)
             {
                 //Session["ArticleID"] = id;
-                return View(new Article() { Description = ArticleHelpers.GetTitle(id), ID=id });
+                return View(new Article() { Description = ArticleHelpers.GetTitle(id), ID = id });
             }
             else
             {
                 Response.Redirect(getHomeAddress());
                 return View();
             }
-                
+
         }
 
 
@@ -155,6 +150,12 @@ namespace Quick_Point.co.uk.Controllers
         }
 
         public ActionResult Test()
+        {
+            return View();
+        }
+
+
+        public ActionResult Subscribe()
         {
             return View();
         }
@@ -210,35 +211,36 @@ namespace Quick_Point.co.uk.Controllers
           }
 
 
-
-        public ActionResult Subscribe(System.Web.Mvc.FormCollection form)
+        [HttpPost]
+        public ActionResult Subscribe(String name, string email)
         {
             try
             {
-
-                //var fileName = Path.GetFileName(file.FileName);
+               //var fileName = Path.GetFileName(file.FileName);
                 var username = escapeCharacters((form["name"].ToString()));
                 var email = escapeCharacters((form["email"].ToString()));
                 var dt = DateTime.Now.ToString();
 
+                var t = 9;
 
-                var mailMessage = new MailMessage();
-                mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
-                mailMessage.To.Add(new
-                   MailAddress(Utils.GetConfigSetting("Ludaemail")));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
-                mailMessage.Subject = "Subscribe" + " " + email;
-                mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
-                mailMessage.IsBodyHtml = false;
-                SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("QuickPointemail"), Utils.GetConfigSetting("fpw"));
-                client.Port = 587;
-                client.Host = "smtp.office365.com";
-                client.EnableSsl = true;
-                client.Send(mailMessage);
-                ViewBag.Message = "Subscribed";
+
+                //var mailMessage = new MailMessage();
+                //mailMessage.From = new
+                //   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
+                //mailMessage.To.Add(new
+                //   MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                //mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+                //mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                //mailMessage.Subject = "Subscribe" + " " + email;
+                //mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
+                //mailMessage.IsBodyHtml = false;
+                //SmtpClient client = new SmtpClient();
+                //client.Credentials = new NetworkCredential(Utils.GetConfigSetting("QuickPointemail"), Utils.GetConfigSetting("fpw"));
+                //client.Port = 587;
+                //client.Host = "smtp.office365.com";
+                //client.EnableSsl = true;
+                //client.Send(mailMessage);
+                //ViewBag.Message = "Subscribed";
                 return View();
             }
             catch
@@ -264,19 +266,19 @@ namespace Quick_Point.co.uk.Controllers
             var db = client.GetDatabase("QuickPoint");
             var collec = db.GetCollection<BsonDocument>("FFA Uploaders");
 
-           
 
-          try
-           {
+
+            try
+            {
 
                 //var fileName = Path.GetFileName(file.FileName);
                 var username = escapeCharacters((form["name"].ToString()));
                 var email = escapeCharacters((form["email"].ToString()));
                 var phone = escapeCharacters((form["phone"].ToString()));
                 var business = (form["Business type"].ToString());
-                    var turnover = (form["turnover"].ToString());
-                    var staff = (form["staff"].ToString());
-                    var bookkeeping = (form["Bookkeeping"]);
+                var turnover = (form["turnover"].ToString());
+                var staff = (form["staff"].ToString());
+                var bookkeeping = (form["Bookkeeping"]);
                 var Payroll = (form["Payroll"]);
                 var Companieshousereturns = (form["Companieshousereturns"]);
                 var SelfAssessment = (form["Self-Assessment"]);
@@ -285,7 +287,7 @@ namespace Quick_Point.co.uk.Controllers
                 var BusinessConsultations = (form["BusinessConsultations"]);
                 var TaxationAdvice = (form["TaxationAdvice"]);
 
-                    var document = new BsonDocument
+                var document = new BsonDocument
                 {
                 {"Name", username},
                 {"Email", email },
@@ -304,7 +306,7 @@ namespace Quick_Point.co.uk.Controllers
                 {"Request Taxation Advice?", TaxationAdvice },*/
                 };
 
-                    collec.InsertOneAsync(document);
+                collec.InsertOneAsync(document);
 
 
 
@@ -321,7 +323,7 @@ namespace Quick_Point.co.uk.Controllers
         public static SecureString GetSecurePassword()
         {
             var s = new SecureString();
-            s.AppendChar('Q'); 
+            s.AppendChar('Q');
             s.AppendChar('u');
             s.AppendChar('1');
             s.AppendChar('c');
