@@ -27,7 +27,9 @@ namespace Quick_Point.co.uk.Controllers
         [HttpPost]
         public ActionResult FF(HttpPostedFileBase file, System.Web.Mvc.FormCollection form1, FFAC model)
         {
-
+            var MDclient = new MongoClient("mongodb+srv://fred:" + MongoDBPW() + "@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
+            var db = MDclient.GetDatabase("QuickPoint");
+            var collec = db.GetCollection<BsonDocument>("FreeFinancial");
             var dt = DateTime.Now.ToString();
             var username = escapeCharacters((form1["name"].ToString()));
             var email = escapeCharacters((form1["email"].ToString()));
@@ -80,6 +82,19 @@ namespace Quick_Point.co.uk.Controllers
                     message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                     client.EnableSsl = true;
                     client.Send(message);
+
+                    var document = new BsonDocument
+                {
+                {"Name", (form1["name"].ToString()) },
+                {"Email", (form1["email"].ToString()) },
+                {"Phone", (form1["phone"].ToString()) },
+                {"Staff Number", (form1["staffno"].ToString()) },
+                {"Turnover", (form1["turnover"].ToString()) },
+                {"Date", dt },
+                };
+
+                    collec.InsertOneAsync(document);
+
                 }
                 ViewBag.Message = "Email sent";
                 return View();
@@ -172,7 +187,11 @@ namespace Quick_Point.co.uk.Controllers
         [HttpPost]
          public ActionResult Contact(System.Web.Mvc.FormCollection form)
          {
-          try
+
+            var MDclient = new MongoClient("mongodb+srv://fred:" + MongoDBPW() + "@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
+            var db = MDclient.GetDatabase("QuickPoint");
+            var collec = db.GetCollection<BsonDocument>("PopSubscribe");
+            try
               {
 
                   var username = escapeCharacters((form["name"].ToString()));
@@ -198,7 +217,18 @@ namespace Quick_Point.co.uk.Controllers
                   client.Host = "smtp.office365.com";
                   client.EnableSsl = true;
                   client.Send(mailMessage);
-                  ViewBag.Message = "Email sent";
+
+                var document = new BsonDocument
+                {
+                {"Name", (form["name"].ToString()) },
+                {"Email", (form["email"].ToString()) },
+                {"Message", (form["message"].ToString()) },
+                {"Date", dt },
+                };
+
+                collec.InsertOneAsync(document);
+
+                ViewBag.Message = "Email sent";
                   return View("Contact"); 
               }
               catch
@@ -214,7 +244,9 @@ namespace Quick_Point.co.uk.Controllers
         [HttpPost]
         public ActionResult SubscribePopup(String name, string emailS)
         {
-
+            var MDclient = new MongoClient("mongodb+srv://fred:" + MongoDBPW() + "@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
+            var db = MDclient.GetDatabase("QuickPoint");
+            var collec = db.GetCollection<BsonDocument>("PopSubscribe");
 
             try
             {
@@ -229,10 +261,10 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new
                    MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new
-                   //MailAddress(Utils.GetConfigSetting("Ludaemail")));
-                   MailAddress(Utils.GetConfigSetting("Fredemail")));
+                   MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                   //MailAddress(Utils.GetConfigSetting("Fredemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-               // mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+               mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                 mailMessage.Subject = "Subscribe" + " " + email;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
                 mailMessage.IsBodyHtml = false;
@@ -243,6 +275,16 @@ namespace Quick_Point.co.uk.Controllers
                 client.EnableSsl = true;
                 client.Send(mailMessage);
                 ViewBag.Message = "Subscribed";
+
+                var document = new BsonDocument
+                {
+                {"Name", name },
+                {"Email", emailS },
+                {"Date", dt },
+                };
+
+                collec.InsertOneAsync(document);
+
                 return View();
             }
             catch
@@ -257,6 +299,11 @@ namespace Quick_Point.co.uk.Controllers
         [HttpPost]
         public ActionResult Subscribe(String name, string email)
         {
+            var MDclient = new MongoClient("mongodb+srv://fred:" + MongoDBPW() + "@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
+            var db = MDclient.GetDatabase("QuickPoint");
+            var collec = db.GetCollection<BsonDocument>("Subscribe");
+
+           
             try
             {
 
@@ -268,10 +315,10 @@ namespace Quick_Point.co.uk.Controllers
 
                 var mailMessage = new MailMessage();
                 mailMessage.From = new MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
-                //mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Ludaemail")));
-                mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Fredemail")));
+                mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                //mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Fredemail")));
                 mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-              //  mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                 mailMessage.Subject = "Subscribe" + " " + email;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + _name + "\n" + "\n" + "Email:" + "\n" + _email;
                 mailMessage.IsBodyHtml = false;
@@ -282,6 +329,16 @@ namespace Quick_Point.co.uk.Controllers
                 client.EnableSsl = true;
                 client.Send(mailMessage);
                 ViewBag.Message = "Subscribed";
+
+                var document = new BsonDocument
+                {
+                {"Name", name },
+                {"Email", email },
+                {"Date", dt },
+                };
+
+                collec.InsertOneAsync(document);
+
                 return View();
             }
             catch
@@ -343,6 +400,12 @@ namespace Quick_Point.co.uk.Controllers
             msg = msg.Replace('\\', ' ');
             msg = msg.Replace('=', ' ');
             return msg;
+        }
+
+        public string MongoDBPW()
+        {
+            var P = Utils.GetConfigSetting("MongoDBPW");
+            return P;
         }
 
     }

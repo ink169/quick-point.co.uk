@@ -97,7 +97,7 @@ function s4() {
 
 function startChat() {
 
-    var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
+    var d1 = window.WebChat.createDirectLine({ secret: '-OSA01tU5Z4.1ZBEedP4auYcxnJok0Vpj8BUeS-jR1-lPpmFiUeGdD0' });
 
 
     //var userId = guid().toUpperCase();
