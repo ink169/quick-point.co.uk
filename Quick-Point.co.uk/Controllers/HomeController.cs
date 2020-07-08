@@ -175,7 +175,6 @@ namespace Quick_Point.co.uk.Controllers
           try
               {
 
-                  //var fileName = Path.GetFileName(file.FileName);
                   var username = escapeCharacters((form["name"].ToString()));
                   var email = escapeCharacters((form["email"].ToString()));
                   var message = escapeCharacters((form["message"].ToString()));
@@ -186,10 +185,10 @@ namespace Quick_Point.co.uk.Controllers
                   mailMessage.From = new
                      MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                   mailMessage.To.Add(new
-                       //  MailAddress(Utils.GetConfigSetting("Ludaemail")));
-                       MailAddress(Utils.GetConfigSetting("Fredemail")));
+                       MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                       //MailAddress(Utils.GetConfigSetting("Fredemail")));
                   mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                  //mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                  mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                   mailMessage.Subject = "New Contact Request from " + username; ;
                   mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                   mailMessage.IsBodyHtml = false;
@@ -217,11 +216,11 @@ namespace Quick_Point.co.uk.Controllers
             try
             {
                //var fileName = Path.GetFileName(file.FileName);
-                var username = escapeCharacters((form["name"].ToString()));
-                var email = escapeCharacters((form["email"].ToString()));
-                var dt = DateTime.Now.ToString();
+                //var username = escapeCharacters((form["name"].ToString()));
+                //var email = escapeCharacters((form["email"].ToString()));
+                //var dt = DateTime.Now.ToString();
 
-                var t = 9;
+                //var t = 9;
 
 
                 //var mailMessage = new MailMessage();
