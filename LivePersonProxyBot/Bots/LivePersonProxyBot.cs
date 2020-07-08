@@ -170,15 +170,15 @@ namespace LivePersonProxyBot.Bots
                         var mailMessage = new MailMessage();
                         mailMessage.From = new
                            MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                      //  mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                        mailMessage.To.Add("freddie.kemp@cybercom.media");
+                        mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                        //mailMessage.To.Add("freddie.kemp@cybercom.media");
                         mailMessage.CC.Add("freddie.kemp@cybercom.media");
-                        //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                        mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                         mailMessage.Subject = "Unanswered Question from " + name; ;
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
                         mailMessage.IsBodyHtml = false;
                         SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145Fred89jk!*.");
+                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
                         client.Port = 587;
                         client.Host = "smtp.office365.com";
                         client.EnableSsl = true;
@@ -239,6 +239,28 @@ namespace LivePersonProxyBot.Bots
             }
 
             await base.OnEventAsync(turnContext, cancellationToken);
+        }
+
+        public string fredpw()
+        {
+            string p;
+            p = "%";
+            p = p + "^";
+            p = p + "$";
+            p = p + "8";
+            p = p + "i";
+            p = p + "j";
+            p = p + "t";
+            p = p + "6";
+            p = p + "5";
+            p = p + "$";
+            p = p + "R";
+            p = p + "t";
+            p = p + "y";
+            p = p + "u";
+            p = p + "!";
+            p = p + "*";
+            return p;
         }
     }
 }
