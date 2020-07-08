@@ -190,7 +190,7 @@ namespace Quick_Point.co.uk.Controllers
 
             var MDclient = new MongoClient("mongodb+srv://fred:" + MongoDBPW() + "@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
             var db = MDclient.GetDatabase("QuickPoint");
-            var collec = db.GetCollection<BsonDocument>("PopSubscribe");
+            var collec = db.GetCollection<BsonDocument>("Contact");
             try
               {
 
