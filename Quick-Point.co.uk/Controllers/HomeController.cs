@@ -9,13 +9,13 @@ using System.Web.Mvc;
 using MongoDB;
 using MongoDB.Bson;
 using MongoDB.Driver;
-
+using Recaptcha;
 using System.Security;
 using Quick_Point.co.uk.ViewModels;
 using Quick_Point.co.uk.Helpers;
 using Utils = Quick_Point.co.uk.Helpers.Utils;
 using System.Web.Configuration;
-
+using Newtonsoft.Json;
 
 namespace Quick_Point.co.uk.Controllers
 {    
@@ -27,16 +27,18 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
+               
+
         [HttpPost]
         public ActionResult FF(HttpPostedFileBase file, System.Web.Mvc.FormCollection form1, FFAC model)
         {
 
             var dt = DateTime.Now.ToString();
-            var username = (form1["name"].ToString());
-            var email = (form1["email"].ToString());
-            var phone = (form1["phone"].ToString());
-            var staffno = (form1["staffno"].ToString());
-            var turnover = (form1["turnover"].ToString());
+            var username = escapeCharacters((form1["name"].ToString()));
+            var email = escapeCharacters((form1["email"].ToString()));
+            var phone = escapeCharacters((form1["phone"].ToString()));
+            var staffno = escapeCharacters((form1["staffno"].ToString()));
+            var turnover = escapeCharacters((form1["turnover"].ToString()));
             var selected = model.Business;
             var bookkeeping = model.Bookkeeping;
             var payroll = model.Payroll;
@@ -167,45 +169,45 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
-        public ActionResult Contact(System.Web.Mvc.FormCollection form)
-        {
+         public ActionResult Contact(System.Web.Mvc.FormCollection form)
+         {
+          try
+              {
 
-            try
-            {
-
-                //var fileName = Path.GetFileName(file.FileName);
-                var username = (form["name"].ToString());
-                var email = (form["email"].ToString());
-                var message = (form["message"].ToString());
-                var dt = DateTime.Now.ToString();
+                  //var fileName = Path.GetFileName(file.FileName);
+                  var username = escapeCharacters((form["name"].ToString()));
+                  var email = escapeCharacters((form["email"].ToString()));
+                  var message = escapeCharacters((form["message"].ToString()));
+                  var dt = DateTime.Now.ToString();
 
 
-                var mailMessage = new MailMessage();
-                mailMessage.From = new
-                   MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
-                mailMessage.To.Add(new
-                   MailAddress(Utils.GetConfigSetting("Ludaemail")));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
-                mailMessage.Subject = "New Contact Request from " + username; ;
-                mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
-                mailMessage.IsBodyHtml = false;
-                SmtpClient client = new SmtpClient();
-                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
-                client.Port = 587;
-                client.Host = "smtp.office365.com";
-                client.EnableSsl = true;
-                client.Send(mailMessage);
-                ViewBag.Message = "Email sent";
-                return View();
-            }
-            catch
-            {
-             
-                return View();
-            }
+                  var mailMessage = new MailMessage();
+                  mailMessage.From = new
+                     MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
+                  mailMessage.To.Add(new
+                       //  MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                       MailAddress(Utils.GetConfigSetting("Fredemail")));
+                  mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+                  //mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                  mailMessage.Subject = "New Contact Request from " + username; ;
+                  mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
+                  mailMessage.IsBodyHtml = false;
+                  SmtpClient client = new SmtpClient();
+                  client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
+                  client.Port = 587;
+                  client.Host = "smtp.office365.com";
+                  client.EnableSsl = true;
+                  client.Send(mailMessage);
+                  ViewBag.Message = "Email sent";
+                  return View("Contact"); 
+              }
+              catch
+              {
+                  
+                  return View();
+              }
 
-        }
+          }
 
 
 
@@ -215,8 +217,8 @@ namespace Quick_Point.co.uk.Controllers
             {
 
                 //var fileName = Path.GetFileName(file.FileName);
-                var username = (form["name"].ToString());
-                var email = (form["email"].ToString());
+                var username = escapeCharacters((form["name"].ToString()));
+                var email = escapeCharacters((form["email"].ToString()));
                 var dt = DateTime.Now.ToString();
 
 
@@ -268,9 +270,9 @@ namespace Quick_Point.co.uk.Controllers
            {
 
                 //var fileName = Path.GetFileName(file.FileName);
-                var username = (form["name"].ToString());
-                var email = (form["email"].ToString());
-                var phone = (form["phone"].ToString());
+                var username = escapeCharacters((form["name"].ToString()));
+                var email = escapeCharacters((form["email"].ToString()));
+                var phone = escapeCharacters((form["phone"].ToString()));
                 var business = (form["Business type"].ToString());
                     var turnover = (form["turnover"].ToString());
                     var staff = (form["staff"].ToString());
@@ -351,6 +353,14 @@ namespace Quick_Point.co.uk.Controllers
             ViewBag.Message = "Meet the team";
 
             return View();
+        }
+
+        public string escapeCharacters(string msg)
+        {
+            msg = msg.Replace(';', ' ');
+            msg = msg.Replace('\\', ' ');
+            msg = msg.Replace('=', ' ');
+            return msg;
         }
 
     }
