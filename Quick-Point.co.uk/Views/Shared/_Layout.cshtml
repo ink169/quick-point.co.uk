@@ -144,8 +144,7 @@
         var subOpen = false;
 
         $("#fixed-form-container .body").hide();
-
-        
+                
 
         function toggleSubmit() {
 
@@ -185,6 +184,14 @@
                 $("#fixed-form-container .body").hide(400);
             }
         }
+
+        $(document).ready(function () {
+            setTimeout(function () {
+
+                toggleSubmit()
+
+            }, 20000);
+        });
 
 
     </script>

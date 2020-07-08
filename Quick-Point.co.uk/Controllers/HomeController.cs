@@ -136,7 +136,6 @@ namespace Quick_Point.co.uk.Controllers
                 Response.Redirect(getHomeAddress());
                 return View();
             }
-
         }
 
 
