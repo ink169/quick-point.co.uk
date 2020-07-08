@@ -170,6 +170,7 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
+        [HttpPost]
          public ActionResult Contact(System.Web.Mvc.FormCollection form)
          {
           try
@@ -210,12 +211,20 @@ namespace Quick_Point.co.uk.Controllers
           }
 
 
+
         [HttpPost]
-        public ActionResult Subscribe(String name, string email)
+        public ActionResult SubscribePopup(String name, string email)
         {
+
+            var t = 9;
+
+
             try
             {
-               //var fileName = Path.GetFileName(file.FileName);
+
+
+
+                //var fileName = Path.GetFileName(file.FileName);
                 //var username = escapeCharacters((form["name"].ToString()));
                 //var email = escapeCharacters((form["email"].ToString()));
                 //var dt = DateTime.Now.ToString();
@@ -240,6 +249,43 @@ namespace Quick_Point.co.uk.Controllers
                 //client.EnableSsl = true;
                 //client.Send(mailMessage);
                 //ViewBag.Message = "Subscribed";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "";
+                return View();
+            }
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Subscribe(String name, string email)
+        {
+            try
+            {
+
+                var dt = DateTime.Now.ToString();
+
+
+
+
+                var mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
+                mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Ludaemail")));
+                mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+                mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                mailMessage.Subject = "Subscribe" + " " + email;
+                mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email;
+                mailMessage.IsBodyHtml = false;
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(Utils.GetConfigSetting("QuickPointemail"), Utils.GetConfigSetting("fpw"));
+                client.Port = 587;
+                client.Host = "smtp.office365.com";
+                client.EnableSsl = true;
+                client.Send(mailMessage);
+                ViewBag.Message = "Subscribed";
                 return View();
             }
             catch

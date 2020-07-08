@@ -137,6 +137,47 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+       // alert('hay');
+       // $("#fixed-form-container .body").hide();
+        //$("#fixed-form-container .button").click(function () {
+
+
+
+        function toggleSubmit() {
+            alert('hooky');
+            $(this).next("#fixed-form-container div").slideToggle(400);
+            $(this).toggleClass("expanded");
+        }
+
+
+        function postvals() {
+            if (($('#name').val() != '') && ($('#email').val() != '')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/home/subscribe",
+                    data: { "name": $('#name').val(), "email": $('#email').val() },
+                    success: function (response) {
+                        if (response == null) {
+                            //alert('ok');
+                        } else {
+                            // alert("Something went wrong");
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        }
+
+
+    </script>
+
     @RenderSection("scripts", required: false)
 
 

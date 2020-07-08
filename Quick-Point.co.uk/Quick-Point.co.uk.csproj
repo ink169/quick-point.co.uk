@@ -363,6 +363,7 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Articles\_LegalArticle5.cshtml" />
     <Content Include="Views\Home\FF.cshtml" />
+    <Content Include="Views\Shared\_LayoutSubscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
