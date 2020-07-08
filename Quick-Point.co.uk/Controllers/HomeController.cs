@@ -256,68 +256,7 @@ namespace Quick_Point.co.uk.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult FFA(HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, System.Web.Mvc.FormCollection form)
-        {
-
-
-            var client = new MongoClient("mongodb+srv://fred:ASdfJI43619%21@freefinancial-tubyw.azure.mongodb.net/QuickPoint?retryWrites=true&w=majority");
-            var db = client.GetDatabase("QuickPoint");
-            var collec = db.GetCollection<BsonDocument>("FFA Uploaders");
-
-
-
-            try
-            {
-
-                //var fileName = Path.GetFileName(file.FileName);
-                var username = escapeCharacters((form["name"].ToString()));
-                var email = escapeCharacters((form["email"].ToString()));
-                var phone = escapeCharacters((form["phone"].ToString()));
-                var business = (form["Business type"].ToString());
-                var turnover = (form["turnover"].ToString());
-                var staff = (form["staff"].ToString());
-                var bookkeeping = (form["Bookkeeping"]);
-                var Payroll = (form["Payroll"]);
-                var Companieshousereturns = (form["Companieshousereturns"]);
-                var SelfAssessment = (form["Self-Assessment"]);
-                var VAT = (form["VAT"]);
-                var AccountsManagement = (form["AccountsManagement"]);
-                var BusinessConsultations = (form["BusinessConsultations"]);
-                var TaxationAdvice = (form["TaxationAdvice"]);
-
-                var document = new BsonDocument
-                {
-                {"Name", username},
-                {"Email", email },
-                {"Phone", phone },
-                {"Business", business },
-                {"Turnover", turnover },
-                {"No. Staff", staff },
-                //NEEDS FIDDLING WITH BECAUSE THEY AREN'T UPLOADING
-               /* {"Request Bookkeeping?", bookkeeping },
-                {"Request Payroll?", Payroll },
-                {"Request Companies House Returns?", Companieshousereturns },
-                {"Request Self-Assessment?", SelfAssessment },
-                {"Request VAT?", VAT },
-                {"Request Accoutns management?", AccountsManagement },
-                {"Request Business Consultations?", BusinessConsultations },
-                {"Request Taxation Advice?", TaxationAdvice },*/
-                };
-
-                collec.InsertOneAsync(document);
-
-
-
-                ViewBag.Message = "Thank you kindly, and we will be in touch soon! ";
-                return View();
-            }
-            catch
-            {
-                ViewBag.Message = "File Uploaded Unsucessfully, please try again, filling in all fields. If the error persists, please contact us.";
-                return View();
-            }
-        }
+   
 
         public static SecureString GetSecurePassword()
         {

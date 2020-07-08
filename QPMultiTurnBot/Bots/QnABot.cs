@@ -61,17 +61,25 @@ namespace Microsoft.BotBuilderSamples
             _httpClientFactory = httpClientFactory;
         }
 
-
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
             foreach (var member in membersAdded)
             {
-                if (member.Id != turnContext.Activity.Recipient.Id)
+                if (member.Id == "24ae205b-2b29-489d-95ef-1b3d32886a0d")
                 {
                     await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
                 }
             }
+
+
+            //foreach (var member in membersAdded)
+            //{
+            //    if (member.Id != turnContext.Activity.Recipient.Id)
+            //    {
+            //        await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+            //    }
+            //}
         }
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)

@@ -328,7 +328,6 @@
     <Content Include="Scripts\owl.carousel\LICENSE" />
     <Content Include="Scripts\owl.carousel\README.md" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\FFA.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\Resources.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />

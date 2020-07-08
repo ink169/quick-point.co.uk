@@ -100,8 +100,10 @@ function startChat() {
     var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
 
 
-    var userId = guid().toUpperCase();
-    var userName = 'User-' + Math.floor((1 + Math.random()) * 10000);
+    //var userId = guid().toUpperCase();
+    //var userName = 'User-' + Math.floor((1 + Math.random()) * 10000);
+    var userId = "24ae205b-2b29-489d-95ef-1b3d32886a0d";
+    var userName = "botInitializr";
 
     const styleOptions = {
         rootwidth: 'Auto',
