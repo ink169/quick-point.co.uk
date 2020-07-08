@@ -138,7 +138,7 @@ namespace Microsoft.BotBuilderSamples
                 var name = jobj["Name"].ToString();
                 var question = jobj["Question"].ToString();
 
-                /*try
+                try
                 {
 
                     if (question != "")
@@ -157,7 +157,7 @@ namespace Microsoft.BotBuilderSamples
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
                         mailMessage.IsBodyHtml = false;
                         SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145fred89jk!*.");
+                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145Fred89jk!*.");
                         client.Port = 587;
                         client.Host = "smtp.office365.com";
                         client.EnableSsl = true;
@@ -179,7 +179,7 @@ namespace Microsoft.BotBuilderSamples
                     string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
                     await turnContext.SendActivityAsync(fail);
 
-                }*/
+                }
             }
         }
     }

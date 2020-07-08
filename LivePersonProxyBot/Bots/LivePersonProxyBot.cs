@@ -178,7 +178,7 @@ namespace LivePersonProxyBot.Bots
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
                         mailMessage.IsBodyHtml = false;
                         SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145fred89jk!*.");
+                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", "145Fred89jk!*.");
                         client.Port = 587;
                         client.Host = "smtp.office365.com";
                         client.EnableSsl = true;
