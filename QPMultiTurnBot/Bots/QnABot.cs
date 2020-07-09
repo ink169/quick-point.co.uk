@@ -63,11 +63,11 @@ namespace Microsoft.BotBuilderSamples
             var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
             foreach (var member in membersAdded)
             {
-                //if (member.Id == "24ae205b-2b29-489d-95ef-1b3d32886a0d")
-                //{
-                //    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
-                //}
-                await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                if (member.Id == "24ae205b-2b29-489d-95ef-1b3d32886a0d")
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                }
+                //await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
             }
         }
 
