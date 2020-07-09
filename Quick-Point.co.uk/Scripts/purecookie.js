@@ -78,8 +78,6 @@ function purecookieDismiss() {
 }
 
 // https://github.com/microsoft/BotFramework-WebChat/issues/1397
-//  directLine: window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' }),
-
 
 function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
@@ -95,9 +93,7 @@ function s4() {
 
 function startChat() {
 
-    // var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
     var d1 = window.WebChat.createDirectLine({ token: DLtoken });
-    //var userId = "24ae205b-2b29-489d-95ef-1b3d32886a0d";
     var userName = "botInitializr";
 
     const styleOptions = {
@@ -105,12 +101,10 @@ function startChat() {
         backgroundColor: 'AliceBlue',
         botAvatarImage: 'https://github.com/ink169.png?size=64',
         bubbleBackground: 'rgba(46, 115, 187, .2)',
-        //botAvatarInitials: 'BF',
         userAvatarImage: 'https://github.com/FreddieK01.png?size=64',
         bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
         bubbleMaxWidth: 600,
         hideUploadButton: true,
-        // userAvatarInitials: 'WC'
     };
 
     window.WebChat.renderWebChat({ directLine: d1, styleOptions }, document.getElementById('webchat'));
@@ -147,9 +141,8 @@ function getToken() {
         url: "/home/gettoken",
         success: function (response) {
             if (response !== null) {
-                DLtoken = response.User;
+                DLtoken = response.Token;
                 userId = response.User;
-               // alert(response.User);
             }
         },
         failure: function (response) {
