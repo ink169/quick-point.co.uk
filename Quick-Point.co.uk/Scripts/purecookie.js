@@ -77,8 +77,6 @@ function purecookieDismiss() {
 
 }
 
-
-
 // https://github.com/microsoft/BotFramework-WebChat/issues/1397
 //  directLine: window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' }),
 
@@ -99,7 +97,7 @@ function startChat() {
 
     // var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
     var d1 = window.WebChat.createDirectLine({ token: DLtoken });
-    var userId = "24ae205b-2b29-489d-95ef-1b3d32886a0d";
+    //var userId = "24ae205b-2b29-489d-95ef-1b3d32886a0d";
     var userName = "botInitializr";
 
     const styleOptions = {
@@ -131,17 +129,34 @@ function startChat() {
         }
     };
 
-    d1.postActivity(activity).subscribe(function (id) {
-        //alert('trigger requestWelcomeDialog');
-        //if (console) {
-        //    console.log('"trigger requestWelcomeDialog" sent');
-        //}
-    });
+    d1.postActivity(activity).subscribe(function (id) { });
 }
 
+
 var DLtoken = '';
+var userId = '';
 
 window.onload = function () {
     cookieConsent();
     getToken();
 };
+
+function getToken() {
+    $.ajax({
+        type: "GET",
+        url: "/home/gettoken",
+        success: function (response) {
+            if (response !== null) {
+                DLtoken = response.User;
+                userId = response.User;
+               // alert(response.User);
+            }
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        }
+    });
+}

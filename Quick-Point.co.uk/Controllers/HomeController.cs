@@ -2,11 +2,16 @@
 using System.IO;
 using System.Web;
 using System.Net;
+using System.Text;
 using MongoDB.Bson;
 using System.Web.Mvc;
 using MongoDB.Driver;
 using System.Security;
 using System.Net.Mail;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using Quick_Point.co.uk.Helpers;
 using Quick_Point.co.uk.ViewModels;
@@ -16,6 +21,64 @@ namespace Quick_Point.co.uk.Controllers
 {
     public class HomeController : Controller
     {
+
+        public ActionResult Index()
+        {
+
+            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
+
+            return View(new Resource() { BaseUrl = baseAddress });
+
+        }
+
+
+        public async Task<JsonResult> GetToken()
+        {
+            var secret = Utils.GetConfigSetting("secret");
+
+            HttpClient client = new HttpClient();
+
+            HttpRequestMessage request = new HttpRequestMessage(
+                HttpMethod.Post,
+                $"https://directline.botframework.com/v3/directline/tokens/generate");
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", secret);
+
+            var userId = $"dl_{Guid.NewGuid()}";
+
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(
+                    new { User = new { Id = userId } }),
+                    Encoding.UTF8,
+                    "application/json");
+
+            var response = await client.SendAsync(request);
+            string tokenVal = String.Empty;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                tokenVal = JsonConvert.DeserializeObject<DirectLineToken>(body).token;
+               // var config = new ChatConfig() { Token = token, UserId = userId };
+                // return String.Format("{0}*****{1}",token, userId);
+                return Json(new
+                {
+                    success = true,
+                    Token = tokenVal,
+                    User = userId,
+                   // Email = model.Email
+                },
+                JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                throw new Exception("Error getting bearer token");
+            }
+        }
+            
+
+
+
         public ActionResult FF()
         {
 
@@ -153,16 +216,7 @@ namespace Quick_Point.co.uk.Controllers
             }
         }
 
-
-        public ActionResult Index()
-        {
-
-            var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
-
-            return View(new Resource() { BaseUrl = baseAddress });
-
-        }
-
+        
         public ActionResult Contact()
         {
             return View();
@@ -409,4 +463,18 @@ namespace Quick_Point.co.uk.Controllers
         }
 
     }
+
+    public class ChatConfig
+    {
+        public string Token { get; set; }
+        public string UserId { get; set; }
+    }
+
+    public class DirectLineToken
+    {
+        public string conversationId { get; set; }
+        public string token { get; set; }
+        public int expires_in { get; set; }
+    }
+
 }
