@@ -145,20 +145,3 @@ window.onload = function () {
     cookieConsent();
     getToken();
 };
-
-function getToken(url, cb) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader('Authorization', 'Bearer tO1hHNJUPmY.nhW7tebGn2qo--Za3x8boPj9kxFtRbU3lUAoUGdmNVc');
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    xhr.send(null);
-    if (xhr.status === 200) {
-        // console.log(xhr.responseText);
-        cb(JSON.parse(xhr.responseText).token)
-    }
-}
-
-getToken('https://directline.botframework.com/v3/directline/tokens/generate', function (data) {
-    DLtoken = data;
-    console.log('token: ', DLtoken);
-})
