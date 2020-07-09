@@ -97,11 +97,8 @@ function s4() {
 
 function startChat() {
 
-    var d1 = window.WebChat.createDirectLine({ secret: '-OSA01tU5Z4.1ZBEedP4auYcxnJok0Vpj8BUeS-jR1-lPpmFiUeGdD0' });
-
-
-    //var userId = guid().toUpperCase();
-    //var userName = 'User-' + Math.floor((1 + Math.random()) * 10000);
+    // var d1 = window.WebChat.createDirectLine({ secret: 'EVhLppJqzCk.zsB5oaTgXsCbe7qH77_ZBhreJZoYsLIW8J93p5BkWvI' });
+    var d1 = window.WebChat.createDirectLine({ token: DLtoken });
     var userId = "24ae205b-2b29-489d-95ef-1b3d32886a0d";
     var userName = "botInitializr";
 
@@ -142,8 +139,26 @@ function startChat() {
     });
 }
 
-
+var DLtoken = '';
 
 window.onload = function () {
     cookieConsent();
-}; 
+    getToken();
+};
+
+function getToken(url, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, false);
+    xhr.setRequestHeader('Authorization', 'Bearer tO1hHNJUPmY.nhW7tebGn2qo--Za3x8boPj9kxFtRbU3lUAoUGdmNVc');
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.send(null);
+    if (xhr.status === 200) {
+        // console.log(xhr.responseText);
+        cb(JSON.parse(xhr.responseText).token)
+    }
+}
+
+getToken('https://directline.botframework.com/v3/directline/tokens/generate', function (data) {
+    DLtoken = data;
+    console.log('token: ', DLtoken);
+})

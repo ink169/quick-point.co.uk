@@ -21,12 +21,9 @@ namespace Microsoft.BotBuilderSamples
     public class QnABot : ActivityHandler
     {
 
-
-
-
         private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
         {
-            var card = new AdaptiveCard();
+            var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "Unfortunately, the Quick-Point bot couldn't find an accurate answer to your query. Please try again, using specific key words. Thanks for your patience - the ChatBot gets smarter with each question!", Size = AdaptiveTextSize.Medium, Wrap = true });
             card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
@@ -71,21 +68,38 @@ namespace Microsoft.BotBuilderSamples
                     await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
                 }
             }
-
-
-            //foreach (var member in membersAdded)
-            //{
-            //    if (member.Id != turnContext.Activity.Recipient.Id)
-            //    {
-            //        await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
-            //    }
-            //}
         }
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             if (turnContext.Activity.Value == null)
             {
+
+                // live agent handoff
+                if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
+                {
+                    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
+                    var actionDict = new Dictionary<string, object>()
+                    {
+                        { "name", "TRANSFER" },
+                        { "parameters", skillDict }
+                    };
+
+                    IMessageActivity message = Activity.CreateMessageActivity();
+                    message.Text = $"Trying to connect to an agent";
+                    message.TextFormat = "plain";
+                    message.ChannelData = new Dictionary<string, object>
+                    {
+                        ["type"] = "message", //["type"] = "connectAgent",
+                        ["text"] = "",
+                        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
+
+                    };
+                    await turnContext.SendActivityAsync(message, cancellationToken);
+
+                    return;
+
+                }
 
                 var httpClient = _httpClientFactory.CreateClient();
 
