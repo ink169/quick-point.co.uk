@@ -56,11 +56,8 @@ namespace Microsoft.BotBuilderSamples
         HeroCard card = new HeroCard()
         {
             Title = $"Answer not found"
-        };
-        
-
-
-      
+        };    
+              
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
