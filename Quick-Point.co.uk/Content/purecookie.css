@@ -6,10 +6,12 @@
 	min-height: 20px;
 	box-sizing: border-box;
 	padding: 30px 30px 30px 30px;
-	background: #a5adcb;
+	background: #8B8D9B;
 	overflow: hidden;
 	position: fixed;
-   /* bottom: 30px;
+	width: 450px;
+	height: 184px;
+	/* bottom: 30px;
 	right: 30px;*/
 	display: none;
 }
@@ -40,10 +42,10 @@
 		color: #FFFFFF;
 		font-size: 16px;
 		/*		font-weight: bold;*/
-		margin-top: 14px;
-		background: #060552 ;/*#348255; /*#000000*/
+		margin-top: 10px;
+		background: #294B86; /*#348255; /*#000000*/
 		box-sizing: border-box;
-		padding: 15px 24px;
+		padding: 8px 18px;
 		text-align: center;
 		transition: background 0.3s;
 	}

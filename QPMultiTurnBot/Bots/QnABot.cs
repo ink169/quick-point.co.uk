@@ -76,6 +76,7 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
+            turnContext.SendActivityAsync( ActivityTypes.Typing);
             if (turnContext.Activity.Value == null)
             {
 
@@ -137,6 +138,7 @@ namespace Microsoft.BotBuilderSamples
                 var response = await qnaMaker.GetAnswersAsync(turnContext, options);
                 if (response != null && response.Length > 0)
                 {
+
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
                 }
                 else
