@@ -37,12 +37,43 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     }
 }
 
+.resources {
+    border: none;
+    word-break: break-word;
+    font-size: 11pt;
+   font-family: "Montserrat",sans-serif;
+}
+
+    .resources headtable {
+        font-family: "Montserrat",sans-serif;
+        width: 50%;
+        font-size: 35px;
+        text-align: center;
+        color:black;
+    }
+
+    .resources tr {
+        border: none;
+        word-break: break-word;
+        font-size: 11pt;
+        font-family: "Montserrat",sans-serif;
+    }
+
+        .resources tr td {
+            border: none;
+            word-break: break-word;
+            font-size: 11pt;
+            height: 50px;
+            font-family: "Montserrat",sans-serif;
+        }
+
 
 table, th, td {
-    border: 1px solid lightgray;
+
     word-break: break-word;
     font-size: 11pt;
 }
+
 
 
 .tbCell {
