@@ -45,11 +45,12 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
     .resources headtable {
-        font-family: "Montserrat",sans-serif;
+        font-family: "Roboto", sans-serif;
+        
         width: 50%;
         font-size: 35px;
         text-align: center;
-        color:black;
+        color: black;
     }
 
     .resources tr {
@@ -74,11 +75,14 @@ table, th, td {
     font-size: 11pt;
 }
 
-
+.headshot {
+    height:320px;
+    width:238px;
+}
 
 .tbCell {
     text-align: center;
-    color: #2B5990; 
+    color: #2B5990;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #DDEBF7;
@@ -131,12 +135,12 @@ section {
 }
 
 .section-heading {
-  font-size: 2rem;
-  font-weight: 600;
-  background: linear-gradient(-45deg, #3db3c5, #274685);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-/*  padding-bottom: 0.6em;*/
+    font-size: 2rem;
+    font-weight: 600;
+    background: linear-gradient(-45deg, #3db3c5, #274685);
+    /*-webkit-background-clip: text;*/
+    -webkit-text-fill-color: transparent;
+    /*  padding-bottom: 0.6em;*/
 }
 
 .section-chat {
