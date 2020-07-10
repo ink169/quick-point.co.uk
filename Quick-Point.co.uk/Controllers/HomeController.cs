@@ -21,7 +21,10 @@ namespace Quick_Point.co.uk.Controllers
 {
     public class HomeController : Controller
     {
-
+        public ActionResult oldResources()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
 
