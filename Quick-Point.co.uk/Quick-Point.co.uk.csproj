@@ -317,7 +317,7 @@
     <Content Include="Scripts\owl.carousel\README.md" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\Home\Resources.cshtml" />
+    <Content Include="Views\Home\oldResources.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle1.cshtml" />
     <Content Include="Views\Home\Article.cshtml" />
@@ -350,7 +350,7 @@
     <Content Include="Views\Home\FF.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Shared\_ArticleLayout.cshtml" />
-    <Content Include="Views\Home\Resource.cshtml" />
+    <Content Include="Views\Home\Resources.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
