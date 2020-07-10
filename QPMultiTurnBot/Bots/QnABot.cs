@@ -76,7 +76,8 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            turnContext.SendActivityAsync( ActivityTypes.Typing);
+            var typing = new Activity() { Type = ActivityTypes.Typing };
+            await turnContext.SendActivityAsync(typing);
             if (turnContext.Activity.Value == null)
             {
 
