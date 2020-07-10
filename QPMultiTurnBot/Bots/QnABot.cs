@@ -21,6 +21,15 @@ namespace Microsoft.BotBuilderSamples
     public class QnABot : ActivityHandler
     {
 
+        private List<String> _ids;
+        public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory)
+        {
+            _configuration = configuration;
+            _logger = logger;
+            _httpClientFactory = httpClientFactory;
+            _ids = new List<String>();
+        }
+
         private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
         {
             var card = new AdaptiveCard("1.0");
@@ -51,23 +60,20 @@ namespace Microsoft.BotBuilderSamples
         
 
 
-        public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory)
-        {
-            _configuration = configuration;
-            _logger = logger;
-            _httpClientFactory = httpClientFactory;
-        }
+      
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
             foreach (var member in membersAdded)
             {
-                //if (member.Id == "24ae205b-2b29-489d-95ef-1b3d32886a0d")
-                //{
-                //    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
-                //}
-                await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                // welcome new users
+                if (!_ids.Contains(member.Id))
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                    _ids.Add(member.Id);
+                }
+              
             }
         }
 
