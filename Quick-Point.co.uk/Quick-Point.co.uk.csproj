@@ -334,7 +334,7 @@
     <Content Include="Views\Articles\_TaxAccArticle12.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle11.cshtml" />
     <Content Include="Views\Articles\_LegalArticle1.cshtml" />
-    <Content Include="Views\Articles\_LegalArticle10 .cshtml" />
+    <Content Include="Views\Articles\_LegalArticle10.cshtml" />
     <Content Include="Views\Articles\_LegalArticle11.cshtml" />
     <Content Include="Views\Articles\_LegalArticle2.cshtml" />
     <Content Include="Views\Articles\_LegalArticle3.cshtml" />
@@ -350,6 +350,7 @@
     <Content Include="Views\Home\FF.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Shared\_ArticleLayout.cshtml" />
+    <Content Include="Views\Home\Resource.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

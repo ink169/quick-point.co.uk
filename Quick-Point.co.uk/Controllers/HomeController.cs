@@ -31,6 +31,11 @@ namespace Quick_Point.co.uk.Controllers
 
         }
 
+        public ActionResult Resource()
+        {
+            return View();
+        }
+
 
         public async Task<JsonResult> GetToken()
         {
