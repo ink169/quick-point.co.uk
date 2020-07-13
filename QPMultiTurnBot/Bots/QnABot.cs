@@ -62,12 +62,15 @@ namespace Microsoft.BotBuilderSamples
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
+            var welcomeSent = false;
             foreach (var member in membersAdded)
             {
                 // welcome new users
-                if (!_ids.Contains(member.Id))
+                if (!welcomeSent && !_ids.Contains(member.Id))
                 {
+                    welcomeSent = true;
                     await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                 
                     _ids.Add(member.Id);
                 }
               
@@ -76,8 +79,6 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            var typing = new Activity() { Type = ActivityTypes.Typing };
-            await turnContext.SendActivityAsync(typing);
             if (turnContext.Activity.Value == null)
             {
 
@@ -139,7 +140,6 @@ namespace Microsoft.BotBuilderSamples
                 var response = await qnaMaker.GetAnswersAsync(turnContext, options);
                 if (response != null && response.Length > 0)
                 {
-
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
                 }
                 else
@@ -172,8 +172,8 @@ namespace Microsoft.BotBuilderSamples
                         mailMessage.From = new
                            MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
                         mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                        //mailMessage.To.Add("freddie.kemp@cybercom.media");
-                        mailMessage.CC.Add("freddie.kemp@cybercom.media");
+                        //mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                        mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
                         mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                         mailMessage.Subject = "Unanswered Question from " + name; ;
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
