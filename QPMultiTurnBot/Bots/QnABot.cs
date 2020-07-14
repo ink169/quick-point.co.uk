@@ -132,7 +132,7 @@ namespace Microsoft.BotBuilderSamples
 
                 var options = new QnAMakerOptions { Top = 1 };
                 // Returns no accurate answer found on any questions below 70 score
-                options.ScoreThreshold = 0.4F;
+                options.ScoreThreshold = 0.7F;
 
 
 
