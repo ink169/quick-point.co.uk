@@ -83,30 +83,30 @@ namespace Microsoft.BotBuilderSamples
             {
 
                 // live agent handoff
-                if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
-                {
-                    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
-                    var actionDict = new Dictionary<string, object>()
-                    {
-                        { "name", "TRANSFER" },
-                        { "parameters", skillDict }
-                    };
+                //if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
+                //{
+                //    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
+                //    var actionDict = new Dictionary<string, object>()
+                //    {
+                //        { "name", "TRANSFER" },
+                //        { "parameters", skillDict }
+                //    };
 
-                    IMessageActivity message = Activity.CreateMessageActivity();
-                    message.Text = $"Trying to connect to an agent";
-                    message.TextFormat = "plain";
-                    message.ChannelData = new Dictionary<string, object>
-                    {
-                        ["type"] = "message", //["type"] = "connectAgent",
-                        ["text"] = "",
-                        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
+                //    IMessageActivity message = Activity.CreateMessageActivity();
+                //    message.Text = $"Trying to connect to an agent";
+                //    message.TextFormat = "plain";
+                //    message.ChannelData = new Dictionary<string, object>
+                //    {
+                //        ["type"] = "message", //["type"] = "connectAgent",
+                //        ["text"] = "",
+                //        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
 
-                    };
-                    await turnContext.SendActivityAsync(message, cancellationToken);
+                //    };
+                //    await turnContext.SendActivityAsync(message, cancellationToken);
 
-                    return;
+                //    return;
 
-                }
+                //}
 
                 var httpClient = _httpClientFactory.CreateClient();
 
