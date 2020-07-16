@@ -91,10 +91,27 @@ function s4() {
 }
 
 
+
+
 function startChat() {
+
+    // https://gitmemory.com/issue/microsoft/BotFramework-WebChat/2614/562928529
+
 
     var d1 = window.WebChat.createDirectLine({ token: DLtoken });
     var userName = "botInitializr";
+
+   
+    const store = window.WebChat.createStore(
+        {},
+        ({ dispatch }) => next => action => {
+            if (action.type === 'DIRECT_LINE/POST_ACTIVITY_FULFILLED') {
+                var scrollDiv = document.getElementById("webchat");
+                scrollDiv.scrollTop = scrollDiv.scrollHeight;
+            }
+            return next(action);
+        }
+    );
 
     const styleOptions = {
         rootwidth: 'Auto',
@@ -107,7 +124,16 @@ function startChat() {
         hideUploadButton: true,
     };
 
-    window.WebChat.renderWebChat({ directLine: d1, styleOptions }, document.getElementById('webchat'));
+   // window.WebChat.renderWebChat({ directLine: d1, styleOptions }, document.getElementById('webchat'));
+
+    
+    window.WebChat.renderWebChat({
+        directLine: d1,
+        styleOptions,
+        store
+    }, document.getElementById('webchat'));
+
+
 
     var activity = {
         from: {
@@ -153,3 +179,4 @@ function getToken() {
         }
     });
 }
+

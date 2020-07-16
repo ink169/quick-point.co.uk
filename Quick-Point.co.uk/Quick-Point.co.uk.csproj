@@ -317,7 +317,6 @@
     <Content Include="Scripts\owl.carousel\README.md" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\Home\oldResources.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle1.cshtml" />
     <Content Include="Views\Home\Article.cshtml" />

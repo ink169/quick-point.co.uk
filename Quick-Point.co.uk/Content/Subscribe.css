@@ -9,12 +9,12 @@
     z-index: 999;
 }
 
-    #fixed-form-container .button:before {
-        content: "+ ";
-    }
+   /* #fixed-form-container .button:before {
+        content: "X ";
+    } */
 
     #fixed-form-container .expanded:before {
-        content: "- ";
+        content: "X ";
     }
 
     #fixed-form-container .button {
