@@ -66,7 +66,6 @@ namespace Microsoft.BotBuilderSamples
             foreach (var member in membersAdded)
             {
                 // welcome new users
-
                 if (!welcomeSent && !_ids.Contains(member.Id))
                 {
                     welcomeSent = true;
@@ -78,142 +77,134 @@ namespace Microsoft.BotBuilderSamples
             }
         }
 
-        // https://github.com/microsoft/BotFramework-WebChat/issues/2120
-        protected override async Task OnEventActivityAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken)
-        {
-            if (turnContext.Activity.Name == "webchat/join")
-            {
-                await turnContext.SendActivityAsync("Got webchat/join event.");
-            }
-        }
-
-
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            if (turnContext.Activity.Value == null && !turnContext.Activity.Text.ToLower().Contains("agent"))
+            if (turnContext.Activity.Value == null)
             {
 
-                // if not live agent handoff
-                if (!turnContext.Activity.Text.ToLower().Contains("agent"))
+                // live agent handoff
+                if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
                 {
-                    var httpClient = _httpClientFactory.CreateClient();
+                    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
+                    var actionDict = new Dictionary<string, object>()
+                    {
+                        { "name", "TRANSFER" },
+                        { "parameters", skillDict }
+                    };
 
-                    /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+                    IMessageActivity message = Activity.CreateMessageActivity();
+                    message.Text = $"Trying to connect to an agent";
+                    message.TextFormat = "plain";
+                    message.ChannelData = new Dictionary<string, object>
+                    {
+                        ["type"] = "message", //["type"] = "connectAgent",
+                        ["text"] = "",
+                        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
 
-                    var qnaMaker = new QnAMaker(new QnAMakerEndpoint
-                    {/*
+                    };
+                    await turnContext.SendActivityAsync(message, cancellationToken);
+
+                    return;
+
+                }
+
+                var httpClient = _httpClientFactory.CreateClient();
+
+                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+
+                var qnaMaker = new QnAMaker(new QnAMakerEndpoint
+                {/*
                     //Practise Details
                     KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
                     Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
                     EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
                     // Live Details
                     */
-                        KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
-                        Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
-                        EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
+                    KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
+                    Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
+                    EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
+                    
+                },
+                null,
+                httpClient); ;
+                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT & Change email adress to sales *********** //////////////
+                _logger.LogInformation("Calling QnA Maker");
 
-                    },
-                    null,
-                    httpClient); ;
-                    /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT & Change email adress to sales *********** //////////////
-                    _logger.LogInformation("Calling QnA Maker");
-
-                    var options = new QnAMakerOptions { Top = 1 };
-                    // Returns no accurate answer found on any questions below 70 score
-                    options.ScoreThreshold = 0.4F;
+                var options = new QnAMakerOptions { Top = 1 };
+                // Returns no accurate answer found on any questions below 70 score
+                options.ScoreThreshold = 0.7F;
 
 
 
-                    // The actual call to the QnA Maker service.
-                    var response = await qnaMaker.GetAnswersAsync(turnContext, options);
-                    if (response != null && response.Length > 0)
+                // The actual call to the QnA Maker service.
+                var response = await qnaMaker.GetAnswersAsync(turnContext, options);
+                if (response != null && response.Length > 0)
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
+                }
+                else
+                {
+                    //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
+                    var reply = ((Activity)turnContext.Activity).CreateReply();
+                    reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { CreateAdaptiveCardUsingSdk() };
+
+                    await turnContext.SendActivityAsync(reply);
+
+                }
+            }
+            else   // value contains JSON result of card entries 
+            {
+                var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
+                var email = (string)jobj["Email"];
+                var name = jobj["Name"].ToString();
+                var question = jobj["Question"].ToString();
+
+                try
+                {
+
+                    if (question != "")
                     {
-                        await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
+
+                        var dt = DateTime.Now.ToString();
+
+
+                        var mailMessage = new MailMessage();
+                        mailMessage.From = new
+                           MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
+                        mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                        //mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                        mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
+                        mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                        mailMessage.Subject = "Unanswered Question from " + name; ;
+                        mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
+                        mailMessage.IsBodyHtml = false;
+                        SmtpClient client = new SmtpClient();
+                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
+                        client.Port = 587;
+                        client.Host = "smtp.office365.com";
+                        client.EnableSsl = true;
+                        client.Send(mailMessage);
+
+                        string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
+
+                        await turnContext.SendActivityAsync(success);
                     }
                     else
                     {
-                        //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
-                        var reply = ((Activity)turnContext.Activity).CreateReply();
-                        reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { CreateAdaptiveCardUsingSdk() };
-
-                        await turnContext.SendActivityAsync(reply);
-
-                    }
-                }
-                else   // value contains JSON result of card entries 
-                {
-                    var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
-                    var email = (string)jobj["Email"];
-                    var name = jobj["Name"].ToString();
-                    var question = jobj["Question"].ToString();
-
-                    try
-                    {
-
-                        if (question != "")
-                        {
-
-                            var dt = DateTime.Now.ToString();
-
-
-                            var mailMessage = new MailMessage();
-                            mailMessage.From = new
-                               MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                            mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                            //mailMessage.To.Add("freddieK_02@hotmail.co.uk");
-                            mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
-                            mailMessage.CC.Add("andrew.ingpen@cybercom.media");
-                            mailMessage.Subject = "Unanswered Question from " + name; ;
-                            mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
-                            mailMessage.IsBodyHtml = false;
-                            SmtpClient client = new SmtpClient();
-                            client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
-                            client.Port = 587;
-                            client.Host = "smtp.office365.com";
-                            client.EnableSsl = true;
-                            client.Send(mailMessage);
-
-                            string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
-
-                            await turnContext.SendActivityAsync(success);
-                        }
-                        else
-                        {
-                            string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
-                            await turnContext.SendActivityAsync(fail);
-                        }
-
-                    }
-                    catch
-                    {
                         string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
                         await turnContext.SendActivityAsync(fail);
-
                     }
 
                 }
-            }
-            else // live agent handoff 
-            {
-                var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
-                var actionDict = new Dictionary<string, object>()
-                    {
-                        { "name", "TRANSFER" },
-                        { "parameters", skillDict }
-                    };
-
-                IMessageActivity message = Activity.CreateMessageActivity();
-                message.Text = $"Trying to connect to an agent";
-                message.TextFormat = "plain";
-                message.ChannelData = new Dictionary<string, object>
+                catch
                 {
-                    ["type"] = "message", //["type"] = "connectAgent",
-                    ["text"] = "",
-                    ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
+                    string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                    await turnContext.SendActivityAsync(fail);
 
-                };
-                await turnContext.SendActivityAsync(message, cancellationToken);
+                }
+
             }
+            
         }
         public string fredpw()
         {
