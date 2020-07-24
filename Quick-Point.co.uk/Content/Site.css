@@ -80,7 +80,7 @@ table, th, td {
     position: relative;
     padding: 0;
     display:block;
-    margin: 5% 5% 0 5%
+    margin: 5% 0% 0 12%
 }
 
 
@@ -90,12 +90,13 @@ table, th, td {
 
 
 .article {
-    width:80%;
-    margin:30px 0px 20px 0px ;
-    background-color:ghostwhite;
-    border: solid 1px navy;
+    width: 80%;
+    margin: 30px 0px 20px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #FCFCFC;
+    border: solid 1px darkgrey;
     border-radius: 5px;
-    padding:20px 10px 20px 10px
+    padding: 20px 10px 20px 10px
 }
 
 .ahead {
