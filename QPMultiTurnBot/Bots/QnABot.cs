@@ -30,17 +30,33 @@ namespace Microsoft.BotBuilderSamples
             _ids = new List<String>();
         }
 
-        private Microsoft.Bot.Schema.Attachment CreateAdaptiveCardUsingSdk()
+        private Microsoft.Bot.Schema.Attachment wrongAnswerCard()
         {
             var card = new AdaptiveCard("1.0");
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Unfortunately, the Quick-Point bot couldn't find an accurate answer to your query. Please try again, using specific key words. Thanks for your patience - the ChatBot gets smarter with each question!", Size = AdaptiveTextSize.Medium, Wrap = true });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like your question answered persnally, our team will be happy to reply your question via live consultation via email or call, please fill in your details and we will be in touch, otherwise continue to ask a question", Size = AdaptiveTextSize.Medium, Wrap = true });
+            //card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Question:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Question" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "By clicking submit you agree to our T&C's here https://www.quick-point.co.uk/Home/Terms", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter });
+
+            return new Microsoft.Bot.Schema.Attachment()
+            {
+                ContentType = AdaptiveCard.ContentType,
+                Content = card
+            };
+        }
+
+        private Microsoft.Bot.Schema.Attachment didThisAnswerCard()
+        {
+            var card = new AdaptiveCard("1.0");
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Did this answer your question? Please enter 'yes' or 'no'", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "You can continue asking questions if you prefer not to fill in this form", Size = AdaptiveTextSize.Small, AdaptiveTextWeight.Lighter, Wrap = true });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "YesNo" });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
 
             return new Microsoft.Bot.Schema.Attachment()
@@ -123,7 +139,7 @@ namespace Microsoft.BotBuilderSamples
                     KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
                     Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
                     EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
-                    
+
                 },
                 null,
                 httpClient); ;
@@ -132,7 +148,7 @@ namespace Microsoft.BotBuilderSamples
 
                 var options = new QnAMakerOptions { Top = 1 };
                 // Returns no accurate answer found on any questions below 70 score
-                options.ScoreThreshold = 0.7F;
+                //options.ScoreThreshold = 0.1F;
 
 
 
@@ -141,8 +157,12 @@ namespace Microsoft.BotBuilderSamples
                 if (response != null && response.Length > 0)
                 {
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
+                    //offer 'ddi this answer your question'
+                    var reply = ((Activity)turnContext.Activity).CreateReply();
+                    reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
+                    await turnContext.SendActivityAsync(reply);
                 }
-                else
+                /*else
                 {
                     //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
                     var reply = ((Activity)turnContext.Activity).CreateReply();
@@ -150,9 +170,103 @@ namespace Microsoft.BotBuilderSamples
 
                     await turnContext.SendActivityAsync(reply);
 
-                }
+                }*/
             }
-            else   // value contains JSON result of card entries 
+            else // value contains JSON result of card entries 
+            {
+                var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
+
+                if (jobj.ContainsKey("YesNo"))
+                {
+                    var reply = (string)jobj["YesNo"];
+
+
+                    try
+                    {
+
+                        if (reply == "yes" ^ reply == "yeah" ^ reply == "yep" ^ reply == "ye" ^ reply == "y" ^ reply == "yer")
+                        {
+
+
+
+                            string success = "We are glad to be of help. Please continue to ask another question or check out the other features on our website";
+                            await turnContext.SendActivityAsync(success);
+                        }
+                        else if (reply == "no" ^ reply == "on" ^ reply == "narp" ^ reply == "nah" ^ reply == "nope" ^ reply == "noo")
+                        {
+                            var reply_ = ((Activity)turnContext.Activity).CreateReply();
+                            reply_.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { wrongAnswerCard() };
+
+                            await turnContext.SendActivityAsync(reply_);
+                        }
+                        else
+                        {
+                            string fail = "Please only enter 'yes' or 'no', or ask another question";
+                            await turnContext.SendActivityAsync(fail);
+                        }
+
+                    }
+                    catch
+                    {
+                        string fail = "Please only enter 'yes' or 'no', or ask another question";
+                        await turnContext.SendActivityAsync(fail);
+
+                    }
+                }
+                else
+                {
+                    var email = (string)jobj["Email"];
+                    var name = jobj["Name"].ToString();
+                    var question = jobj["Question"].ToString();
+
+                    try
+                    {
+
+                        if (question != "")
+                        {
+
+                            var dt = DateTime.Now.ToString();
+
+
+                            var mailMessage = new MailMessage();
+                            mailMessage.From = new
+                               MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
+                            //mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                            mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                            mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
+                            //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                            mailMessage.Subject = "Unanswered Question from " + name; ;
+                            mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
+                            mailMessage.IsBodyHtml = false;
+                            SmtpClient client = new SmtpClient();
+                            client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
+                            client.Port = 587;
+                            client.Host = "smtp.office365.com";
+                            client.EnableSsl = true;
+                            client.Send(mailMessage);
+
+                            string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
+
+                            await turnContext.SendActivityAsync(success);
+                        }
+                        else
+                        {
+                            string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                            await turnContext.SendActivityAsync(fail);
+                        }
+
+                    }
+                    catch
+                    {
+                        string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                        await turnContext.SendActivityAsync(fail);
+
+                    }
+
+                }
+
+            }
+            /*else   // value contains JSON result of card entries 
             {
                 var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
                 var email = (string)jobj["Email"];
@@ -171,10 +285,10 @@ namespace Microsoft.BotBuilderSamples
                         var mailMessage = new MailMessage();
                         mailMessage.From = new
                            MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                        mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                        //mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                        //mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                        mailMessage.To.Add("freddieK_02@hotmail.co.uk");
                         mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
-                        mailMessage.CC.Add("andrew.ingpen@cybercom.media");
+                        //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                         mailMessage.Subject = "Unanswered Question from " + name; ;
                         mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
                         mailMessage.IsBodyHtml = false;
@@ -203,8 +317,8 @@ namespace Microsoft.BotBuilderSamples
 
                 }
 
-            }
-            
+            }*/
+
         }
         public string fredpw()
         {
