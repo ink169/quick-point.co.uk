@@ -231,9 +231,9 @@ namespace Microsoft.BotBuilderSamples
                             var mailMessage = new MailMessage();
                             mailMessage.From = new
                                MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                            //mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                            mailMessage.To.Add("freddieK_02@hotmail.co.uk");
-                            mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
+                            mailMessage.To.Add("sales@sterling-beanland.co.uk");
+                           // mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                            mailMessage.CC.Add("freddie.kemp@cybercom.media");
                             //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                             mailMessage.Subject = "Unanswered Question from " + name; ;
                             mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
