@@ -126,20 +126,13 @@ namespace Microsoft.BotBuilderSamples
 
                 var httpClient = _httpClientFactory.CreateClient();
 
-                /////////////////// ******* USING TEST KB!!!!! CHANGE BEFORE DEPLOYMENT *********** //////////////
+                
 
                 var qnaMaker = new QnAMaker(new QnAMakerEndpoint
-                {/*
-                    //Practise Details
-                    KnowledgeBaseId = "9c87bf00-637f-4ce8-88e0-829c96a96ebb",
-                    Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
-                    EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
-                    // Live Details
-                    */
-                    KnowledgeBaseId = "cb3bd2f1-94fb-4190-bddd-07f025baa3a3",
-                    Host = "https://qpqnamakerapp1406.azurewebsites.net/qnamaker",
-                    EndpointKey = "a8460833-f441-4247-bb18-cad2bf2672fa"
-
+                {
+                    KnowledgeBaseId = "f6f704d1-fb26-4c31-b703-861f194fa1fc",
+                    Host = "https://freeqnamakerforqpapp.azurewebsites.net/qnamaker",
+                    EndpointKey = "618879c8-fa87-4be8-95d6-f7319e36fe7c"
                 },
                 null,
                 httpClient); ;
@@ -162,15 +155,7 @@ namespace Microsoft.BotBuilderSamples
                     reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
                     await turnContext.SendActivityAsync(reply);
                 }
-                /*else
-                {
-                    //await turnContext.SendActivityAsync(MessageFactory.Text("No QnA Maker answers were found."), cancellationToken);
-                    var reply = ((Activity)turnContext.Activity).CreateReply();
-                    reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { CreateAdaptiveCardUsingSdk() };
-
-                    await turnContext.SendActivityAsync(reply);
-
-                }*/
+                
             }
             else // value contains JSON result of card entries 
             {
@@ -266,58 +251,7 @@ namespace Microsoft.BotBuilderSamples
                 }
 
             }
-            /*else   // value contains JSON result of card entries 
-            {
-                var jobj = JObject.Parse(turnContext.Activity.Value.ToString());
-                var email = (string)jobj["Email"];
-                var name = jobj["Name"].ToString();
-                var question = jobj["Question"].ToString();
-
-                try
-                {
-
-                    if (question != "")
-                    {
-
-                        var dt = DateTime.Now.ToString();
-
-
-                        var mailMessage = new MailMessage();
-                        mailMessage.From = new
-                           MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
-                        //mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                        mailMessage.To.Add("freddieK_02@hotmail.co.uk");
-                        mailMessage.CC.Add("freddieK_02@hotmail.co.uk");
-                        //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
-                        mailMessage.Subject = "Unanswered Question from " + name; ;
-                        mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
-                        mailMessage.IsBodyHtml = false;
-                        SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
-                        client.Port = 587;
-                        client.Host = "smtp.office365.com";
-                        client.EnableSsl = true;
-                        client.Send(mailMessage);
-
-                        string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
-
-                        await turnContext.SendActivityAsync(success);
-                    }
-                    else
-                    {
-                        string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
-                        await turnContext.SendActivityAsync(fail);
-                    }
-
-                }
-                catch
-                {
-                    string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
-                    await turnContext.SendActivityAsync(fail);
-
-                }
-
-            }*/
+            
 
         }
         public string fredpw()

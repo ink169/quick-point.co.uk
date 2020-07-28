@@ -226,6 +226,7 @@
     <Content Include="Content\images\ChirpyTagBlue.png" />
     <Content Include="Content\images\docsimg.jpg" />
     <Content Include="Content\images\FA_sml.png" />
+    <Content Include="Content\images\ffimg.jpg" />
     <Content Include="Content\images\heads\alexC.png" />
     <Content Include="Content\images\heads\danaC.png" />
     <Content Include="Content\images\heads\edwardM.png" />
