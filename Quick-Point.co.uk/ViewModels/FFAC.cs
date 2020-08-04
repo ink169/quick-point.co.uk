@@ -14,6 +14,7 @@ namespace Quick_Point.co.uk.ViewModels
         {
             yield return new SelectListItem { Text = "LTD", Value = "LTD" };
             yield return new SelectListItem { Text = "Sole Trader", Value = "Sole Trader" };
+            yield return new SelectListItem { Text = "LLP", Value = "LLP" };
         }
        
         public bool Bookkeeping { get; set; }
@@ -35,7 +36,8 @@ namespace Quick_Point.co.uk.ViewModels
     public enum BusinessType
     {
         SoleTrader,
-        LTD
+        LTD,
+        LLP
     }
 
 }

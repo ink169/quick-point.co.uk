@@ -30,8 +30,12 @@ namespace Microsoft.BotBuilderSamples
             _ids = new List<String>();
         }
 
+        public int i = 0;
+        
+
         private Microsoft.Bot.Schema.Attachment wrongAnswerCard()
         {
+            string auto = "auto";
             var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like your question answered persnally, our team will be happy to reply your question via live consultation via email or call, please fill in your details and we will be in touch, otherwise continue to ask a question", Size = AdaptiveTextSize.Medium, Wrap = true });
             //card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
@@ -40,7 +44,7 @@ namespace Microsoft.BotBuilderSamples
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Question:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
-            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Question" });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Question", IsMultiline = true, Placeholder = "type your question here", Height = AdaptiveHeight.Auto, });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "By clicking submit you agree to our T&C's here https://www.quick-point.co.uk/Home/Terms", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter });
 
@@ -147,13 +151,20 @@ namespace Microsoft.BotBuilderSamples
 
                 // The actual call to the QnA Maker service.
                 var response = await qnaMaker.GetAnswersAsync(turnContext, options);
+                
+                
+
                 if (response != null && response.Length > 0)
                 {
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
+
                     //offer 'ddi this answer your question'
-                    var reply = ((Activity)turnContext.Activity).CreateReply();
-                    reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
-                    await turnContext.SendActivityAsync(reply);
+                    if (turnContext.Activity.Text.Length > 10)
+                    {
+                        var reply = ((Activity)turnContext.Activity).CreateReply();
+                        reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
+                        await turnContext.SendActivityAsync(reply);
+                    }
                 }
                 
             }
