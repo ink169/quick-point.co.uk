@@ -130,7 +130,7 @@ namespace Microsoft.BotBuilderSamples
 
                 var qnaMaker = new QnAMaker(new QnAMakerEndpoint
                 {
-                    KnowledgeBaseId = "f6f704d1-fb26-4c31-b703-861f194fa1fc",
+                    KnowledgeBaseId = "32068ca5-b3f9-457d-937f-6a2ae78a42c0",
                     Host = "https://freeqnamakerforqpapp.azurewebsites.net/qnamaker",
                     EndpointKey = "618879c8-fa87-4be8-95d6-f7319e36fe7c"
                 },
