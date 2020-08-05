@@ -100,9 +100,10 @@ namespace Microsoft.BotBuilderSamples
         {
             if (turnContext.Activity.Value == null)
             {
-                ;
+                var typing = new Activity() { Type = ActivityTypes.Typing, Text = null, Value = null };
+                await turnContext.SendActivityAsync(typing);
 
-                
+
                 var httpClient = _httpClientFactory.CreateClient(); 
 
                 var qnaMaker = new QnAMaker(new QnAMakerEndpoint
@@ -122,8 +123,7 @@ namespace Microsoft.BotBuilderSamples
 
 
                
-                var typing = new Activity() { Type = ActivityTypes.Typing, Text = null, Value = null};
-                await turnContext.SendActivityAsync(typing);
+                
 
 
                 // The actual call to the QnA Maker service.
