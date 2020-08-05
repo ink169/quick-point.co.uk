@@ -123,6 +123,10 @@ function startChat() {
         bubbleMaxWidth: 600,
         hideUploadButton: true,
         hideScrollToEndButton: true,
+        sendBoxTextWrap: true,
+        sendBoxMaxHeight: 100,
+        sendBoxHeight: 65,
+        
 
     };
 

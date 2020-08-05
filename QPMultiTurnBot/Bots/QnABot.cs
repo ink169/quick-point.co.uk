@@ -58,8 +58,8 @@ namespace Microsoft.BotBuilderSamples
         {
             var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "Did this answer your question? Please enter 'yes' or 'no'", Size = AdaptiveTextSize.Medium, Wrap = true });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "You can continue asking questions if you prefer not to fill in this form", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter, Wrap = true });
-            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "YesNo" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "You can continue asking questions if you prefer not to fill in this form", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter, Wrap = true,  });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "YesNo",  });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
 
             return new Microsoft.Bot.Schema.Attachment()
