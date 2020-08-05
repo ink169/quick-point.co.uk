@@ -120,12 +120,11 @@ namespace Microsoft.BotBuilderSamples
                 // Returns no accurate answer found on any questions below 70 score
                 //options.ScoreThreshold = 0.1F;
 
-                /*
-                var typingMsg = turnContext.Activity;
-                typingMsg.Type = ActivityTypes.Typing;
-                typingMsg.Text = null;
-                await turnContext.SendActivityAsync(typingMsg);
-                */
+
+               
+                var typing = new Activity() { Type = ActivityTypes.Typing, Text = null, Value = null};
+                await turnContext.SendActivityAsync(typing);
+
 
                 // The actual call to the QnA Maker service.
                 var response = await qnaMaker.GetAnswersAsync(turnContext, options);
