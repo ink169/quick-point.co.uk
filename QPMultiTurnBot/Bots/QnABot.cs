@@ -35,7 +35,6 @@ namespace Microsoft.BotBuilderSamples
 
         private Microsoft.Bot.Schema.Attachment wrongAnswerCard()
         {
-            string auto = "auto";
             var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like your question answered persnally, our team will be happy to reply your question via live consultation via email or call, please fill in your details and we will be in touch, otherwise continue to ask a question", Size = AdaptiveTextSize.Medium, Wrap = true });
             //card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
@@ -101,42 +100,16 @@ namespace Microsoft.BotBuilderSamples
         {
             if (turnContext.Activity.Value == null)
             {
-
-                // live agent handoff
-                //if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
-                //{
-                //    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
-                //    var actionDict = new Dictionary<string, object>()
-                //    {
-                //        { "name", "TRANSFER" },
-                //        { "parameters", skillDict }
-                //    };
-
-                //    IMessageActivity message = Activity.CreateMessageActivity();
-                //    message.Text = $"Trying to connect to an agent";
-                //    message.TextFormat = "plain";
-                //    message.ChannelData = new Dictionary<string, object>
-                //    {
-                //        ["type"] = "message", //["type"] = "connectAgent",
-                //        ["text"] = "",
-                //        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
-
-                //    };
-                //    await turnContext.SendActivityAsync(message, cancellationToken);
-
-                //    return;
-
-                //}
-
-                var httpClient = _httpClientFactory.CreateClient();
+                ;
 
                 
+                var httpClient = _httpClientFactory.CreateClient(); 
 
                 var qnaMaker = new QnAMaker(new QnAMakerEndpoint
                 {
-                    KnowledgeBaseId = "32068ca5-b3f9-457d-937f-6a2ae78a42c0",
-                    Host = "https://freeqnamakerforqpapp.azurewebsites.net/qnamaker",
-                    EndpointKey = "618879c8-fa87-4be8-95d6-f7319e36fe7c"
+                    KnowledgeBaseId = "4368eb8d-e200-4e81-a301-31aa12e58de0",
+                    Host = "https://qnamakerinstapp.azurewebsites.net/qnamaker",
+                    EndpointKey = "e4bd7921-d6bc-4005-89ec-ae7a558a4da2"
                 },
                 null,
                 httpClient); ;
@@ -147,7 +120,12 @@ namespace Microsoft.BotBuilderSamples
                 // Returns no accurate answer found on any questions below 70 score
                 //options.ScoreThreshold = 0.1F;
 
-
+                /*
+                var typingMsg = turnContext.Activity;
+                typingMsg.Type = ActivityTypes.Typing;
+                typingMsg.Text = null;
+                await turnContext.SendActivityAsync(typingMsg);
+                */
 
                 // The actual call to the QnA Maker service.
                 var response = await qnaMaker.GetAnswersAsync(turnContext, options);
@@ -165,6 +143,7 @@ namespace Microsoft.BotBuilderSamples
                         reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
                         await turnContext.SendActivityAsync(reply);
                     }
+                    
                 }
                 
             }
@@ -288,3 +267,29 @@ namespace Microsoft.BotBuilderSamples
         }
     }
 }
+
+// live agent handoff
+//if (turnContext.Activity.Text.Contains("agent") ^ turnContext.Activity.Text.Contains("Agent"))
+//{
+//    var skillDict = new Dictionary<string, string> { { "skill", "CUSTOM" } };
+//    var actionDict = new Dictionary<string, object>()
+//    {
+//        { "name", "TRANSFER" },
+//        { "parameters", skillDict }
+//    };
+
+//    IMessageActivity message = Activity.CreateMessageActivity();
+//    message.Text = $"Trying to connect to an agent";
+//    message.TextFormat = "plain";
+//    message.ChannelData = new Dictionary<string, object>
+//    {
+//        ["type"] = "message", //["type"] = "connectAgent",
+//        ["text"] = "",
+//        ["channelData"] = new Dictionary<string, object> { { "action", actionDict } }
+
+//    };
+//    await turnContext.SendActivityAsync(message, cancellationToken);
+
+//    return;
+
+//}

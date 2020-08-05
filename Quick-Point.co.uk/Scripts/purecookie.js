@@ -122,6 +122,8 @@ function startChat() {
         bubbleFromUserBackground: 'rgba(141, 252, 237, .7)',
         bubbleMaxWidth: 600,
         hideUploadButton: true,
+        hideScrollToEndButton: true,
+
     };
 
    // window.WebChat.renderWebChat({ directLine: d1, styleOptions }, document.getElementById('webchat'));
