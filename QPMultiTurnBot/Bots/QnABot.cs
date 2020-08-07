@@ -36,7 +36,7 @@ namespace Microsoft.BotBuilderSamples
         private Microsoft.Bot.Schema.Attachment wrongAnswerCard()
         {
             var card = new AdaptiveCard("1.0");
-            card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like your question answered persnally, our team will be happy to reply your question via live consultation via email or call, please fill in your details and we will be in touch, otherwise continue to ask a question", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like your question answered personally, our team will be happy to reply your question via live consultation via email or call, please fill in your details and we will be in touch, otherwise continue to ask a question", Size = AdaptiveTextSize.Medium, Wrap = true });
             //card.Body.Add(new AdaptiveTextBlock() { Text = "If you would like a member of the team to answer your question personally, please enter your email and question", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder, Wrap = true });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Your Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
@@ -54,15 +54,21 @@ namespace Microsoft.BotBuilderSamples
             };
         }
 
-        private Microsoft.Bot.Schema.Attachment didThisAnswerCard()
+        
+        private Bot.Schema.Attachment YesNoCard()
         {
-            var card = new AdaptiveCard("1.0");
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Did this answer your question? Please enter 'yes' or 'no'", Size = AdaptiveTextSize.Medium, Wrap = true });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "You can continue asking questions if you prefer not to fill in this form", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter, Wrap = true,  });
-            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "YesNo",  });
+            var card = new AdaptiveCard();
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Did this answer your question?", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveChoiceSetInput()
+            {
+                Id = "YesNo",
+                Style = AdaptiveChoiceInputStyle.Expanded,
+                Choices = new List<AdaptiveChoice>(new[] {
+                        new AdaptiveChoice() { Title = "Yes", Value = "Yes" },
+                        new AdaptiveChoice() { Title = "No", Value = "No" } })
+            }      );
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
-
-            return new Microsoft.Bot.Schema.Attachment()
+            return new Bot.Schema.Attachment()
             {
                 ContentType = AdaptiveCard.ContentType,
                 Content = card
@@ -119,7 +125,7 @@ namespace Microsoft.BotBuilderSamples
 
                 var options = new QnAMakerOptions { Top = 1 };
                 // Returns no accurate answer found on any questions below 70 score
-                //options.ScoreThreshold = 0.1F;
+                options.ScoreThreshold = 0.6F;
 
 
                
@@ -139,10 +145,14 @@ namespace Microsoft.BotBuilderSamples
                     if (turnContext.Activity.Text.Length > 10)
                     {
                         var reply = ((Activity)turnContext.Activity).CreateReply();
-                        reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { didThisAnswerCard() };
+                        reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { YesNoCard() };
                         await turnContext.SendActivityAsync(reply);
                     }
                     
+                }
+                else
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text("Sorry, my AI engine can't process that question. Please re-phrase your question and try again. Thank you for your patience!"), cancellationToken);
                 }
                 
             }
@@ -158,7 +168,7 @@ namespace Microsoft.BotBuilderSamples
                     try
                     {
 
-                        if (reply == "yes" ^ reply == "yeah" ^ reply == "yep" ^ reply == "ye" ^ reply == "y" ^ reply == "yer")
+                        if (reply == "yes" ^ reply == "yeah" ^ reply == "yep" ^ reply == "ye" ^ reply == "y" ^ reply == "Yes")
                         {
 
 
@@ -166,7 +176,7 @@ namespace Microsoft.BotBuilderSamples
                             string success = "We are glad to be of help. Please continue to ask another question or check out the other features on our website";
                             await turnContext.SendActivityAsync(success);
                         }
-                        else if (reply == "no" ^ reply == "on" ^ reply == "narp" ^ reply == "nah" ^ reply == "nope" ^ reply == "noo")
+                        else if (reply == "no" ^ reply == "on" ^ reply == "narp" ^ reply == "nah" ^ reply == "nope" ^ reply == "noo" ^ reply == "No")
                         {
                             var reply_ = ((Activity)turnContext.Activity).CreateReply();
                             reply_.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { wrongAnswerCard() };
