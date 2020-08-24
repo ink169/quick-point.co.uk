@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using AdaptiveCards;
 using System.Net.Mail;
 using System.Net;
+using QnABot;
 
 namespace Microsoft.BotBuilderSamples
 {
@@ -22,8 +23,9 @@ namespace Microsoft.BotBuilderSamples
     {
 
         private List<String> _ids;
-        public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory)
+        public QnABot(IConfiguration configuration, ILogger<QnABot> logger, IHttpClientFactory httpClientFactory, IBotTelemetryClient telemetryClient)
         {
+             var TelemetryClient = telemetryClient;
             _configuration = configuration;
             _logger = logger;
             _httpClientFactory = httpClientFactory;
@@ -54,7 +56,26 @@ namespace Microsoft.BotBuilderSamples
             };
         }
 
-        
+        private Microsoft.Bot.Schema.Attachment WelcomeCard()
+        {
+            var card = new AdaptiveCard("1.0");
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Hi, welcome to Quick-Point. To optimise your visit, please type in your email and name", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "By clicking submit you agree to our T&C's here https://www.quick-point.co.uk/Home/Terms", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, please feel free to ask us your question below", Size = AdaptiveTextSize.Medium, Wrap = true });
+
+            return new Microsoft.Bot.Schema.Attachment()
+            {
+                ContentType = AdaptiveCard.ContentType,
+                Content = card
+            };
+        }
+
+
         private Bot.Schema.Attachment YesNoCard()
         {
             var card = new AdaptiveCard();
@@ -86,7 +107,11 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
+            var welcomeText = ((Activity)turnContext.Activity).CreateReply();
+            welcomeText.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { WelcomeCard() };
+            
+            
+            //var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
             var welcomeSent = false;
             foreach (var member in membersAdded)
             {
@@ -94,7 +119,7 @@ namespace Microsoft.BotBuilderSamples
                 if (!welcomeSent && !_ids.Contains(member.Id))
                 {
                     welcomeSent = true;
-                    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
+                    await turnContext.SendActivityAsync(welcomeText);
                  
                     _ids.Add(member.Id);
                 }
@@ -104,6 +129,7 @@ namespace Microsoft.BotBuilderSamples
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
+            
             if (turnContext.Activity.Value == null)
             {
                 var typing = new Activity() { Type = ActivityTypes.Typing, Text = null, Value = null };
@@ -141,14 +167,20 @@ namespace Microsoft.BotBuilderSamples
                 {
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
 
+                   
+
+
                     //offer 'ddi this answer your question'
                     if (turnContext.Activity.Text.Length > 10)
                     {
-                        var reply = ((Activity)turnContext.Activity).CreateReply();
-                        reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { YesNoCard() };
-                        await turnContext.SendActivityAsync(reply);
+                        // var reply = ((Activity)turnContext.Activity).CreateReply();
+                        // reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { YesNoCard() };
+                        // await turnContext.SendActivityAsync(reply);
+                        var finalmsg ="We hope this has answered your question. If it hasn't, let us know at sales@sterling-beanland.co.uk. Otherwise, feel free to ask another question.";
+                       
+                         await turnContext.SendActivityAsync(finalmsg);
                     }
-                    
+
                 }
                 else
                 {
@@ -201,12 +233,16 @@ namespace Microsoft.BotBuilderSamples
                 {
                     var email = (string)jobj["Email"];
                     var name = jobj["Name"].ToString();
-                    var question = jobj["Question"].ToString();
+                    var storage = new MemoryStorage();
+                    // Create the User state passing in the storage layer.
+                    var userState = new UserState(storage);
+                    
+
 
                     try
                     {
 
-                        if (question != "")
+                        if (email != "" & email != null)
                         {
 
                             var dt = DateTime.Now.ToString();
@@ -216,11 +252,11 @@ namespace Microsoft.BotBuilderSamples
                             mailMessage.From = new
                                MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
                             mailMessage.To.Add("sales@sterling-beanland.co.uk");
-                           // mailMessage.To.Add("freddieK_02@hotmail.co.uk");
+                            // mailMessage.To.Add("freddieK_02@hotmail.co.uk");
                             mailMessage.CC.Add("freddie.kemp@cybercom.media");
                             //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
-                            mailMessage.Subject = "Unanswered Question from " + name; ;
-                            mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Question:" + "\n" + question;
+                            mailMessage.Subject = "Bot conversation details from " + name; ;
+                            mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email;
                             mailMessage.IsBodyHtml = false;
                             SmtpClient client = new SmtpClient();
                             client.Credentials = new NetworkCredential("freddie.kemp@cybercom.media", fredpw());
@@ -229,25 +265,25 @@ namespace Microsoft.BotBuilderSamples
                             client.EnableSsl = true;
                             client.Send(mailMessage);
 
-                            string success = "Thank you, we will be in touch. Please feel free to ask another question in the meantime";
+                            string success = "Thank you, "+name+". We have processed your details. Please continue to ask us a question:";
 
                             await turnContext.SendActivityAsync(success);
                         }
                         else
                         {
-                            string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                            string fail = "Unfortunately we could not process your details. Please continue to ask us a question";
                             await turnContext.SendActivityAsync(fail);
                         }
 
                     }
                     catch
                     {
-                        string fail = "Unfortunately we could not process your details. Please make sure at least the question is entered and try again.";
+                        string fail = "Sorry, we couldn't process your request. Please ask a question";
                         await turnContext.SendActivityAsync(fail);
 
                     }
-
                 }
+                
 
             }
             
