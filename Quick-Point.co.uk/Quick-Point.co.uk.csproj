@@ -268,6 +268,7 @@
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\mvcwebapphost1406-dev - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-fred - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-UAT - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\practisebotqp - Web Deploy.pubxml" />

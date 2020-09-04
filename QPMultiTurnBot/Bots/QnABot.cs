@@ -56,17 +56,51 @@ namespace Microsoft.BotBuilderSamples
             };
         }
 
+        private Microsoft.Bot.Schema.Attachment welcomeQCard()
+        {
+            var card = new AdaptiveCard("1.0");
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Hi, welcome to Quick-Point! Please ask a covid-related business question below", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, you can browse some of our most popular questions from the dropdown menu below:", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveChoiceSetInput()
+            {
+                Id = "welcomeQCard",
+
+                Style = AdaptiveChoiceInputStyle.Compact,
+                Value = "Select Common Question",
+
+
+                Choices = new List<AdaptiveChoice>(new[] {
+                        new AdaptiveChoice() { Title = "How to reopen my business safely during coronavirus", Value = "1" },
+                        new AdaptiveChoice() { Title = "Changes in the Coronavirus Job Retention Scheme", Value = "2" } ,
+                        new AdaptiveChoice() { Title = "What if I cannot pay my Self Assessment tax bill?", Value = "3" },
+                        new AdaptiveChoice() { Title = "Are there grants available for Self-Employed during virus?", Value = "4" },
+                        new AdaptiveChoice() { Title = "How much money can I get as a Self Employed grant?", Value = "5" },
+                        new AdaptiveChoice() { Title = "Which countries are one the quarantine list?", Value = "6" },
+
+                })
+            }) ;
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Get Answer For Selected Question" });
+
+            return new Microsoft.Bot.Schema.Attachment()
+            {
+                ContentType = AdaptiveCard.ContentType,
+                Content = card
+            };
+        }
+
         private Microsoft.Bot.Schema.Attachment WelcomeCard()
         {
             var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "Hi, welcome to Quick-Point. To optimise your visit, please type in your email and name", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "This chatbot is for covid-related business advice", Size = AdaptiveTextSize.Medium, Wrap = true });
+
             card.Body.Add(new AdaptiveTextBlock() { Text = "Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
             card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
             card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
             card.Body.Add(new AdaptiveTextBlock() { Text = "By clicking submit you agree to our T&C's here https://www.quick-point.co.uk/Home/Terms", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, please feel free to ask us your question below", Size = AdaptiveTextSize.Medium, Wrap = true });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, please feel free to ask us your covid-related business questions below", Size = AdaptiveTextSize.Medium, Wrap = true });
 
             return new Microsoft.Bot.Schema.Attachment()
             {
@@ -88,7 +122,7 @@ namespace Microsoft.BotBuilderSamples
                         new AdaptiveChoice() { Title = "Yes", Value = "Yes" },
                         new AdaptiveChoice() { Title = "No", Value = "No" } })
             }      );
-            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Get the answer" });
             return new Bot.Schema.Attachment()
             {
                 ContentType = AdaptiveCard.ContentType,
@@ -108,7 +142,7 @@ namespace Microsoft.BotBuilderSamples
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = ((Activity)turnContext.Activity).CreateReply();
-            welcomeText.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { WelcomeCard() };
+            welcomeText.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { welcomeQCard() };
             
             
             //var welcomeText = "Welcome to QuickPoint, what can we help you with today?";
@@ -229,6 +263,70 @@ namespace Microsoft.BotBuilderSamples
 
                     }
                 }
+                else if (jobj.ContainsKey("welcomeQCard"))
+                {
+                    var reply = (string)jobj["welcomeQCard"];
+
+
+                    try
+                    {
+
+                        if (reply == "1")
+                        {
+
+
+
+                            string answer = "Employers that want to reopen their business have a legal responsibility to protect their employees and other people on site. Use this guidance to help you carry out a risk assessment and make sensible adjustments to the site and workforce. If you do not carry out a risk assessment, the Health and Safety Executive(HSE) or your local council can issue an enforcement notice. Employees can use this guidance to check what their workplace needs to do to keep people safe. This guidance is only for businesses that are allowed to reopen in England.Guidance from the Scottish Government, Welsh Government and Northern Ireland Assembly is also available. If you are in an area affected by coronavirus outbreak, check Local restrictions: areas with an outbreak of coronavirus guidance. https://www.gov.uk/coronavirus-business-reopening/y ";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+                        else if (reply == "2")
+                        {
+
+
+
+                            string answer = "The Coronavirus Job Retention Scheme will close on 31 October 2020. From 1 July, employers can bring furloughed employees back to work for any amount of time and any shift pattern, while still being able to claim CJRS grant for the hours not worked. From 1 August 2020, the level of grant will be reduced each month.To be eligible for the grant employers must pay furloughed employees 80 % of their wages, up to a cap of £2, 500 per month for the time they are being furloughed. The timetable for changes to the scheme is set out below.Wage caps are proportional to the hours an employee is furloughed. For example, an employee is entitled to 60 % of the £2, 500 cap if they are placed on furlough for 60 % of their usual hours: there are no changes to grant levels in June for June and July, the government will pay 80 % of wages up to a cap of £2, 500 for the hours the employee is on furlough, as well as employer National Insurance Contributions(ER NICS) and pension contributions for the hours the employee is on furlough. Employers will have to pay employees for the hours they work for August, the government will pay 80 % of wages up to a cap of £2, 500 for the hours an employee is on furlough and employers will pay ER NICs and pension contributions for the hours the employee is on furlough for September, the government will pay 70 % of wages up to a cap of £2, 187.50 for the hours the employee is on furlough. Employers will pay ER NICs and pension contributions and top up employees’ wages to ensure they receive 80 % of their wages up to a cap of £2, 500, for time they are furloughed for October, the government will pay 60 % of wages up to a cap of £1, 875 for the hours the employee is on furlough. Employers will pay ER NICs and pension contributions and top up employees’ wages to ensure they receive 80 % of their wages up to a cap of £2, 500, for time they are furloughed. Employers will continue to able to choose to top up employee wages above the 80 % total and £2,500 cap for the hours not worked at their own expense if they wish. Employers will have to pay their employees for the hours worked.  The table shows Government contribution, required employer contribution and amount employee receives where the employee is furloughed 100 % of the time. Wage caps are proportional to the hours not worked.";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+                        else if (reply == "3")
+                        {
+
+
+
+                            string answer = "You have the option to defer your second payment on account if you’re: registered in the UK for Self Assessment and finding it difficult to make your second payment on account by 31 July 2020 due to the impact of coronavirus You can still make the payment by 31 July 2020 as normal if you’re able to do so. The June 2020 Self Assessment statements showed 31 January 2021 as the due date for paying the July 2020 Payment on Account.This is because HMRCupdated their IT systems to prevent customers incurring late payment interest on any July 2020 Payment on Account paid between 1st August 2020 and 31 January 2021.The deferment has not been applied for all customers by HMRC and it remains optional. HMRC will not charge interest or penalties on any amount of the deferred payment on account, provided it’s paid on or before 31 January 2021. If you owe less than £10, 000 you might be able to set up a Time to Pay Arrangement online.This lets you pay your Self Assessment tax bill in instalments. Call the Self Assessment helpline if you’ve missed your payment date or you cannot use the online service. You do not need to contact HMRC if you have set up a payment plan online. Self Assessment Payment Helpline Telephone: 0300 200 3822 Monday to Friday, 8am to 4pm Find out about call charges";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+                        else if (reply == "4")
+                        {
+
+
+
+                            string answer = "You can claim if you’re a self-employed individual or a member of a partnership and your business has been adversely affected on or after 14 July 2020. Your business could be adversely affected by coronavirus if, for example: you’re unable to work because you: are shielding are self-isolating are on sick leave because of coronavirus have caring responsibilities because of coronavirus you’ve had to scale down, temporarily stop trading or incurred additional costs because: your supply chain has been interrupted you have fewer or no customers or clients your staff are unable to come in to work one or more of your contracts have been cancelled you had to buy protective equipment so you could trade following social distancing rules All of the following must also apply: you traded in the tax year 2018 to 2019 and submitted your Self Assessment tax return on or before 23 April 2020 for that year you traded in the tax year 2019 to 2020 you intend to continue to trade in the tax year 2020 to 2021 you carry on a trade which has been adversely affected by coronavirus You cannot claim the grant if you trade through a limited company or a trust. If you claim Maternity Allowance this will not affect your eligibility for the grant. To work out your eligibility we will first look at your 2018 to 2019 Self Assessment tax return. Your trading profits must be no more than £50,000 and at least equal to your non-trading income. If you’re not eligible based on the 2018 to 2019 Self Assessment tax return, we will then look at the tax years 2016 to 2017, 2017 to 2018, and 2018 to 2019. Find out how we will work out your eligibility including if we have to use other years. Grants under the Self-Employment Income Support Scheme are not counted as ‘access to public funds’, and you can claim the grant on all categories of work visa.";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+                        else if (reply == "5")
+                        {
+
+
+                            string answer = "You’ll get a taxable grant based on your average trading profit over the 3 tax years: 2016 to 2017, 2017 to 2018, 2018 to 2019 HMRC will work out your average trading profit by adding together your total trading profits or losses for the 3 tax years, then they will divide by 3. The second and final grant is worth 70% of your average monthly trading profits, paid out in a single instalment covering 3 months’ worth of profits, and capped at £6,570 in total. The online service will tell you how HMRC’s worked your grant out. The grant amount HMRC works out for you will be paid directly into your bank account, in one instalment. Find out how HMRC will work out your average trading profits including if you have not traded for all 3 years:https://www.gov.uk/guidance/how-hmrc-works-out-total-income-and-trading-profits-for-the-self-employment-income-support-scheme#threeyears";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+                        else if (reply == "6")
+                        {
+
+                            string answer = "You will not need to self-isolate if you are travelling from the following countries:  Akrotiri and Dhekelia  Anguilla  Antigua and Barbuda  Australia  Barbados  Bermuda  Bonaire, St Eustatius and Saba  British Antarctic Territory  British Indian Ocean Territory  British Virgin Islands  Brunei (added 11 August 2020 – if you arrived in England from Brunei before 11 August, you will need to self–isolate)  Cayman Islands  the Channel Islands  Curaçao  Cyprus  Denmark  Dominica  Estonia  Falkland Islands  Faroe Islands  Fiji  Finland  French Polynesia  Gibraltar  Germany  Greece  Greenland  Grenada  Guadeloupe  Hong Kong  Hungary  Iceland  Ireland  the Isle of Man  Italy  Japan  Latvia  Liechtenstein  Lithuania  Macao (Macau)  Malaysia (added 11 August 2020 – if you arrived in England from Malaysia before 11 August, you will need to self–isolate)  Mauritius  Montserrat  New Caledonia  New Zealand  Norway  Pitcairn, Henderson, Ducie and Oeno Islands  Poland  Portugal (added 4am, Saturday 22 August 2020 – if you arrived in England from Portugal before 4am, 22 August, you will need to self–isolate)  Reunion  San Marino  Seychelles  Slovakia  Slovenia  South Korea  South Georgia and the South Sandwich Islands  St Barthélemy  St Helena, Ascension and Tristan da Cunha  St Kitts and Nevis  St Lucia  St Pierre and Miquelon  St Vincent and the Grenadines  Switzerland  Taiwan  Turkey  Vatican City State  Vietnam ";
+                            await turnContext.SendActivityAsync(answer);
+                        }
+
+
+
+                    }
+                    catch
+                    {
+                        string fail = "Sorry, there seems to be an error on our side, we will look at this as soon as possible. For now, feel free to conintinue asking questions.";
+                        await turnContext.SendActivityAsync(fail);
+
+                    }
+                }
                 else
                 {
                     var email = (string)jobj["Email"];
@@ -253,7 +351,7 @@ namespace Microsoft.BotBuilderSamples
                                MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
                             mailMessage.To.Add("sales@sterling-beanland.co.uk");
                             // mailMessage.To.Add("freddieK_02@hotmail.co.uk");
-                            mailMessage.CC.Add("freddie.kemp@cybercom.media");
+                            // mailMessage.CC.Add("freddie.kemp@cybercom.media");
                             //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
                             mailMessage.Subject = "Bot conversation details from " + name; ;
                             mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email;

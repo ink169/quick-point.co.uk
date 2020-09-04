@@ -149,8 +149,8 @@ namespace Quick_Point.co.uk.Controllers
 
                     client.Credentials = new NetworkCredential(Utils.GetConfigSetting("Fredemail"), Utils.GetConfigSetting("fpw"));
 
-                    message.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                    message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                   // message.CC.Add(Utils.GetConfigSetting("Fredemail"));
+                   // message.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                     client.EnableSsl = true;
                     client.Send(message);
 
@@ -268,8 +268,8 @@ namespace Quick_Point.co.uk.Controllers
                   mailMessage.To.Add(new
                        MailAddress(Utils.GetConfigSetting("Ludaemail")));
                        //MailAddress(Utils.GetConfigSetting("Fredemail")));
-                  mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                  mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+                 /// mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+                 // mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                   mailMessage.Subject = "New Contact Request from " + username; ;
                   mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email + "\n" + "\n" + "Message:" + "\n" + message;
                   mailMessage.IsBodyHtml = false;
@@ -325,8 +325,8 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.To.Add(new
                    MailAddress(Utils.GetConfigSetting("Ludaemail")));
                    //MailAddress(Utils.GetConfigSetting("Fredemail")));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-               mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+              //  mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+              // mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                 mailMessage.Subject = "Subscribe" + " " + email;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + username + "\n" + "\n" + "Email:" + "\n" + email;
                 mailMessage.IsBodyHtml = false;
@@ -379,8 +379,8 @@ namespace Quick_Point.co.uk.Controllers
                 mailMessage.From = new MailAddress(Utils.GetConfigSetting("Fredemail"), "Quick Point Admin");
                 mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Ludaemail")));
                 //mailMessage.To.Add(new MailAddress(Utils.GetConfigSetting("Fredemail")));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
-                mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
+              //  mailMessage.CC.Add(Utils.GetConfigSetting("Fredemail"));
+              //  mailMessage.CC.Add(Utils.GetConfigSetting("Andrewemail"));
                 mailMessage.Subject = "Subscribe" + " " + email;
                 mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + _name + "\n" + "\n" + "Email:" + "\n" + _email;
                 mailMessage.IsBodyHtml = false;

@@ -57,10 +57,12 @@ function eraseCookie(name) {
 }
 
 function cookieConsent() {
+    startChat();
     document.body.innerHTML += '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' + purecookieTitle + '</a></div><div class="cookieDesc"><p>' + purecookieDesc + ' '
         + purecookieLink + '&nbsp;' + privacyLink + '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">'
         + purecookieButton + '</a></div></div>';
     pureFadeIn("cookieConsentContainer");
+   
 }
 
 function cookieConsent_OLD() {
@@ -136,6 +138,9 @@ function startChat() {
     window.WebChat.renderWebChat({
         directLine: d1,
         styleOptions,
+        overrideLocalizedStrings: {
+            TEXT_INPUT_PLACEHOLDER: 'Type your covid-related business question here'
+        },
         store
     }, document.getElementById('webchat'));
 

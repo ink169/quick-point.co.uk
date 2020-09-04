@@ -2,12 +2,18 @@
   overflow-x: hidden;
 }
 
+.webchat .css-1b7q83y .css-o8vzus .css-1l9a57c .main .css-72ice .webchat__send-box-text-box__text-area-box textarea {
+    max-width:100% !important;
+}
 
+textarea{
+    max-width:100% !important;
+}
 
 body {
     padding-bottom: 20px;
-	font-family: "Roboto", sans-serif;
-	color: #9fa1a4;
+    font-family: "Roboto", sans-serif;
+    color: #9fa1a4;
     line-height: 1.5;
 }
 
