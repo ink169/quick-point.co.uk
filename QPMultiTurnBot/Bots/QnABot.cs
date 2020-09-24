@@ -109,6 +109,28 @@ namespace Microsoft.BotBuilderSamples
             };
         }
 
+        private Microsoft.Bot.Schema.Attachment InsuranceCard()
+        {
+            var card = new AdaptiveCard("1.0");
+                       card.Body.Add(new AdaptiveTextBlock() { Text = " Due to a new high court ruling, your business may be able to claim its losses due to corona virus.", Size = AdaptiveTextSize.Medium, Wrap = true });
+
+            card.Body.Add(new AdaptiveTextBlock() { Text = "My AI engine has recognised that you are asking about insurance. Enter your details below and we will personally contact you regarding this", Size = AdaptiveTextSize.Small, Wrap = true });
+
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Email:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Email" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Name:", Size = AdaptiveTextSize.Medium, Weight = AdaptiveTextWeight.Bolder });
+            card.Body.Add(new AdaptiveTextInput() { Style = AdaptiveTextInputStyle.Text, Id = "Name" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Submit" });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "By clicking submit you agree to our T&C's here https://www.quick-point.co.uk/Home/Terms", Size = AdaptiveTextSize.Small, Weight = AdaptiveTextWeight.Lighter });
+            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, please feel free to continue ask us your covid-related business questions below", Size = AdaptiveTextSize.Small, Wrap = true });
+
+            return new Microsoft.Bot.Schema.Attachment()
+            {
+                ContentType = AdaptiveCard.ContentType,
+                Content = card
+            };
+        }
+
 
         private Bot.Schema.Attachment YesNoCard()
         {
@@ -201,7 +223,14 @@ namespace Microsoft.BotBuilderSamples
                 {
                     await turnContext.SendActivityAsync(MessageFactory.Text(response[0].Answer), cancellationToken);
 
-                   
+                    if (Convert.ToString(turnContext.Activity.Text).Contains("Insurance") ^ Convert.ToString(turnContext.Activity.Text).Contains("insurance"))
+                    {
+                        var _InsuranceCard = ((Activity)turnContext.Activity).CreateReply();
+                        _InsuranceCard.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { InsuranceCard() };
+                        await turnContext.SendActivityAsync(_InsuranceCard);
+                    }
+                    
+
 
 
                     //offer 'ddi this answer your question'
@@ -351,9 +380,9 @@ namespace Microsoft.BotBuilderSamples
                                MailAddress("freddie.kemp@cybercom.media", "Quick Point Admin");
                             mailMessage.To.Add("sales@sterling-beanland.co.uk");
                             // mailMessage.To.Add("freddieK_02@hotmail.co.uk");
-                            // mailMessage.CC.Add("freddie.kemp@cybercom.media");
+                             mailMessage.CC.Add("freddie.kemp@cybercom.media");
                             //mailMessage.CC.Add("andrew.ingpen@cybercom.media");
-                            mailMessage.Subject = "Bot conversation details from " + name; ;
+                            mailMessage.Subject = "Insurance request from " + name; ;
                             mailMessage.Body = dt + "\n" + "\n" + "Name:" + "\n" + name + "\n" + "\n" + "Email:" + "\n" + email;
                             mailMessage.IsBodyHtml = false;
                             SmtpClient client = new SmtpClient();
