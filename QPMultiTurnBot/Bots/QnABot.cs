@@ -225,9 +225,17 @@ namespace Microsoft.BotBuilderSamples
 
                     if (Convert.ToString(turnContext.Activity.Text).Contains("Insurance") ^ Convert.ToString(turnContext.Activity.Text).Contains("insurance"))
                     {
-                        var _InsuranceCard = ((Activity)turnContext.Activity).CreateReply();
-                        _InsuranceCard.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { InsuranceCard() };
-                        await turnContext.SendActivityAsync(_InsuranceCard);
+                        if (Convert.ToString(turnContext.Activity.Text).Contains("NIC") ^ Convert.ToString(turnContext.Activity.Text).Contains("nic") ^ Convert.ToString(turnContext.Activity.Text).Contains("national") ^ Convert.ToString(turnContext.Activity.Text).Contains("National"))
+                        {
+                           
+                        }
+                        else
+                        {
+                            var _InsuranceCard = ((Activity)turnContext.Activity).CreateReply();
+                            _InsuranceCard.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { InsuranceCard() };
+                            await turnContext.SendActivityAsync(_InsuranceCard);
+                        }
+                        
                     }
                     
 

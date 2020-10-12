@@ -10,10 +10,13 @@
     overflow: hidden;
     transform: translate3d(0, 0, 0);
 }
+.tech-slideshow :hover{
+    cursor:pointer;
+}
 
     .tech-slideshow > div {
         height: 80px;
-        width: 2500px;
+        width: 5000px;
         background: url(/Content/images/testbanner.png);
         position: absolute;
         top: 0;
@@ -23,14 +26,14 @@
     }
 
     .tech-slideshow .mover-1 {
-        animation: moveSlideshow 12s linear infinite;
+        animation: moveSlideshow 30s linear infinite;
     }
 
     .tech-slideshow .mover-2 {
         opacity: 0;
         transition: opacity 0.5s ease-out;
         background-position: 0 -200px;
-        animation: moveSlideshow 15s linear infinite;
+        animation: moveSlideshow 30s linear infinite;
     }
 
     .tech-slideshow:hover .mover-2 {
