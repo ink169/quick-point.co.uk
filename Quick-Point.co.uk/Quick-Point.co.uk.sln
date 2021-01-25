@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quick-Point.co.uk", "Quick-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QnABot", "..\QPMultiTurnBot\QnABot.csproj", "{C80C5D64-B968-44EC-87B1-1741D1CE62EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentGeneratorLibrary", "..\DocumentGeneratorLibrary\DocumentGeneratorLibrary.csproj", "{5DE19EAF-CBAC-4F50-88B4-5E855281013D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C80C5D64-B968-44EC-87B1-1741D1CE62EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80C5D64-B968-44EC-87B1-1741D1CE62EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80C5D64-B968-44EC-87B1-1741D1CE62EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE19EAF-CBAC-4F50-88B4-5E855281013D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE19EAF-CBAC-4F50-88B4-5E855281013D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE19EAF-CBAC-4F50-88B4-5E855281013D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE19EAF-CBAC-4F50-88B4-5E855281013D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,11 +16,14 @@ using Newtonsoft.Json.Linq;
 using Quick_Point.co.uk.Helpers;
 using Quick_Point.co.uk.ViewModels;
 using Utils = Quick_Point.co.uk.Helpers.Utils;
+using Quick_Point.co.uk.LetterGeneratorLogic;
 
 namespace Quick_Point.co.uk.Controllers
 {
     public class HomeController : Controller
     {
+
+      
         public ActionResult oldResources()
         {
             return View();
@@ -29,15 +32,25 @@ namespace Quick_Point.co.uk.Controllers
         {
 
             var baseAddress = string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), "Home/Article?id=");
-
             return View(new Resource() { BaseUrl = baseAddress });
 
+        }
+
+        public ActionResult BREXIT()
+        {
+            return View();
         }
 
         public ActionResult Resource()
         {
             return View();
         }
+
+        public ActionResult AccountingTemplates()
+        {
+            return View();
+        }
+
 
 
         public async Task<JsonResult> GetToken()
