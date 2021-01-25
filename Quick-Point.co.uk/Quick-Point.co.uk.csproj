@@ -241,6 +241,7 @@
     <Content Include="Content\images\ChirpyTag.png" />
     <Content Include="Content\images\ChirpyTagBlue.png" />
     <Content Include="Content\images\docsimg.jpg" />
+    <Content Include="Content\images\excel.png" />
     <Content Include="Content\images\FA_sml.png" />
     <Content Include="Content\images\ffimg.jpg" />
     <Content Include="Content\images\heads\alexC.png" />
@@ -285,6 +286,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\CashFlowTemplate.xlsx" />
     <Content Include="Content\CostCollectionTemplate.xlsx" />
+    <Content Include="assets\Aspose.Words.NET.lic" />
+    <Content Include="Content\Files\CashFlowTemplate.xlsx" />
+    <Content Include="Content\Files\CostCollectionTemplate.xlsx" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MVCWebAppHost1406 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\mvcwebapphost1406-DEV - Web Deploy.pubxml" />
@@ -377,10 +381,10 @@
     <Content Include="Views\LetterGenerator\FlexibleFurlough.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle13.cshtml" />
     <Content Include="Views\Articles\_BrexitAndYourBusiness.cshtml" />
+    <Content Include="Views\Articles\_ImportantCovidUpdates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Files\" />
     <Folder Include="Docs\" />
     <Folder Include="Files\" />
   </ItemGroup>

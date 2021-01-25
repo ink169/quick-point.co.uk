@@ -24,8 +24,8 @@ namespace Quick_Point.co.uk.Controllers
         {
             var letgen = new LetterGen(form);
             letgen.CreateDoc("FlexibleFurlough");
-          
-            return View();
+            ViewBag.CompleteMessage = "Your document has been emailed to the specified address. Please check your spam if you can't locate it.";
+            return View("Index");
         }
     }
 }

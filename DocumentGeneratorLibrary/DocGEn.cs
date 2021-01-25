@@ -17,7 +17,7 @@ namespace DocumentGeneratorLibrary
             string workingdays = GetWorkingDays(_form);
             string to_para = _form["RecipientName"].ToString() + "\n" + _form["RecipientAddress1"].ToString() + "\n" + _form["RecipientAddress2"].ToString() + "\n" + _form["RecipientAddress3"].ToString() + "\n" + _form["RecipientPostCode"].ToString() + "\n";
             string from_para = _form["SenderName"].ToString() + "\n" + _form["SenderName"].ToString() + "\n" + _form["SenderAddress1"].ToString() + "\n" + _form["SenderAddress2"].ToString() + "\n" + _form["SenderAddress3"].ToString() + "\n" + _form["SenderPostCode"].ToString() + "\n";
-            string dear = "Dear " + _form["RecipientName"].ToString();
+            string dear = "Dear " + _form["RecipientName"].ToString() +"\n \n";
             string title = "FLEXIBLE FURLOUGH AGREEMENT LETTER";
             string body = "The COVID-19 pandemic has adversely affected operations of " + _form["SenderName"].ToString() + "," +
                     " and a lot of employees (including you) were placed on furlough leave, which allows employers to claim a grant of 80%" +
@@ -43,11 +43,23 @@ namespace DocumentGeneratorLibrary
                     "\n " + _form["SenderFirstName"].ToString() + "\n"
                     + _form["SenderPosition"].ToString() + "\n"
                     + _form["SenderName"].ToString() + "\n \n " +
-                    "-----------------------------------------------------------------------------------------------------------------------" +
+                    "--------------------------------------------------------------------------------------------------------------------" +
                     "\n I agree to the adjustment of my contract for the period of my furlough leave, which I acknowledge began on " + _form["StartDate"].ToString() + " and will continue until I am notified of an end date. I understand that I cannot undertake any work for " + _form["SenderName"].ToString() + ". " +
                     "\n \n Signed _______________________________" +
                     "\n \n Name _________________________________" +
                     "\n \n Date _________________________________";
+
+            Aspose.Words.License license = new Aspose.Words.License();
+            try
+            {
+                license.SetLicense("../assets/Aspose.Words.NET.lic");
+                Console.WriteLine("License set successfully.");
+            }
+            catch (Exception e)
+            {
+                // We do not ship any license with this example, visit the Aspose site to obtain either a temporary or permanent license. 
+                Console.WriteLine("\nThere was an error setting the license: " + e.Message);
+            }
 
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
@@ -74,15 +86,15 @@ namespace DocumentGeneratorLibrary
             titlep.ParagraphFormat.Alignment = ParagraphAlignment.Center;
             titlep.Font.Bold = true;
 
-            builder.ParagraphFormat.StyleName = alignright.Name;
-            builder.Write(title);
+            builder.ParagraphFormat.StyleName = titlep.Name;
+            builder.Write(title + "\n \n");
             builder.InsertStyleSeparator();
             
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.BodyText;
             builder.Write(body);
 
             var ms = new MemoryStream();
-            doc.Save(ms, SaveFormat.Docx);
+            doc.Save(ms, SaveFormat.Pdf);
             byte[] data = ms.ToArray();
             return data;
         }

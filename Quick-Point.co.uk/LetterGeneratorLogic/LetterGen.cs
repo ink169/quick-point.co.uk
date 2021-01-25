@@ -26,7 +26,7 @@ namespace Quick_Point.co.uk.LetterGeneratorLogic
 
         public void CreateDoc(string Type)
         {
-            if(Type == "FlexibleFurlough") { FlexFurlGen(); LetterName = "Flexible Furlough Letter.docx"; };
+            if(Type == "FlexibleFurlough") { FlexFurlGen(); LetterName = "Flexible Furlough Letter.Pdf"; };
             //...
 
             var mailMessage = new MailMessage();
