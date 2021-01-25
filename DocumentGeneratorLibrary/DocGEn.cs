@@ -263,6 +263,90 @@ namespace DocumentGeneratorLibrary
             byte[] data = ms.ToArray();
             return data;
         }
+        public byte[] CreateReFurlDocument(FormCollection _form)
+        {
+            //declare content
+            string to_para = _form["RecipientName"].ToString() + "\n" + _form["RecipientAddress1"].ToString() + "\n" + _form["RecipientAddress2"].ToString() + "\n" + _form["RecipientAddress3"].ToString() + "\n" + _form["RecipientPostCode"].ToString() + "\n";
+            string from_para = _form["SenderName"].ToString() + "\n" + _form["SenderName"].ToString() + "\n" + _form["SenderAddress1"].ToString() + "\n" + _form["SenderAddress2"].ToString() + "\n" + _form["SenderAddress3"].ToString() + "\n" + _form["SenderPostCode"].ToString() + "\n";
+            string dear = "Dear " + _form["RecipientName"].ToString() + "\n \n";
+            string title = "FURLOUGH LEAVE AGREEMENT LETTER\n\n";
+            string body = "Due to the fact that COVID-19 pandemic has adversely affected operations of " + _form["StartDate"].ToString() + ", we have come to a decision to apply to the Coronavirus Job Retention Scheme. This is a governmental scheme which allows employers to place staff on ‘furlough leave’ and claim a grant of 80% of furloughed workers’ pay (up to a maximum of £2,500 per month).  " +
+                "\n\nYou have already been placed to the furlough leave which ended " + _form["LReturnDate"].ToString() + " and you resumed work on " + _form["LStartDate"].ToString() + ". As we have previously discussed , you will be placed on furlough again. " +
+                "\n\nFollowing our discussion, I am writing to officially ask your consent to being placed on furlough leave." +
+                "\n\nAlthough it has not been an easy decision for " + _form["SenderName"].ToString() + ", we decided that this would be the most optimal response for " + _form["SenderName"].ToString() + " to take in light of the pandemic. In this way, we will be able to avoid redundancies and keep our business going. " +
+                "\n\n We propose to place you on furlough leave from " + _form["StartDate"].ToString() + " and currently intend that you will remain on furlough leave until " + _form["ReturnDate"].ToString() + ".  This period may need to be extended and, if so, we will discuss this with you. We will give you reasonable notice should we require you to end your leave and resume work and will keep you updated on the situation. " +
+                "In order to place you on furlough leave, it is necessary to adjust the terms of your contract with " + _form["SenderName"].ToString() + ". The proposed changes are as follows:" +
+                "\n\n 1.	For the time of your furlough leave, you are not permitted to carry out any work for " + _form["SenderName"].ToString() + ". " +
+                "\n\n " +
+                "2.	During your period of furlough leave, you will be paid a gross sum of " + _form["GrossPay"].ToString() + ", which is the sum the business is able to reclaim for your pay under the Coronavirus Job Retention Scheme. This sum will be subject to any applicable deductions for tax, employee national insurance contributions and employee pension contributions. If it is feasible, payments will be made on your regular paydays. " +
+                "\n\n Unfortunately, we are not in the position to top up your wage to the full amount but you will be informed if it changes." +
+                "\n\n Aside from the adjustments above, the contract remains unchanged. " +
+                "\n\n Your furlough leave will have the following conditions: " +
+                "\n\n 1.	You should remain available to return to work on short notice should we require so. " +
+                "\n\n 2.	During your leave, you may undertake volunteer work and take training that is directly relevant to your job." +
+                "\n\n 3.	Under the Scheme, furloughed staff are entitled to take annual leave during furlough leave, to be paid at their usual rate of pay. " +
+                "\n\n If you agree to the terms set out in the present letter, please respond to " + _form["ReturnEmail"].ToString() + " with a signed copy of this letter. " +
+                    "\n\nOnce signed, the changes set out in this letter will be effective from " + _form["StartDate"].ToString() + "." +
+                    "\n \n We understand that the news may be rather unfortunate, we ask you to remember that this is the best response for our company in light of the crisis. Do not hesitate to contact me should you have any questions or issues. " +
+                    "\n Yours sincerely," +
+                    "\n " + _form["SenderFirstName"].ToString() + "\n"
+                    + _form["SenderPosition"].ToString() + "\n"
+                    + _form["SenderName"].ToString() + "\n \n " +
+                    "--------------------------------------------------------------------------------------------------------------------" +
+                    "\n I agree to the adjustment of my contract for the period of my furlough leave, which I acknowledge began on " + _form["StartDate"].ToString() + " and will continue until I am notified of an end date. I understand that I cannot undertake any work for " + _form["SenderName"].ToString() + ". " +
+                    "\n \n Signed _______________________________" +
+                    "\n \n Name _________________________________" +
+                    "\n \n Date _________________________________";
+
+            Aspose.Words.License license = new Aspose.Words.License();
+            try
+            {
+                license.SetLicense("../assets/Aspose.Words.NET.lic");
+                Console.WriteLine("License set successfully.");
+            }
+            catch (Exception e)
+            {
+                // We do not ship any license with this example, visit the Aspose site to obtain either a temporary or permanent license. 
+                Console.WriteLine("\nThere was an error setting the license: " + e.Message);
+            }
+
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            // Specify font formatting
+            Font font = builder.Font;
+            font.Size = 12;
+            font.Bold = false;
+            font.Name = "Arial";
+
+            Style alignright = builder.Document.Styles.Add(StyleType.Paragraph, "alignright");
+            alignright.ParagraphFormat.Alignment = ParagraphAlignment.Right;
+
+            builder.ParagraphFormat.StyleName = alignright.Name;
+            builder.Write(to_para);
+            builder.InsertStyleSeparator();
+
+            builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.BodyText;
+            builder.Write(from_para);
+            builder.Write(dear);
+            builder.InsertStyleSeparator();
+
+            Style titlep = builder.Document.Styles.Add(StyleType.Paragraph, "titlep");
+            titlep.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+            titlep.Font.Bold = true;
+
+            builder.ParagraphFormat.StyleName = titlep.Name;
+            builder.Write(title + "\n \n");
+            builder.InsertStyleSeparator();
+
+            builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.BodyText;
+            builder.Write(body);
+
+            var ms = new MemoryStream();
+            doc.Save(ms, SaveFormat.Pdf);
+            byte[] data = ms.ToArray();
+            return data;
+        }
         public byte[] CreateTempFurlDocument(FormCollection _form)
         {
             string benefits;

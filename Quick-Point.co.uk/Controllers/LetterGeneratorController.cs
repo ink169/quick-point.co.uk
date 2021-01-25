@@ -32,7 +32,28 @@ namespace Quick_Point.co.uk.Controllers
         {
             return View();
         }
+        public ActionResult ReFurlough()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult ReFurl(FormCollection form)
+        {
+            try
+            {
+                var letgen = new LetterGen(form);
+                letgen.CreateDoc("ReFurlough");
+                ViewBag.CompleteMessage = "Your document has been emailed to the specified address. Please check your spam if you can't locate it.";
+                return View("Index");
+            }
+            catch
+            {
+                ViewBag.CompleteMessage = "Error creating document";
+                return View("Index");
+            }
+
+        }
         [HttpPost]
         public ActionResult TempFurl(FormCollection form)
         {

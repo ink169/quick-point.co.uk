@@ -30,6 +30,7 @@ namespace Quick_Point.co.uk.LetterGeneratorLogic
             if (Type == "FurloughLeave") { FurlLeaveGen(); LetterName = "Furlough Leave Letter.Pdf"; };
             if (Type == "ReturnToWork") { RetToWorkGen(); LetterName = "Return To Work Letter.Pdf"; };
             if (Type == "TemporaryFurlough") { TempFurl(); LetterName = "Temporary Furlough Letter.Pdf"; };
+            if (Type == "ReFurlough") { ReFurl(); LetterName = "Re-Furlough Agreement Letter.Pdf"; };
 
             //...
 
@@ -71,6 +72,11 @@ namespace Quick_Point.co.uk.LetterGeneratorLogic
         {
             var docgen = new DocGen();
             Filestream = docgen.CreateTempFurlDocument(_form);
+        }
+         public void ReFurl()
+        {
+            var docgen = new DocGen();
+            Filestream = docgen.CreateReFurlDocument(_form);
         }
 
 

@@ -384,6 +384,7 @@
     <Content Include="Views\Articles\_ImportantCovidUpdates.cshtml" />
     <Content Include="Views\LetterGenerator\ReturnToWork.cshtml" />
     <Content Include="Views\LetterGenerator\TemporaryFurlough.cshtml" />
+    <None Include="Views\LetterGenerator\ReFurlough.cshtml" />
     <None Include="Views\LetterGenerator\FurloughLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
