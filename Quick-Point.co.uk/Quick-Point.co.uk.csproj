@@ -382,6 +382,9 @@
     <Content Include="Views\Articles\_TaxAccArticle13.cshtml" />
     <Content Include="Views\Articles\_BrexitAndYourBusiness.cshtml" />
     <Content Include="Views\Articles\_ImportantCovidUpdates.cshtml" />
+    <Content Include="Views\LetterGenerator\ReturnToWork.cshtml" />
+    <Content Include="Views\LetterGenerator\TemporaryFurlough.cshtml" />
+    <None Include="Views\LetterGenerator\FurloughLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

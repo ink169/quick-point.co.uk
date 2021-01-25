@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "FlexibleFurlough";
+    Layout = "";
+}
+@Styles.Render("~/Content/FormStyle.css")
+
+<style>
+    .LetterGenForm {
+        flex-flow: nowrap;
+        margin:10px 50px 0px 50px;
+        width: auto;
+        align-items:inherit;
+    }
+    .field{
+        margin-bottom:30px
+        
+    }
+    .formcol{
+        margin:0 30px 0 30px;
+    }
+</style>
+
+<h2>Furlough Leave Letter Generator</h2>
+<div class="LetterGenForm row" style="display:inline-block;">
+    @using (Html.BeginForm("FurlLeave", "LetterGenerator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "LetterGenForm" }))
+    {
+        <div class="col-lg-3 formcol">
+            <h4>Furlough Details</h4>
+            <!-- Other Detail-->
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Date Furlough Start
+                </label>
+                <input type="date" name="StartDate" placeholder="e.g. 01/01/2020" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Expected Return Date
+                </label>
+                <input type="date" name="ReturnDate" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Gross Sum of Furlough Pay
+                </label>
+                <input type="number" name="GrossPay"  placeholder="£15,000" required />
+            </div>
+        </div>
+        <div class="col-md-3 formcol">
+            <h4>Sender Details</h4>
+            <!--Sending Adress-->
+            <div class="field">
+                <label for="Name of Sender">
+                    <i class="far fa-user"></i>Name of Sending Business
+                </label>
+                <input type="text" name="SenderName" placeholder="e.g. Business 1" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender First Line of Address
+                </label>
+                <input type="text" name="SenderAddress1" placeholder="e.g. 1 Apple Lane" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender Second Line of Address
+                </label>
+                <input type="text" name="SenderAddress2" placeholder="e.g. Chelsea" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender Third Line of Address
+                </label>
+                <input type="text" name="SenderAddress3" placeholder="e.g. London" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender PostCode
+                </label>
+                <input type="text" name="SenderPostCode" placeholder="e.g. SW1 1AB" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender Email
+                </label>
+                <input type="email" name="SenderEmail" placeholder="JohnSmith@Smith.com" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender Name
+                </label>
+                <input type="text" name="SenderFirstName" placeholder="e.g. Josh SMith" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Sender Position
+                </label>
+                <input type="text" name="SenderPosition" placeholder="e.g. Commercial Director" required />
+            </div>
+        </div>
+        <div class="col-lg-3 formcol">
+            <!--Recipient Adress-->
+            <h4>Recipient Details</h4>
+            <div class="">
+                <label for="Name of recipient">
+                    <i class="far fa-user"></i>Name of recipient
+                </label>
+                <input type="text" name="RecipientName" placeholder="e.g. John Smith" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Recipient First Line of Address
+                </label>
+                <input type="text" name="RecipientAddress1" placeholder="e.g. 1 Apple Lane" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Recipient Second Line of Address
+                </label>
+                <input type="text" name="RecipientAddress2" placeholder="e.g. Chelsea" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Recipient Third Line of Address
+                </label>
+                <input type="text" name="RecipientAddress3" placeholder="e.g. London" required />
+            </div>
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Recipient PostCode
+                </label>
+                <input type="text" name="RecipientPostCode" placeholder="e.g. SW1 1AB" required />
+            </div>
+            Please tick to agree with our T&C's
+            <br />
+            <input type="checkbox" name="GDPR" required style="width:auto;" />
+
+            Your letter will be emailed to the sender email, please specify this email below:
+            <div class="field">
+                <label for="">
+                    <i class="far fa-user"></i>Email to recieve letter
+                </label>
+                <input type="text" name="Email" placeholder="e.g. apple@orange.com" required />
+            </div>
+            <div style="width:100%; align-items:center; justify-content:center;">
+                <button type="submit">Generate Letter</button>
+            </div>
+
+        </div>
+    }
+</div>
