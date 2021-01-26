@@ -1,31 +1,41 @@
 ﻿
 @{
     ViewBag.Title = "FlexibleFurlough";
-    Layout = "";
+    Layout = "~/Views/Shared/_ArticleLayout.cshtml";
 }
 @Styles.Render("~/Content/FormStyle.css")
 
 <style>
-    .LetterGenForm {
-        flex-flow: nowrap;
-        margin:10px 50px 0px 50px;
-        width: auto;
-        align-items:inherit;
-    }
-    .field{
-        margin-bottom:30px
-        
-    }
-    .formcol{
-        margin:0 30px 0 30px;
-    }
+   
 </style>
+<section class="hero-section" id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 hero-text-image">
+                <div class="row">
+                    <div class="col-lg-5 iphone-wrap">
+                        <a href="/Home/Index">
+                            <img src="~/assets/images/Logo.svg" alt="" class="hero-section-img" />
+                        </a>
+                    </div>
+                    <div class="col-lg-7 text-center text-lg-left" style="padding-top: 2rem;">
+                        <h2 data-aos="fade-right">Quick-Point Letter Generator</h2>
+                        <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero -->
+<div class="text-center">
+    <h2>Temporary Furlough Letter Generator</h2>
+</div>
+<div>
 
-<h2>Temporary Furlough Letter Generator</h2>
-<div class="LetterGenForm row" style="display:inline-block;">
-    @using (Html.BeginForm("TempFurl", "LetterGenerator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "LetterGenForm" }))
+    @using (Html.BeginForm("TempFurl", "LetterGenerator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "LetterGenForm row col-lg-12 col-md-12 col-sm-12" }))
     {
-        <div class="col-lg-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <h4>Furlough Details</h4>
             <!-- Other Detail-->
             <div class="field">
@@ -38,15 +48,15 @@
                 <label for="">
                     <i class="far fa-user"></i>Weekly Wage On Furlough
                 </label>
-                <input type="number" name="WeeklyPay"  placeholder="£2,000" required />
+                <input type="number" name="WeeklyPay" placeholder="£2,000" required />
             </div> <div class="field">
-                       <label for="">
-                           <i class="far fa-user"></i>Contractual entitlements to pay and other financial benefits during the furlough period (please list with commas)
-                       </label>
-                <input type="number" name="Benefits"  placeholder="benefit 1, benefit 2"  />
+                <label for="">
+                    <i class="far fa-user"></i>Contractual entitlements to pay and other financial benefits during the furlough period (please list with commas)
+                </label>
+                <input type="number" name="Benefits" placeholder="benefit 1, benefit 2" />
             </div>
         </div>
-            <div class="col-md-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <h4>Business Details</h4>
             <!--Sending Adress-->
             <div class="field">
@@ -74,7 +84,7 @@
                 <input type="date" name="ReturnDeadline" placeholder="04-01-2021" required />
             </div>
         </div>
-        <div class="col-lg-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <!--Recipient Adress-->
             <h4>Recipient Details</h4>
             <div class="">
@@ -83,7 +93,7 @@
                 </label>
                 <input type="text" name="RecipientName" placeholder="e.g. John Smith" required />
             </div>
-           
+
             Please tick to agree with our T&C's
             <br />
             <input type="checkbox" name="GDPR" required style="width:auto;" />

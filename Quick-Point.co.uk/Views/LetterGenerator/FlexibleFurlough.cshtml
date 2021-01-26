@@ -1,31 +1,37 @@
 ﻿
 @{
     ViewBag.Title = "FlexibleFurlough";
-    Layout = "";
+    Layout = "~/Views/Shared/_ArticleLayout.cshtml";
 }
 @Styles.Render("~/Content/FormStyle.css")
 
-<style>
-    .LetterGenForm {
-        flex-flow: nowrap;
-        margin:10px 50px 0px 50px;
-        width: auto;
-        align-items:inherit;
-    }
-    .field{
-        margin-bottom:30px
-        
-    }
-    .formcol{
-        margin:0 30px 0 30px;
-    }
-</style>
-
-<h2>Flexible Furlough Letter Generator</h2>
+<section class="hero-section" id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 hero-text-image">
+                <div class="row">
+                    <div class="col-lg-5 iphone-wrap">
+                        <a href="/Home/Index">
+                            <img src="~/assets/images/Logo.svg" alt="" class="hero-section-img" />
+                        </a>
+                    </div>
+                    <div class="col-lg-7 text-center text-lg-left" style="padding-top: 2rem;">
+                        <h2 data-aos="fade-right">Quick-Point Letter Generator</h2>
+                        <p class="mb-4" data-aos="fade-right" data-aos-delay="100">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero -->
+<div class="text-center">
+    <h2>Flexible Furlough Letter Generator</h2>
+</div>
 <div class="LetterGenForm row" style="display:inline-block;">
-    @using (Html.BeginForm("FlexFurl", "LetterGenerator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "LetterGenForm" }))
+    @using (Html.BeginForm("FlexFurl", "LetterGenerator", FormMethod.Post, new { enctype = "multipart/form-data", @class = "LetterGenForm row col-lg-12 col-md-12 col-sm-12" }))
     {
-        <div class="col-lg-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <h4>Furlough Details</h4>
             <!-- Other Detail-->
             <div class="field">
@@ -57,7 +63,7 @@
                 <div class="checkboxLabel">Wednesday</div>
                 @Html.CheckBox("Wednesday")
                 <div class="checkboxLabel">Thursday</div>
-                @Html.CheckBox("Thursday")               
+                @Html.CheckBox("Thursday")
                 <div class="checkboxLabel">Friday</div>
                 @Html.CheckBox("Friday")
                 <div class="checkboxLabel">Saturday</div>
@@ -81,10 +87,10 @@
                 <label for="">
                     <i class="far fa-user"></i>Gross Sum of Furlough Pay
                 </label>
-                <input type="number" name="GrossPay"  placeholder="£15,000" required />
+                <input type="number" name="GrossPay" placeholder="£15,000" required />
             </div>
         </div>
-        <div class="col-md-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <h4>Sender Details</h4>
             <!--Sending Adress-->
             <div class="field">
@@ -136,7 +142,7 @@
                 <input type="text" name="SenderPosition" placeholder="e.g. Commercial Director" required />
             </div>
         </div>
-        <div class="col-lg-3 formcol">
+        <div class="container col-md-3 col-sm-12 formcol">
             <!--Recipient Adress-->
             <h4>Recipient Details</h4>
             <div class="">
