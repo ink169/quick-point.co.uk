@@ -11,6 +11,95 @@ namespace DocumentGeneratorLibrary
 {
     public class DocGen
     {
+        public byte[] CreateHygieneDocument(FormCollection _form)
+        {
+            //declare content
+            string title = "COVID-19 Return to Work - Workplace Hygiene Policy. \n";
+            string body = "OVERVIEW \n\n" +
+                "In January 2020 the World Health Organization (WHO) declared the outbreak of a new coronavirus disease in Hubei Province, China to be a Public Health Emergency of International Concern. " +
+                "WHO stated there is a high risk of the 2019 coronavirus disease (COVID-19) spreading to other countries around the world. " +
+                "The disease has the potential to drive significant business and operational impact on us as employees of " + _form["Business"].ToString() + ". It is critical that we have a clear plan and lines of communications with you as our employees, as well as clients and third-party entities. " +
+                "\n Our guiding principles as we continue to move forward: \n" +
+                "1.	Keep " + _form["Business"].ToString() + " employees safe \n" +
+                "2.	Continue to serve our customers with the highest standards \n" +
+                "3.	Do our part to slow community spread of the virus where there appear to be outbreaks, so that the most vulnerable people are able to get the care they need \n" +
+                "\n How COVID-19 spreads  \n\n" +
+                " Let’s start with the World Health Organisation’s information about the spread of COVID - 19. \n" +
+                "\n When someone who has COVID - 19 coughs or exhales they release droplets of infected fluid. Most of these droplets fall on nearby surfaces and objects – such as desks, tables or telephones.People could catch COVID - 19 by touching contaminated surfaces or objects – and then touching their eyes, nose or mouth.If they are standing within one meter of a person with COVID-19 they can catch it by breathing in droplets coughed out or exhaled by them. " +
+                "\n In other words, COVID - 19 spreads in a similar way to the flu. Most persons infected with COVID - 19 experience mild symptoms and recover.However, some go on to experience more serious illness and may require hospital care. Risk of serious illness rises with age: people over 40 seem to be more vulnerable than those under 40.People with weakened immune systems and people with conditions such as diabetes, heart and lung disease are also more vulnerable to serious illness." +
+                "\n\n What’s expected of you \n\n " +
+                "Given the situation at hand, we have developed the following checklist as workplace hygiene guidelines for you to follow when at work.\n" +
+                "\n \n Travelling to work \n\n" +
+                " ● When travelling to work please follow the Public Transport Policy guidelines. " +
+                "\n\nOn your arrival to work \n\n"+
+"•	When arriving to work please dispose of any masks used in transport to the office \n"+
+"•	Limit the touching of any and all surfaces \n" +
+"•	Wash your hands for at least 20 seconds with soap and water \n" +
+"•	Place any bags on the ground and not on desks \n" +
+"•	Please wipe down your desk area with a cleaning wipe and dispose of soiled wipes\n" +
+"\n\n Whilst at work \n\n" +
+"•	Practise physical distancing by maintaining a 1.5 metre distance between yourself and other persons \n" +
+"•	Apply social distancing in meeting rooms &avoid being in an enclosed meeting room for a period of time with a group of people(continue to use virtual meeting for large groups)\n" + 
+"•	Frequently wash your hands for at least 20 seconds with soap and water or by using an alcohol-based hand sanitiser \n" +
+"•	Avoid touching your eyes, nose and mouth\n" +
+"•	Please cough or sneeze into your elbow or a tissue.Immediately dispose of the tissue after use. \n" +
+"•	Clean and disinfect frequently used objects such as mobile phones, keys, wallets and work passes \n" +
+"•	If you feel unwell, tell your direct manager and then promptly leave work if it is safe for you to do so.Symptoms to look out for: fever, cough, sore throat and shortness of breath \n" +
+"•  Please be extra attentive in cleaning up after yourself when using shared facilities such as the kitchen and bathroom" +
+"\n\n Leaving work \n\n" +
+"● Please wipe down your desk area with a cleaning wipe and dispose of soiled wipes \n\n";
+
+            string bottom = "By signing this document, you confirm that you have read, agree to, and will abide by this policy until further. " +
+                    "\n \n Signed _______________________________" +
+                    "\n \n Name _________________________________" +
+                    "\n \n Date _________________________________";
+
+
+            Aspose.Words.License license = new Aspose.Words.License();
+            try
+            {
+                license.SetLicense("../assets/Aspose.Words.NET.lic");
+                Console.WriteLine("License set successfully.");
+            }
+            catch (Exception e)
+            {
+                // We do not ship any license with this example, visit the Aspose site to obtain either a temporary or permanent license. 
+                Console.WriteLine("\nThere was an error setting the license: " + e.Message);
+            }
+
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            // Specify font formatting
+            Font font = builder.Font;
+            font.Size = 12;
+            font.Bold = false;
+            font.Name = "Arial";
+
+            Style alignright = builder.Document.Styles.Add(StyleType.Paragraph, "alignright");
+            alignright.ParagraphFormat.Alignment = ParagraphAlignment.Right;
+
+
+            Style titlep = builder.Document.Styles.Add(StyleType.Paragraph, "titlep");
+            titlep.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+            titlep.Font.Bold = true;
+
+            builder.ParagraphFormat.StyleName = titlep.Name;
+            builder.Write(title + "\n \n");
+            builder.InsertStyleSeparator();
+
+            builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.BodyText;
+            builder.Write(body);
+            builder.Write(bottom);
+
+
+
+            var ms = new MemoryStream();
+            doc.Save(ms, SaveFormat.Pdf);
+            byte[] data = ms.ToArray();
+            return data;
+        }
+
         public byte[] CreateRetToWorkDocument(FormCollection _form)
         {
             //declare content

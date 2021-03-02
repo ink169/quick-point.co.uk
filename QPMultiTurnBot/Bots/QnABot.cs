@@ -247,7 +247,7 @@ namespace Microsoft.BotBuilderSamples
                         // var reply = ((Activity)turnContext.Activity).CreateReply();
                         // reply.Attachments = new List<Microsoft.Bot.Schema.Attachment>() { YesNoCard() };
                         // await turnContext.SendActivityAsync(reply);
-                        var finalmsg ="We hope this has answered your question. If it hasn't, let us know at sales@sterling-beanland.co.uk. Otherwise, feel free to ask another question.";
+                        var finalmsg ="We hope this has answered your question. If it hasn't, let us know at admin@sterling-beanland.co.uk. Otherwise, feel free to ask another question.";
                        
                          await turnContext.SendActivityAsync(finalmsg);
                     }
