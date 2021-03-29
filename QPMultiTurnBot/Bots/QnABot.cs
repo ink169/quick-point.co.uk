@@ -60,8 +60,8 @@ namespace Microsoft.BotBuilderSamples
         {
             var card = new AdaptiveCard("1.0");
             card.Body.Add(new AdaptiveTextBlock() { Text = "Hi, welcome to Quick-Point! Please ask a covid-related business question below", Size = AdaptiveTextSize.Medium, Wrap = true });
-            card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, you can browse some of our most popular questions from the dropdown menu below:", Size = AdaptiveTextSize.Medium, Wrap = true });
-            card.Body.Add(new AdaptiveChoiceSetInput()
+          //  card.Body.Add(new AdaptiveTextBlock() { Text = "Otherwise, you can browse some of our most popular questions from the dropdown menu below:", Size = AdaptiveTextSize.Medium, Wrap = true });
+           /* card.Body.Add(new AdaptiveChoiceSetInput()
             {
                 Id = "welcomeQCard",
 
@@ -79,9 +79,9 @@ namespace Microsoft.BotBuilderSamples
 
                 })
             }) ;
-            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Get Answer For Selected Question" });
+            card.Actions.Add(new AdaptiveSubmitAction() { Title = "Get Answer For Selected Question" });*/
 
-            return new Microsoft.Bot.Schema.Attachment()
+            return new Bot.Schema.Attachment()
             {
                 ContentType = AdaptiveCard.ContentType,
                 Content = card

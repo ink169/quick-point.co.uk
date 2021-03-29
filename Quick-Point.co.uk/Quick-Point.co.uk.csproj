@@ -387,6 +387,8 @@
     <Content Include="Views\LetterGenerator\Hygiene.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle14.cshtml" />
     <Content Include="Views\Articles\_TaxAccArticle15.cshtml" />
+    <Content Include="Views\Articles\_LateralFlowTesting.cshtml" />
+    <Content Include="Views\Articles\_RestartGrants.cshtml" />
     <None Include="Views\LetterGenerator\ReFurlough.cshtml" />
     <None Include="Views\LetterGenerator\FurloughLeave.cshtml" />
   </ItemGroup>
